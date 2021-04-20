@@ -1,2 +1,5 @@
+export { default as Cube } from './Cube'
+export { default as Ground } from './Ground'
 export { default as NoSsr } from './NoSsr'
 export { default as Logo } from './Logo'
+export { default as Player } from './Player'
