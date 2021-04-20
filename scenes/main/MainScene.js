@@ -6,30 +6,22 @@ import { Physics, useBox } from '@react-three/cannon'
 import { Cube, Ground, Player } from '../../components'
 import styles from './main.module.scss'
 
-const Wall = ({ geometry, material, id }) => {
-  const [size, position] = useMemo(() => {
+const Wall = ({ geometry, material }) => {
+  const [args, position] = useMemo(() => {
     const { boundingBox } = geometry
     const box = new THREE.Box3(boundingBox.min, boundingBox.max)
     const size = box.getSize(new THREE.Vector3())
     const parameter = box.getCenter(new THREE.Vector3())
 
-    return [size, parameter]
+    return [size.toArray(), parameter.toArray()]
   }, [geometry])
 
-  useBox(() => ({
-    position: position.toArray(),
-    args: size.toArray(),
-    type: 'Static',
-  }))
+  useBox(() => ({ position, args, type: 'Static' }))
 
   return (
     <>
-      <mesh
-        geometry={geometry}
-        material={material}
-        userData={{ shouldCollide: true, innerId: id }}
-      />
-      <Box position={position.toArray()} args={size.toArray()}>
+      <mesh geometry={geometry} material={material} />
+      <Box position={position} args={args}>
         <meshBasicMaterial color="red" wireframe />
       </Box>
     </>
@@ -37,7 +29,7 @@ const Wall = ({ geometry, material, id }) => {
 }
 
 const Maze = () => {
-  const { nodes, materials } = useGLTF('/alberto.glb')
+  const { nodes, materials } = useGLTF('/gltf/maze_v1.glb')
 
   const idsNodes = useMemo(() => Object.keys(nodes), [nodes])
 
@@ -49,7 +41,6 @@ const Maze = () => {
       <Wall
         //
         key={node.uuid}
-        id={node.uuid}
         geometry={node.geometry}
         material={materials.Granite_}
       />
