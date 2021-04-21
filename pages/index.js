@@ -1,11 +1,11 @@
 import { Logo } from '../components'
-import { MainScene } from '../scenes'
+import { Scene } from '../objects3d'
 
 const Index = () => {
   return (
     <div>
       <Logo />
-      <MainScene />
+      <Scene />
     </div>
   )
 }

@@ -3,13 +3,38 @@ import { PointerLockControls } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from 'react-three-fiber'
 import { Vector3 } from 'three'
+import { useControl } from 'react-three-gui'
+import config from '../../config'
 import useKeyboard from '../../hooks/useKeyboard'
 
-const WALK_SPEED = 5
-// const WALK_SPEED = 15
-
 function Player() {
-  const [ref, api] = useSphere(() => ({ mass: 1, position: [0, 2, 0] }))
+  const speed = useControl('Speed', {
+    type: 'number',
+    min: 1,
+    max: 20,
+    value: config.player.speed,
+    group: 'Player',
+  })
+
+  useControl('Show Pos', {
+    type: 'button',
+    group: 'Player',
+    onClick: () => {
+      alert(
+        JSON.stringify({
+          x: ref.current?.position.x.toFixed(2),
+          y: ref.current?.position.y.toFixed(2),
+          z: ref.current?.position.z.toFixed(2),
+        })
+      )
+    },
+  })
+
+  const [ref, api] = useSphere(() => ({
+    mass: 1,
+    position: config.player.initialPos,
+    args: config.player.radius,
+  }))
 
   const movement = useKeyboard()
 
@@ -32,7 +57,7 @@ function Player() {
     const newVelocity = new Vector3()
       .subVectors(frontVector, sideVector)
       .normalize()
-      .multiplyScalar(WALK_SPEED)
+      .multiplyScalar(speed)
       .applyEuler(camera.rotation)
 
     // api.velocity.set(newVelocity.x, movement.jump ? 2 : currentVelocity.current[1], newVelocity.z)

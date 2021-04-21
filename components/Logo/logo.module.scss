@@ -1,10 +1,19 @@
 .logo {
   position: fixed;
   left: 1rem;
+  top: 1rem;
   opacity: 0.2;
   z-index: 999;
+  filter: grayscale(1);
+
+  img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 
   &:hover {
     opacity: 0.7;
+    filter: grayscale(0);
+    cursor: pointer;
   }
 }

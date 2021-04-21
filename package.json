@@ -12,10 +12,12 @@
   "dependencies": {
     "@react-three/cannon": "^0.6.1",
     "@react-three/drei": "^3.11.0",
+    "@react-three/fiber": "^6.0.16",
     "next": "10.0.9",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-three-fiber": "^5.3.19",
+    "react-three-gui": "^0.4.2",
     "sass": "^1.32.8",
     "three": "^0.126.1"
   },

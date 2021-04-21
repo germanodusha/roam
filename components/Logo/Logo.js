@@ -3,7 +3,7 @@ import styles from './logo.module.scss'
 const Logo = () => {
   return (
     <div className={styles.logo}>
-      <h1>Three</h1>
+      <img src="/logo.png" alt="Genesys Logo" />
     </div>
   )
 }
