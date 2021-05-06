@@ -12,6 +12,7 @@ export default {
   },
 
   maze: {
+    showCollisions: false,
     gltf: '/gltf/maze_v1.glb',
   },
 

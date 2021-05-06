@@ -78,6 +78,33 @@ const View = ({ controlsEnabled, hideControls }) => {
   )
 }
 
+const Environment = () => {
+  return (
+    <>
+      <Sky
+        //
+        distance={450000}
+        sunPosition={[10, 100, 10]}
+        turbidity={8}
+        azimuth={0.25}
+        inclination={0}
+      />
+      <ambientLight intensity={0.5} color="white" position={[10, 10, -100]} />
+      <directionalLight
+        castShadow
+        position={[10, 10, 10]}
+        intensity={5}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+        color="blue"
+      />
+    </>
+  )
+}
+
 const Scene = () => {
   const [controlsEnabled, hideControls] = useControlsEnabled()
 
@@ -85,29 +112,12 @@ const Scene = () => {
     <Controls.Provider>
       <Controls.Canvas className={styles.scene} shadowMap>
         <Suspense fallback={null}>
-          <Sky
-            distance={450000}
-            sunPosition={[0, 1, 0]}
-            turbidity={8}
-            azimuth={0.25}
-            inclination={0}
-          />
-          <ambientLight intensity={0.5} />
-          <directionalLight
-            castShadow
-            position={[10, 10, 10]}
-            intensity={1}
-            shadow-camera-far={50}
-            shadow-camera-left={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={10}
-            shadow-camera-bottom={-10}
-          />
+          <Environment />
 
           <Physics>
             <Ground />
             <View controlsEnabled={controlsEnabled} hideControls={hideControls} />
-            <GLTFWalls path={config.maze.gltf} />
+            <GLTFWalls path={config.maze.gltf} showCollisions={config.maze.showCollisions} />
           </Physics>
         </Suspense>
       </Controls.Canvas>

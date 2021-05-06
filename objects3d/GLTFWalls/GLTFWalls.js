@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { useGLTF, Box } from '@react-three/drei'
 import { useBox } from '@react-three/cannon'
 
-const Wall = ({ geometry, material }) => {
+const Wall = ({ geometry, material, showCollisions }) => {
   const [args, position] = useMemo(() => {
     const { boundingBox } = geometry
     const box = new THREE.Box3(boundingBox.min, boundingBox.max)
@@ -17,15 +17,15 @@ const Wall = ({ geometry, material }) => {
 
   return (
     <>
-      <mesh geometry={geometry} material={material} />
-      <Box position={position} args={args}>
+      <mesh geometry={geometry} material={material} castShadow />
+      <Box position={position} args={args} visible={showCollisions}>
         <meshBasicMaterial color="red" wireframe />
       </Box>
     </>
   )
 }
 
-const GLTFWalls = ({ path }) => {
+const GLTFWalls = ({ path, showCollisions }) => {
   const { nodes, materials } = useGLTF(path)
 
   const idsNodes = useMemo(() => Object.keys(nodes), [nodes])
@@ -36,10 +36,10 @@ const GLTFWalls = ({ path }) => {
 
     return (
       <Wall
-        //
         key={node.uuid}
         geometry={node.geometry}
         material={materials.Granite_}
+        showCollisions={showCollisions}
       />
     )
   })

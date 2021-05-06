@@ -3,10 +3,10 @@ import { Scene } from '../objects3d'
 
 const Index = () => {
   return (
-    <div>
+    <>
       <Logo />
       <Scene />
-    </div>
+    </>
   )
 }
 
