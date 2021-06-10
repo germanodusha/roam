@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { useThree, useLoader } from '@react-three/fiber'
 
-const ComplexMaterial = ({
-  path,
-  repeatX,
-  repeatY,
+const useTextureMaterial = ({
+  path = '',
+  repeatX = 1,
+  repeatY = 1,
   aoMapIntensity = 5,
   baseColorPath,
   bumpScale = 10,
@@ -28,13 +28,14 @@ const ComplexMaterial = ({
 
   useEffect(() => {
     ;[base, bump, normalMap, ao, rough].forEach((texture) => {
-      texture.wrapS = THREE.RepeatWrapping
-      texture.wrapT = THREE.RepeatWrapping
+      texture.wrapS = THREE.MirroredRepeatWrapping
+      texture.wrapT = THREE.MirroredRepeatWrapping
       texture.repeat.set(repeatX, repeatY)
+      console.log(1, texture)
     })
   }, [repeatY, repeatX, base, bump, normalMap, ao, rough])
 
-  return (
+  const texturedMaterial = useRef(
     <meshPhysicalMaterial
       attach="material"
       map={base}
@@ -48,7 +49,9 @@ const ComplexMaterial = ({
       roughnessMap={rough}
       envMap={scene.background}
     />
-  )
+  ).current
+
+  return texturedMaterial
 }
 
-export default ComplexMaterial
+export default useTextureMaterial

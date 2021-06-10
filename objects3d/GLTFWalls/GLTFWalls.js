@@ -1,9 +1,8 @@
-import { useRef, useEffect, useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
-import { useGLTF, useHelper } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber'
+import { useGLTF} from '@react-three/drei'
 import { useBox } from '@react-three/cannon'
-import { VertexNormalsHelper } from 'three-stdlib'
+import useTexturedMaterial from '../useTexturedMaterial'
 
 const Wall = ({ children, material, node, geometry, showCollisions }) => {
   const mesh = useRef()
@@ -32,34 +31,22 @@ const Wall = ({ children, material, node, geometry, showCollisions }) => {
 const GLTFWalls = ({ path, showCollisions }) => {
   const { nodes, materials } = useGLTF(path)
 
-  // const [base, bump, normal, ao, rough] = useLoader(THREE.TextureLoader, [
-  //   '/materials/grass/basecolor.jpg',
-  //   '/materials/grass/height.png',
-  //   '/materials/grass/normal.jpg',
-  //   '/materials/grass/ambientOcclusion.jpg',
-  //   '/materials/grass/roughness.jpg',
-  // ])
-
-  // useEffect(() => {
-  //   const repeatX = 0.015
-  //   const repeatY = 0.015
-  //   ;[base, bump, normal, ao, rough].forEach((texture) => {
-  //     texture.wrapS = THREE.RepeatWrapping
-  //     texture.wrapT = THREE.RepeatWrapping
-  //     texture.repeat.set(repeatX, repeatY)
-  //     console.log(32323, texture)
-  //   })
-  // }, [base, bump, normal, ao, rough])
+  const texturedMaterial = useTexturedMaterial({
+    path: '/materials/wall/',
+    repeatX: 0.007,
+    repeatY: 0.007,
+    aoMapIntensity: 5,
+    baseColorPath: 'basecolor.jpg',
+    bumpScale: 10,
+    displacementPath: 'displacement.png',
+    normal: 1,
+    normalPath: 'normal.jpg',
+    ambientOcclusionPath: 'ambientOcclusion.jpg',
+    roughness: 5,
+    roughnessPath: 'roughness.jpg',
+  })
 
   const idsNodes = useMemo(() => Object.keys(nodes), [nodes])
-
-  // useEffect(() => {
-  //   if (materials?.Granite_) {
-  //     materials.Granite_.map.wrapS = THREE.RepeatWrapping
-  //     materials.Granite_.map.wrapT = THREE.RepeatWrapping
-  //     materials.Granite_.map.repeat.set(5, 5)
-  //   }
-  // }, [materials])
 
   return idsNodes.map((id) => {
     const node = nodes[id]
@@ -73,17 +60,7 @@ const GLTFWalls = ({ path, showCollisions }) => {
         showCollisions={showCollisions}
         material={materials.Granite_}
       >
-        {/**<meshPhysicalMaterial
-          attach="material"
-          fog
-          metalness={0}
-          map={base}
-          bumpMap={bump}
-          aoMap={ao}
-          normalMap={normal}
-          roughness={1}
-          roughnessMap={rough}
-        />**/}
+        {texturedMaterial}
       </Wall>
     )
   })
