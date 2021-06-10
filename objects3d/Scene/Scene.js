@@ -1,10 +1,11 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useState, useRef } from 'react'
 import * as THREE from 'three'
 import { Canvas, useThree, useLoader } from '@react-three/fiber'
 import { PerspectiveCamera, MapControls } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
 import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
+import useFocusOnNear from '../../hooks/useFocusOnNear'
 import GLTFWalls from '../GLTFWalls'
 import Ground from '../Ground'
 import Player from '../Player'
@@ -43,6 +44,18 @@ const Environment = () => {
   )
 }
 
+const InteractiveCube = () => {
+  const ref = useRef()
+  const { isFocus } = useFocusOnNear({ ref })
+
+  return (
+    <mesh ref={ref} position={[10.4, 1, -125]}>
+      <boxGeometry attach="geometry" />
+      <meshBasicMaterial attach="material" color={isFocus ? 'red' : 'gray'} />
+    </mesh>
+  )
+}
+
 const Scene = () => {
   const [controlsEnabled, hideControls] = useQueryString({ key: 'showcontrols' })
 
@@ -51,6 +64,7 @@ const Scene = () => {
       <Suspense fallback={null}>
         <Environment />
 
+        <InteractiveCube />
         <Physics>
           <Ground />
           <View controlsEnabled={controlsEnabled} hideControls={hideControls} />
