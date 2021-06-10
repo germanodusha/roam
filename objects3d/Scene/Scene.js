@@ -1,15 +1,15 @@
 import { Suspense, useCallback, useEffect, useState } from 'react'
 import * as THREE from 'three'
-import { useThree, useLoader } from 'react-three-fiber'
-import { Stats, PerspectiveCamera, MapControls } from '@react-three/drei'
+import { Canvas, useThree, useLoader } from '@react-three/fiber'
+import { PerspectiveCamera, MapControls } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
-import { Controls, useControl } from 'react-three-gui'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { OBJLoader } from 'three-stdlib'
 import { useRouter } from 'next/router'
 import config from '../../config'
 import GLTFWalls from '../GLTFWalls'
 import Ground from '../Ground'
 import Player from '../Player'
+import ComplexMaterial from '../ComplexMaterial'
 import styles from './scene.module.scss'
 
 const useControlsEnabled = () => {
@@ -42,41 +42,14 @@ const useControlsEnabled = () => {
 }
 
 const View = ({ controlsEnabled, hideControls }) => {
-  const showFps = useControl('Show FPS', {
-    type: 'boolean',
-    group: 'View',
-    value: true,
-  })
+  const [playerEnabled] = useState(true)
 
-  const playerEnabled = useControl('Enabled', {
-    type: 'boolean',
-    group: 'Player',
-    value: true,
-  })
-
-  useControl('Close', {
-    type: 'button',
-    onClick: hideControls,
-  })
+  if (playerEnabled) return <Player />
 
   return (
     <>
-      {playerEnabled ? (
-        <Player />
-      ) : (
-        <>
-          <PerspectiveCamera makeDefault position={[0, 5, 0]} />
-          <MapControls />
-        </>
-      )}
-
-      {controlsEnabled && showFps && (
-        <Stats
-          // 0 FPS; 1 latency; 2 memory
-          showPanel={0}
-          className={styles.stats}
-        />
-      )}
+      <PerspectiveCamera makeDefault position={[0, 5, 0]} />
+      <MapControls />
     </>
   )
 }
@@ -96,7 +69,7 @@ const Environment = () => {
   return (
     <group>
       <ambientLight intensity={1} color="white" position={[10, 10, -100]} />
-      <ambientLight intensity={0} color="blue" position={[10, 10, -100]} />
+      <ambientLight intensity={0.4} color="blue" position={[10, 10, -100]} />
     </group>
   )
 }
@@ -123,25 +96,21 @@ const Scene = () => {
   const [controlsEnabled, hideControls] = useControlsEnabled()
 
   return (
-    <Controls.Provider>
-      <Controls.Canvas className={styles.scene} shadowMap>
-        <Suspense fallback={null}>
-          <Environment />
+    <Canvas className={styles.scene} shadowMap>
+      <Suspense fallback={null}>
+        <Environment />
 
-          <TestObj />
-          <SampleGrass />
-          <SampleGround />
+        <TestObj />
+        <SampleGrass />
+        <SampleGround />
 
-          <Physics>
-            <Ground />
-            <View controlsEnabled={controlsEnabled} hideControls={hideControls} />
-            <GLTFWalls path={config.maze.gltf} showCollisions={config.maze.showCollisions} />
-          </Physics>
-        </Suspense>
-      </Controls.Canvas>
-
-      {controlsEnabled && <Controls {...config.GUIControls} />}
-    </Controls.Provider>
+        <Physics>
+          <Ground />
+          <View controlsEnabled={controlsEnabled} hideControls={hideControls} />
+          <GLTFWalls path={config.maze.gltf} showCollisions={config.maze.showCollisions} />
+        </Physics>
+      </Suspense>
+    </Canvas>
   )
 }
 
@@ -212,18 +181,19 @@ const SampleGrass = () => {
   return (
     <mesh name="sample grass" position={[10.4, 1.5, -125]}>
       <boxGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshPhysicalMaterial
-        attach="material"
-        map={base}
-        bumpScale={1}
-        bumpMap={bump}
+      <ComplexMaterial
+        path="/materials/wall/"
+        repeatX={1}
+        repeatY={1}
         aoMapIntensity={5}
-        aoMap={ao}
+        baseColorPath="basecolor.jpg"
+        bumpScale={10}
+        displacementPath="displacement.png"
         normal={1}
-        normalMap={normal}
-        roughness={0.1}
-        roughnessMap={rough}
-        envMap={scene.background}
+        normalPath="normal.jpg"
+        ambientOcclusionPath="ambientOcclusion.jpg"
+        roughness={5}
+        roughnessPath="roughness.jpg"
       />
     </mesh>
   )

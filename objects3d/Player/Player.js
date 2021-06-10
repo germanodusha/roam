@@ -1,34 +1,13 @@
 import { useSphere } from '@react-three/cannon'
 import { PointerLockControls } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
-import { useFrame, useThree } from 'react-three-fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { Vector3 } from 'three'
-import { useControl } from 'react-three-gui'
 import config from '../../config'
 import useKeyboard from '../../hooks/useKeyboard'
 
 function Player() {
-  const speed = useControl('Speed', {
-    type: 'number',
-    min: 1,
-    max: 20,
-    value: config.player.speed,
-    group: 'Player',
-  })
-
-  useControl('Show Pos', {
-    type: 'button',
-    group: 'Player',
-    onClick: () => {
-      alert(
-        JSON.stringify({
-          x: ref.current?.position.x.toFixed(2),
-          y: ref.current?.position.y.toFixed(2),
-          z: ref.current?.position.z.toFixed(2),
-        })
-      )
-    },
-  })
+  const speed = config.player.speed
 
   const [ref, api] = useSphere(() => ({
     mass: 1,
