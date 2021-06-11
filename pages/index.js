@@ -1,13 +1,5 @@
-import { Logo } from '../components'
-import { Scene } from '../objects3d'
-
 const Index = () => {
-  return (
-    <>
-      <Logo />
-      <Scene />
-    </>
-  )
+  return <p>intro</p>
 }
 
 export default Index
