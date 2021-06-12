@@ -1,6 +1,25 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import { useStore } from './'
 
+const MediaTypes = {
+  AUDIO: 'audio',
+  VIDEO: 'video',
+  TEXT: 'text',
+  TRACK: 'track',
+  LINK: 'link',
+}
+
+const createDefaultMedia = ({ type, src, content }) => ({
+  id: 1,
+  type,
+  title: 'title',
+  track: 'a',
+  album: '',
+  src,
+  model3d: 'something',
+  content,
+})
+
 describe('test store', () => {
   let store
 
@@ -13,20 +32,88 @@ describe('test store', () => {
   })
 
   describe('media', () => {
-    it.todo('should interact with object to main track')
-    it.todo('should close main track')
+    it('should init with false activeMedia', () => {
+      expect(store.current.state.activeMedia).toBe(false)
+    })
 
-    it.todo('should interact with object to open audio')
-    it.todo('should ignore object audio')
-    it.todo('should close audio modal')
+    it('should toggle media audio', () => {
+      expect(store.current.state.activeMedia).toBe(false)
 
-    it.todo('should interact with object to open text')
+      const type = MediaTypes.AUDIO
+      const src = "https://google.com"
+      const media = createDefaultMedia({ type, src })
+
+      act(() => { store.current.actions.openMedia(media)})
+      expect(store.current.state.activeMedia.type).toBe(type)
+
+      expect(store.current.state.activeMedia.src).toBe(src)
+
+      act(() => { store.current.actions.closeMedia() })
+      expect(store.current.state.activeMedia).toBe(false)
+    })
+
+    it('should toggle media text', () => {
+      expect(store.current.state.activeMedia).toBe(false)
+
+      const type = MediaTypes.TEXT
+      const content = ['text one', 'text two', 'text three']
+      const media= createDefaultMedia({ type, content })
+
+      act(() => { store.current.actions.openMedia(media)})
+      expect(store.current.state.activeMedia.type).toBe(type)
+
+      expect(store.current.state.activeMedia.content)
+        .toHaveLength(content.length)
+      expect(store.current.state.activeMedia.content).toBe(content)
+
+      act(() => { store.current.actions.closeMedia() })
+      expect(store.current.state.activeMedia).toBe(false)
+    })
+
+    it('should toggle media video', () => {
+      expect(store.current.state.activeMedia).toBe(false)
+
+      const type = MediaTypes.VIDEO
+      const src = "https://youtube.com"
+      const media = createDefaultMedia({ type, src })
+
+      act(() => { store.current.actions.openMedia(media)})
+      expect(store.current.state.activeMedia.type).toBe(type)
+
+      expect(store.current.state.activeMedia.src).toBe(src)
+
+      act(() => { store.current.actions.closeMedia() })
+      expect(store.current.state.activeMedia).toBe(false)
+    })
+
+    it('should toggle media link', () => {
+      expect(store.current.state.activeMedia).toBe(false)
+
+      const type = MediaTypes.LINK
+      const src = "https://blog.com"
+      const media = createDefaultMedia({ type, src })
+
+      act(() => { store.current.actions.openMedia(media)})
+      expect(store.current.state.activeMedia.type).toBe(type)
+
+      expect(store.current.state.activeMedia.src).toBe(src)
+
+      act(() => { store.current.actions.closeMedia() })
+      expect(store.current.state.activeMedia).toBe(false)
+    })
+
+    it.todo('should toggle main track')
+  })
+
+  describe('ignore media', () => {
     it.todo('should ignore object text')
-    it.todo('should close text modal')
-
-    it.todo('should interact with object to open video')
+    it.todo('should ignore object audio')
     it.todo('should ignore object video')
-    it.todo('should close video modal')
+    it.todo('should ignore object link')
+  })
+
+  describe('init game', () => {
+    it.todo('should validate init game')
   })
 
   describe('intro game', () => {
@@ -37,10 +124,11 @@ describe('test store', () => {
   })
 
   describe('player movements', () => {
-    it('should move forward', () => {
-      expect(true).toBe(false)
-    })
+    // it('should move forward', () => {
+    //   expect(true).toBe(false)
+    // })
 
+    it.todo('should move forward')
     it.todo('should move backward')
     it.todo('should move right')
     it.todo('should move left')

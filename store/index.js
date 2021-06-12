@@ -28,16 +28,24 @@ export const useStore = create((set) => {
     active: false,
     medias: [],
     achievements: [],
-    modal: false,
+    activeMedia: false,
   }
 
   return {
     state: initialState,
     actions: {
-      reset: () => console.log('store reset'),
+      reset: () => {
+        set({ state: { ...initialState } })
+      },
       init: () => {
         console.log('listeners go here')
       },
+      openMedia: (activeMedia) => {
+        setState(({ state }) => { state.activeMedia = activeMedia })
+      },
+      closeMedia: () => {
+        setState(({ state }) => { state.activeMedia = initialState.activeMedia })
+      }
     },
   }
 })

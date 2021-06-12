@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import styles from './Hud.module.scss'
-console.log(styles)
 
 const Hud = () => {
   return (
