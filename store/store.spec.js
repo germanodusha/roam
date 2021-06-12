@@ -1,24 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks'
+import { createDefaultMedia } from '../helpers/mock'
+import { MediaTypes } from '../helpers/constants'
 import { useStore } from './'
-
-const MediaTypes = {
-  AUDIO: 'audio',
-  VIDEO: 'video',
-  TEXT: 'text',
-  TRACK: 'track',
-  LINK: 'link',
-}
-
-const createDefaultMedia = ({ type, src, content }) => ({
-  id: 1,
-  type,
-  title: 'title',
-  track: 'a',
-  album: '',
-  src,
-  model3d: 'something',
-  content,
-})
 
 describe('test store', () => {
   let store
