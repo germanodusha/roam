@@ -1,11 +1,13 @@
-import { Logo } from '../components'
+import Hud from '@/components/Hud'
+import MediaCenter from '@/components/MediaCenter'
 import { Scene } from '../objects3d'
 
 const Index = () => {
   return (
     <>
-      <Logo />
       <Scene />
+      <Hud />
+      <MediaCenter />
     </>
   )
 }

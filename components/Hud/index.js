@@ -29,6 +29,10 @@ const Hud = () => {
       <div className={classNames(styles["hud__section"], styles["hud__guide"])}>
         press S for key guide
       </div>
+
+      <div className={classNames(styles["hud__section"], styles["hud__interaction"])}>
+        interaction
+      </div>
     </div>
   )
 }

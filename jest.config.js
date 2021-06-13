@@ -5,4 +5,7 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
     // '\\.(css|less|scess|sass)$': 'identity-obj-proxy',
   },
+  moduleNameMapper: {
+    "^@/components(.*)$": "<rootDir>/components$1",
+  },
 };
