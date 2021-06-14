@@ -26,7 +26,7 @@ const View = ({ hideControls }) => {
 
 const Environment = () => {
   const { scene } = useThree()
-  const hdri = useLoader(THREE.TextureLoader, '/hdri.jpeg')
+  const hdri = useLoader(THREE.TextureLoader, '/assets/images/hdri-8k.jpg')
 
   useEffect(() => {
     if (!hdri) return

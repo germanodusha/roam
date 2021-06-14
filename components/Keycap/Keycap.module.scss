@@ -1,0 +1,39 @@
+.keycap {
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  opacity: 0.3;
+  color: white;
+  text-shadow: 0 0 5px white;
+
+  &-bordered {
+    border-color: white;
+    box-shadow: 0 0 5px white;
+
+    &-active,
+    &:hover {
+      border-color: red;
+      box-shadow: 0 0 5px red;
+    }
+  }
+
+  &__inner {
+    font-family: "Dungeon";
+    font-weight: bold;
+    font-size: 5rem;
+    transform: translateY(0.3rem);
+  }
+
+  &-active,
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+    color: red;
+    text-shadow: 0 0 5px red;
+  }
+}
+

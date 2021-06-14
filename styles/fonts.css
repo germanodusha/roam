@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'Allan';
+  src: url('fonts/Allan-Bold.woff2') format('woff2'),
+      url('fonts/Allan-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Allan';
+  src: url('fonts/Allan-Regular.woff2') format('woff2'),
+      url('fonts/Allan-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AntPolt Expd';
+  src: url('fonts/AntPoltExpd-Italic.woff2') format('woff2'),
+      url('fonts/AntPoltExpd-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arial';
+  src: url('fonts/ArialMT.woff2') format('woff2'),
+      url('fonts/ArialMT.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arial';
+  src: url('fonts/Arial-BoldItalicMT.woff2') format('woff2'),
+      url('fonts/Arial-BoldItalicMT.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arial';
+  src: url('fonts/Arial-BoldMT.woff2') format('woff2'),
+      url('fonts/Arial-BoldMT.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Breathe Fire II';
+  src: url('fonts/BreatheFireII.woff2') format('woff2'),
+      url('fonts/BreatheFireII.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arial';
+  src: url('fonts/Arial-ItalicMT.woff2') format('woff2'),
+      url('fonts/Arial-ItalicMT.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dungeon';
+  src: url('fonts/Dungeon.woff2') format('woff2'),
+      url('fonts/Dungeon.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
