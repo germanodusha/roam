@@ -22,7 +22,13 @@ const Wall = ({ children, material, node, geometry, showCollisions }) => {
   // useHelper(mesh, VertexNormalsHelper, 1, 'green')
 
   return (
-    <mesh ref={mesh} geometry={geometry} material={node.material} castShadow>
+    <mesh
+      castShadow
+      scale={[1, 0.55, 1]}
+      ref={mesh}
+      geometry={geometry}
+      material={node.material}
+    >
       {children}
     </mesh>
   )
@@ -34,7 +40,7 @@ const GLTFWalls = ({ path, showCollisions }) => {
   const texturedMaterial = useTexturedMaterial({
     path: '/materials/wall/',
     repeatX: 0.007,
-    repeatY: 0.007,
+    repeatY: 0.0035,
     aoMapIntensity: 5,
     baseColorPath: 'basecolor.jpg',
     bumpScale: 10,
