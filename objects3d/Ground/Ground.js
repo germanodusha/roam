@@ -21,7 +21,7 @@ function Ground() {
   })
 
   return (
-    <mesh ref={ref} receiveShadow>
+    <mesh ref={ref} position={[0, -0.1, 1]} receiveShadow>
       <planeBufferGeometry attach="geometry" args={config.ground.size} />
       {texturedMaterial}
     </mesh>

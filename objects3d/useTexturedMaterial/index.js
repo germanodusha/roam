@@ -48,6 +48,7 @@ const useTextureMaterial = ({
       roughness={roughness}
       roughnessMap={rough}
       envMap={scene.background}
+      side={THREE.DoubleSide}
     />
   ).current
 

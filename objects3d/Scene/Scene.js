@@ -1,7 +1,8 @@
 import { Suspense, useEffect, useState, useRef } from 'react'
 import * as THREE from 'three'
+import { MTLLoader, OBJLoader } from 'three-stdlib'
 import { Canvas, useThree, useLoader } from '@react-three/fiber'
-import { PerspectiveCamera, MapControls } from '@react-three/drei'
+import { Stats, PerspectiveCamera, MapControls } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
 import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
@@ -62,17 +63,60 @@ const Scene = () => {
   return (
     <Canvas className={styles.scene} shadowMap>
       <Suspense fallback={null}>
+        <Stats />
         <Environment />
 
         <InteractiveCube />
         <Physics>
-          <Ground />
+          {/**<Ground />**/}
           <View controlsEnabled={controlsEnabled} hideControls={hideControls} />
           <GLTFWalls path={config.maze.gltf} showCollisions={config.maze.showCollisions} />
         </Physics>
+        <GoggleObj />
+        {/**<Maze />**/}
       </Suspense>
     </Canvas>
   )
 }
 
+const Maze = () => {
+  const materials = useLoader(MTLLoader, '/gltf/labirinto.mtl', (loader) => {
+    console.log(11, 'loaded mtl', loader)
+  })
+
+  const object = useLoader(OBJLoader, '/gltf/labirinto.obj', (loader) => {
+    console.log(11, 'loaded obj', loader)
+    materials.preload()
+    loader.setMaterials(materials)
+  })
+
+  return (
+    <primitive
+      position={[9.8, 2, -124]}
+      object={object}
+    />
+  )
+}
+
+const GoggleObj = () => {
+  const materials = useLoader(MTLLoader, '/gltf/12316_Goggles_v1_L3.mtl', (loader) => {
+    console.log(11, 'loaded mtl', loader)
+  })
+
+  const object = useLoader(OBJLoader, '/gltf/12316_Goggles_v1_L3.obj', (loader) => {
+    console.log(11, 'loaded obj', loader)
+    materials.preload()
+    loader.setMaterials(materials)
+  })
+
+  return (
+    <primitive
+      position={[-62, 2, 32]}
+      scale={[0.005, 0.005, 0.005]}
+      object={object}
+      color="red"
+    />
+  )
+
+}
 export default Scene
