@@ -36,4 +36,16 @@ const useFrocusOnNear = ({
   return { isFocus }
 }
 
+const ExampleUsage = () => {
+  const ref = useRef()
+  const { isFocus } = useFocusOnNear({ ref })
+
+  return (
+    <mesh ref={ref} position={[10.4, 1, -125]}>
+      <boxGeometry attach="geometry" />
+      <meshBasicMaterial attach="material" color={isFocus ? 'red' : 'gray'} />
+    </mesh>
+  )
+}
+
 export default useFrocusOnNear

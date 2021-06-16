@@ -15,6 +15,7 @@ export const useStore = create((set) => {
   const setState = (fn) => set(produce(fn))
 
   const initialState = {
+    loading: true,
     player: {
       position: [0, 0, 0],
     },
@@ -39,6 +40,9 @@ export const useStore = create((set) => {
       },
       init: () => {
         console.log('listeners go here')
+      },
+      onLoaded: () => {
+        setState(({ state }) => { state.activeMedia = activeMedia })
       },
       openMedia: (activeMedia) => {
         setState(({ state }) => { state.activeMedia = activeMedia })

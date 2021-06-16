@@ -13,12 +13,12 @@ export default {
 
   maze: {
     showCollisions: false,
-    gltf: '/gltf/labirinto.glb',
+    gltf: '/gltf/maze_2.glb',
   },
 
   player: {
     speed: 5,
     radius: 0.7,
-    initialPos: [-67, 2, 32],
+    initialPos: [-67, 2, 12],
   },
 }

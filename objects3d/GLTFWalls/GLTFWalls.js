@@ -24,7 +24,7 @@ const Wall = ({ children, material, node, geometry, showCollisions }) => {
   return (
     <mesh
       castShadow
-      scale={[1, 0.55, 1]}
+      // scale={[1, 0.55, 1]}
       ref={mesh}
       geometry={geometry}
       material={node.material}
@@ -35,12 +35,12 @@ const Wall = ({ children, material, node, geometry, showCollisions }) => {
 }
 
 const GLTFWalls = ({ path, showCollisions }) => {
-  const { nodes, materials } = useGLTF(path)
+  const { nodes } = useGLTF(path)
 
   const texturedMaterial = useTexturedMaterial({
     path: '/materials/wall/',
-    repeatX: 0.007,
-    repeatY: 0.0035,
+    repeatX: 0.01,
+    repeatY: 0.01,
     aoMapIntensity: 5,
     baseColorPath: 'basecolor.jpg',
     bumpScale: 10,
@@ -56,15 +56,14 @@ const GLTFWalls = ({ path, showCollisions }) => {
 
   return idsNodes.map((id) => {
     const node = nodes[id]
-    if (node.type !== 'Mesh') return null
 
+    if (node.type !== 'Mesh') return null
     return (
       <Wall
         key={node.uuid}
         geometry={node.geometry}
         node={node}
         showCollisions={showCollisions}
-        material={materials.Granite_}
       >
         {texturedMaterial}
       </Wall>

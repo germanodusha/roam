@@ -19,8 +19,6 @@ const MediaCenter = () => {
   const { closeMedia, openMedia } = useStore((store) => store.actions)
   const { activeMedia } = useStore((store) => store.state)
 
-  console.log({ activeMedia })
-
   const onOpenMedia = (type) => () => {
     openMedia(createDefaultMedia({
       type,
