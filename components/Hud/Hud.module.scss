@@ -32,7 +32,14 @@
   &__controls-move {
     left: 0;
     top: 50vh;
-    // background-color: rgba(0, 0, 255, 0.2);
+
+    &__w {
+      margin-left: calc(33% / 1.6);
+    }
+
+    &__asd {
+      display: flex;
+    }
   }
 
   &__controls-look {

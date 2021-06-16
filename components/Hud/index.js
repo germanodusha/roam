@@ -1,9 +1,13 @@
 import { useCallback, useState, useMemo } from 'react'
 import classNames from 'classnames'
+import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import styles from './Hud.module.scss'
 
 const Hud = () => {
+  const { onMove } = useStore((store) => store.actions)
+  const { movement } = useStore((store) => store.state)
+
   return (
     <div className={styles["hud"]}>
       <div
@@ -43,10 +47,14 @@ const Hud = () => {
           styles["hud__controls-move"],
         )}
       >
-        <Keycap value="W" />
-        <Keycap value="A" />
-        <Keycap value="S" />
-        <Keycap value="D" />
+        <div className={styles["hud__controls-move__w"]}>
+          <Keycap value="W" active={movement.forward} />
+        </div>
+        <div className={styles["hud__controls-move__asd"]}>
+          <Keycap value="A" active={movement.left} />
+          <Keycap value="S" active={movement.backward} />
+          <Keycap value="D" active={movement.right} />
+        </div>
       </div>
 
       <div

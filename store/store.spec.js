@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import { createDefaultMedia } from '../helpers/mock'
-import { MediaTypes } from '../helpers/constants'
-import { useStore } from './'
+import { createDefaultMedia } from '@/helpers/mock'
+import { MediaTypes } from '@/helpers/constants'
+import { useStore } from '@/store'
 
 describe('test store', () => {
   let store
@@ -107,14 +107,103 @@ describe('test store', () => {
   })
 
   describe('player movements', () => {
-    // it('should move forward', () => {
-    //   expect(true).toBe(false)
-    // })
+    const initialMovement = {
+      forward: false,
+      backward: false,
+      left: false,
+      right: false,
+      jump: false,
+    }
 
-    it.todo('should move forward')
-    it.todo('should move backward')
-    it.todo('should move right')
-    it.todo('should move left')
+    it('toggle move forward', () => {
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+
+      act(() => { store.current.actions.onMove('forward', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        forward: true,
+      })
+
+      act(() => { store.current.actions.onMove('forward', false)})
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+    })
+
+    it('toggle move backward', () => {
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+
+      act(() => { store.current.actions.onMove('backward', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        backward: true,
+      })
+
+      act(() => { store.current.actions.onMove('backward', false)})
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+    })
+
+    it('toggle move right', () => {
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+
+      act(() => { store.current.actions.onMove('right', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        right: true,
+      })
+
+      act(() => { store.current.actions.onMove('right', false)})
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+    })
+
+    it('toggle move left', () => {
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+
+      act(() => { store.current.actions.onMove('left', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        left: true,
+      })
+
+      act(() => { store.current.actions.onMove('left', false)})
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+    })
+
+    it('should combine movements', () => {
+      act(() => { store.current.actions.onMove('forward', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        forward: true,
+      })
+
+      act(() => { store.current.actions.onMove('right', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        forward: true,
+        right: true,
+      })
+
+      act(() => { store.current.actions.onMove('right', false)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        forward: true,
+      })
+
+      act(() => { store.current.actions.onMove('left', true)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        forward: true,
+        left: true,
+      })
+
+      act(() => { store.current.actions.onMove('left', false)})
+      expect(store.current.state.movement).toStrictEqual({
+        ...initialMovement,
+        forward: true,
+      })
+
+      act(() => { store.current.actions.onMove('forward', false)})
+      expect(store.current.state.movement).toStrictEqual(initialMovement)
+    })
+
     it.todo('should jump?')
   })
 

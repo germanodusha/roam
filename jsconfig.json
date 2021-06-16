@@ -3,8 +3,11 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/config/*": ["config/*"],
       "@/3d/*": ["objects3d/*"],
-      "@/hooks/*": ["hooks/*"]
+      "@/hooks/*": ["hooks/*"],
+      "@/store/*": ["store/*"],
+      "@/helpers/*": ["helpers/*"]
     }
   }
 }

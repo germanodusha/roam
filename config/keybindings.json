@@ -1,6 +1,6 @@
 {
   "KeyW": "forward",
-  "KeyS": "backwards",
+  "KeyS": "backward",
   "KeyA": "left",
   "KeyD": "right",
   "Space": "jump"

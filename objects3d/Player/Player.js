@@ -4,9 +4,12 @@ import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Vector3 } from 'three'
 import config from '../../config'
-import useKeyboard from '../../hooks/useKeyboard'
+import KeyBindings from '../../config/keybindings.json'
+import { useStore } from '../../store'
 
 function Player() {
+  const { onMove } = useStore((store) => store.actions)
+  const { movement } = useStore((store) => store.state)
   const speed = config.player.speed
 
   const [ref, api] = useSphere(() => ({
@@ -14,8 +17,6 @@ function Player() {
     position: config.player.initialPos,
     args: config.player.radius,
   }))
-
-  const movement = useKeyboard()
 
   const { camera } = useThree()
 
@@ -27,10 +28,30 @@ function Player() {
     []
   )
 
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      const action = KeyBindings[event.code]
+      if (action) onMove(action, true)
+    }
+
+    const onKeyUp = (event) => {
+      const action = KeyBindings[event.code]
+      if (action) onMove(action, false)
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('keyup', onKeyUp)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('keyup', onKeyUp)
+    }
+  }, [])
+
   useFrame(() => {
     camera.position.copy(ref.current.position)
 
-    const frontVector = new Vector3(0, 0, (movement.backwards ? 1 : 0) - (movement.forward ? 1 : 0))
+    const frontVector = new Vector3(0, 0, (movement.backward ? 1 : 0) - (movement.forward ? 1 : 0))
     const sideVector = new Vector3((movement.left ? 1 : 0) - (movement.right ? 1 : 0), 0, 0)
 
     const newVelocity = new Vector3()

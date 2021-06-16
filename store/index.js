@@ -16,12 +16,9 @@ export const useStore = create((set) => {
 
   const initialState = {
     loading: true,
-    player: {
-      position: [0, 0, 0],
-    },
     movement: {
       forward: false,
-      backwards: false,
+      backward: false,
       left: false,
       right: false,
       jump: false,
@@ -48,8 +45,11 @@ export const useStore = create((set) => {
         setState(({ state }) => { state.activeMedia = activeMedia })
       },
       closeMedia: () => {
-        setState(({ state }) => { state.activeMedia = initialState.activeMedia })
-      }
+        setState(({ state }) => { state.activeMedia = false })
+      },
+      onMove: (direction, value) => {
+        setState(({ state }) => { state.movement[direction] = value })
+      },
     },
   }
 })
