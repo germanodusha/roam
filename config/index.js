@@ -20,5 +20,6 @@ export default {
     speed: 5,
     radius: 0.7,
     initialPos: [-67, 2, 12],
+    height: 1.7,
   },
 }

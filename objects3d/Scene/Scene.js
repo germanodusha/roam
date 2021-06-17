@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, useRef } from 'react'
+import { Suspense, useEffect } from 'react'
 import * as THREE from 'three'
 import { Canvas, useThree, useLoader } from '@react-three/fiber'
 import { Stats, PerspectiveCamera, MapControls } from '@react-three/drei'
@@ -6,7 +6,6 @@ import { Physics } from '@react-three/cannon'
 import { useControls } from 'leva'
 import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
-import useFocusOnNear from '../../hooks/useFocusOnNear'
 import GLTFWalls from '../GLTFWalls'
 import Player from '../Player'
 import styles from './scene.module.scss'
@@ -45,9 +44,7 @@ const Environment = () => {
 }
 
 const Scene = () => {
-  const [controlsEnabled, hideControls] = useQueryString({
-    key: 'showcontrols',
-  })
+  const [controlsEnabled] = useQueryString({ key: 'showcontrols' })
 
   return (
     <Canvas className={styles.scene} shadowMap>
@@ -67,4 +64,5 @@ const Scene = () => {
     </Canvas>
   )
 }
+
 export default Scene

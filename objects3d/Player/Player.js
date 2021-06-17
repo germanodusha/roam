@@ -53,6 +53,7 @@ function Player() {
 
   useFrame(() => {
     camera.position.copy(ref.current.position)
+    camera.position.y = config.player.height
 
     const frontVector = new Vector3(
       0,
