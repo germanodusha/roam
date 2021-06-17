@@ -4,6 +4,7 @@ import { Canvas, useThree, useLoader } from '@react-three/fiber'
 import { Stats, PerspectiveCamera, MapControls } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
 import { useControls } from 'leva'
+import PrimitiveObject from '@/3d/PrimitiveObject'
 import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
 import GLTFWalls from '../GLTFWalls'
@@ -59,6 +60,7 @@ const Scene = () => {
             path={config.maze.gltf}
             showCollisions={config.maze.showCollisions}
           />
+          <PrimitiveObject />
         </Physics>
       </Suspense>
     </Canvas>

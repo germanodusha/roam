@@ -21,6 +21,73 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
     })
 
+    it('should create achievement', () => {
+      const mediaAudio = createDefaultMedia({
+        id: 1,
+        type: MediaTypes.AUDIO,
+        src: 'https://google.com',
+      })
+      const mediaText = createDefaultMedia({
+        id: 2,
+        type: MediaTypes.TEXT,
+        content: ['text one', 'text two', 'text three'],
+      })
+      const mediaVideo = createDefaultMedia({
+        id: 3,
+        type: MediaTypes.VIDEO,
+        src: 'https://youtube.com',
+      })
+
+      act(() => store.current.actions.openMedia(mediaAudio))
+      expect(store.current.state.achievements).toHaveLength(1)
+      expect(store.current.state.achievements).toContainEqual(mediaAudio)
+
+      act(() => store.current.actions.openMedia(mediaAudio))
+      act(() => store.current.actions.openMedia(mediaAudio))
+      expect(store.current.state.achievements).toHaveLength(1)
+
+      act(() => store.current.actions.openMedia(mediaText))
+      expect(store.current.state.achievements).toHaveLength(2)
+      expect(store.current.state.achievements).toContainEqual(mediaText)
+
+      act(() => store.current.actions.openMedia(mediaVideo))
+      expect(store.current.state.achievements).toHaveLength(3)
+      expect(store.current.state.achievements).toContainEqual(mediaVideo)
+    })
+
+    it('should test media counter', () => {
+      const mediaVideo = createDefaultMedia({
+        id: 1,
+        type: MediaTypes.VIDEO,
+        src: 'https://youtube.com',
+      })
+      const mediaText = createDefaultMedia({
+        id: 2,
+        type: MediaTypes.TEXT,
+        content: ['text one', 'text two', 'text three'],
+      })
+      const mediaTrack = createDefaultMedia({
+        id: 4,
+        type: MediaTypes.TRACK,
+        src: 'https://youtube.com',
+      })
+
+      act(() => store.current.actions.openMedia(mediaVideo))
+      expect(store.current.state.counter.extra).toBe(1)
+      expect(store.current.state.counter.main).toBe(0)
+      act(() => store.current.actions.openMedia(mediaVideo))
+      expect(store.current.state.counter.extra).toBe(1)
+      expect(store.current.state.counter.main).toBe(0)
+
+      act(() => store.current.actions.openMedia(mediaTrack))
+      expect(store.current.state.counter.extra).toBe(1)
+      expect(store.current.state.counter.main).toBe(1)
+
+      act(() => store.current.actions.openMedia(mediaText))
+      expect(store.current.state.counter.extra).toBe(2)
+      expect(store.current.state.counter.main).toBe(1)
+    })
+
     it('should toggle media audio', () => {
       expect(store.current.state.activeMedia).toBe(false)
 
@@ -84,25 +151,25 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
     })
 
-    it('should toggle media link', () => {
-      expect(store.current.state.activeMedia).toBe(false)
+    // it('should toggle media link', () => {
+    //   expect(store.current.state.activeMedia).toBe(false)
 
-      const type = MediaTypes.LINK
-      const src = 'https://blog.com'
-      const media = createDefaultMedia({ type, src })
+    //   const type = MediaTypes.LINK
+    //   const src = 'https://blog.com'
+    //   const media = createDefaultMedia({ type, src })
 
-      act(() => {
-        store.current.actions.openMedia(media)
-      })
-      expect(store.current.state.activeMedia.type).toBe(type)
+    //   act(() => {
+    //     store.current.actions.openMedia(media)
+    //   })
+    //   expect(store.current.state.activeMedia.type).toBe(type)
 
-      expect(store.current.state.activeMedia.src).toBe(src)
+    //   expect(store.current.state.activeMedia.src).toBe(src)
 
-      act(() => {
-        store.current.actions.closeMedia()
-      })
-      expect(store.current.state.activeMedia).toBe(false)
-    })
+    //   act(() => {
+    //     store.current.actions.closeMedia()
+    //   })
+    //   expect(store.current.state.activeMedia).toBe(false)
+    // })
 
     it.todo('should toggle main track')
   })

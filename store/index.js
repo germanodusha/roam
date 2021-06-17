@@ -1,5 +1,6 @@
 import create from 'zustand'
 import produce, { original } from 'immer'
+import { MediaTypes } from '@/helpers/constants'
 
 const media = {
   id: 1,
@@ -26,6 +27,10 @@ export const useStore = create((set) => {
     active: false,
     medias: [],
     achievements: [],
+    counter: {
+      main: 0,
+      extra: 0,
+    },
     activeMedia: false,
   }
 
@@ -46,6 +51,16 @@ export const useStore = create((set) => {
       openMedia: (activeMedia) => {
         setState(({ state }) => {
           state.activeMedia = activeMedia
+
+          if (!original(state.achievements).includes(activeMedia)) {
+            state.achievements.push(activeMedia)
+
+            if (activeMedia.type === MediaTypes.TRACK) {
+              state.counter.main += 1
+            } else {
+              state.counter.extra += 1
+            }
+          }
         })
       },
       closeMedia: () => {
