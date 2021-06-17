@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
-import { useGLTF} from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { useBox } from '@react-three/cannon'
 import useTexturedMaterial from '../useTexturedMaterial'
 

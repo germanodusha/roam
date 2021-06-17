@@ -45,7 +45,9 @@ const Environment = () => {
 }
 
 const Scene = () => {
-  const [controlsEnabled, hideControls] = useQueryString({ key: 'showcontrols' })
+  const [controlsEnabled, hideControls] = useQueryString({
+    key: 'showcontrols',
+  })
 
   return (
     <Canvas className={styles.scene} shadowMap>
@@ -56,7 +58,10 @@ const Scene = () => {
 
         <Physics>
           <View />
-          <GLTFWalls path={config.maze.gltf} showCollisions={config.maze.showCollisions} />
+          <GLTFWalls
+            path={config.maze.gltf}
+            showCollisions={config.maze.showCollisions}
+          />
         </Physics>
       </Suspense>
     </Canvas>

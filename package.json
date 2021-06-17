@@ -9,7 +9,8 @@
     "test:watch": "jest --watchAll",
     "start": "next start",
     "prepare": "husky install",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "format": "prettier --write --ignore-unknown ."
   },
   "dependencies": {
     "@react-three/cannon": "2.1.2",

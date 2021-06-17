@@ -23,7 +23,10 @@ function Player() {
   const currentVelocity = useRef([0, 0, 0])
 
   useEffect(
-    () => api.velocity.subscribe((newVelocity) => (currentVelocity.current = newVelocity)),
+    () =>
+      api.velocity.subscribe(
+        (newVelocity) => (currentVelocity.current = newVelocity)
+      ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
@@ -51,8 +54,16 @@ function Player() {
   useFrame(() => {
     camera.position.copy(ref.current.position)
 
-    const frontVector = new Vector3(0, 0, (movement.backward ? 1 : 0) - (movement.forward ? 1 : 0))
-    const sideVector = new Vector3((movement.left ? 1 : 0) - (movement.right ? 1 : 0), 0, 0)
+    const frontVector = new Vector3(
+      0,
+      0,
+      (movement.backward ? 1 : 0) - (movement.forward ? 1 : 0)
+    )
+    const sideVector = new Vector3(
+      (movement.left ? 1 : 0) - (movement.right ? 1 : 0),
+      0,
+      0
+    )
 
     const newVelocity = new Vector3()
       .subVectors(frontVector, sideVector)

@@ -6,11 +6,11 @@ module.exports = {
     // '\\.(css|less|scess|sass)$': 'identity-obj-proxy',
   },
   moduleNameMapper: {
-    "^@/components(.*)$": "<rootDir>/components$1",
-    "^@/config(.*)$": "<rootDir>/config$1",
-    "^@/3d(.*)$": "<rootDir>/objects3d$1",
-    "^@/hooks(.*)$": "<rootDir>/hooks$1",
-    "^@/store(.*)$": "<rootDir>/store$1",
-    "^@/helpers(.*)$": "<rootDir>/helpers$1",
+    '^@/components(.*)$': '<rootDir>/components$1',
+    '^@/config(.*)$': '<rootDir>/config$1',
+    '^@/3d(.*)$': '<rootDir>/objects3d$1',
+    '^@/hooks(.*)$': '<rootDir>/hooks$1',
+    '^@/store(.*)$': '<rootDir>/store$1',
+    '^@/helpers(.*)$': '<rootDir>/helpers$1',
   },
-};
+}

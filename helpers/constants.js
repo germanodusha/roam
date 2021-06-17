@@ -5,4 +5,3 @@ export const MediaTypes = {
   TRACK: 'track',
   LINK: 'link',
 }
-

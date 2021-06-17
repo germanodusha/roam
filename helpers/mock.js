@@ -8,4 +8,3 @@ export const createDefaultMedia = ({ type, src, content }) => ({
   model3d: 'something',
   content,
 })
-

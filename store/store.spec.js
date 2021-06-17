@@ -11,7 +11,9 @@ describe('test store', () => {
   })
 
   afterEach(() => {
-    act(() => { store.current.actions.reset() })
+    act(() => {
+      store.current.actions.reset()
+    })
   })
 
   describe('media', () => {
@@ -23,15 +25,19 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
 
       const type = MediaTypes.AUDIO
-      const src = "https://google.com"
+      const src = 'https://google.com'
       const media = createDefaultMedia({ type, src })
 
-      act(() => { store.current.actions.openMedia(media)})
+      act(() => {
+        store.current.actions.openMedia(media)
+      })
       expect(store.current.state.activeMedia.type).toBe(type)
 
       expect(store.current.state.activeMedia.src).toBe(src)
 
-      act(() => { store.current.actions.closeMedia() })
+      act(() => {
+        store.current.actions.closeMedia()
+      })
       expect(store.current.state.activeMedia).toBe(false)
     })
 
@@ -40,16 +46,21 @@ describe('test store', () => {
 
       const type = MediaTypes.TEXT
       const content = ['text one', 'text two', 'text three']
-      const media= createDefaultMedia({ type, content })
+      const media = createDefaultMedia({ type, content })
 
-      act(() => { store.current.actions.openMedia(media)})
+      act(() => {
+        store.current.actions.openMedia(media)
+      })
       expect(store.current.state.activeMedia.type).toBe(type)
 
-      expect(store.current.state.activeMedia.content)
-        .toHaveLength(content.length)
+      expect(store.current.state.activeMedia.content).toHaveLength(
+        content.length
+      )
       expect(store.current.state.activeMedia.content).toBe(content)
 
-      act(() => { store.current.actions.closeMedia() })
+      act(() => {
+        store.current.actions.closeMedia()
+      })
       expect(store.current.state.activeMedia).toBe(false)
     })
 
@@ -57,15 +68,19 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
 
       const type = MediaTypes.VIDEO
-      const src = "https://youtube.com"
+      const src = 'https://youtube.com'
       const media = createDefaultMedia({ type, src })
 
-      act(() => { store.current.actions.openMedia(media)})
+      act(() => {
+        store.current.actions.openMedia(media)
+      })
       expect(store.current.state.activeMedia.type).toBe(type)
 
       expect(store.current.state.activeMedia.src).toBe(src)
 
-      act(() => { store.current.actions.closeMedia() })
+      act(() => {
+        store.current.actions.closeMedia()
+      })
       expect(store.current.state.activeMedia).toBe(false)
     })
 
@@ -73,15 +88,19 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
 
       const type = MediaTypes.LINK
-      const src = "https://blog.com"
+      const src = 'https://blog.com'
       const media = createDefaultMedia({ type, src })
 
-      act(() => { store.current.actions.openMedia(media)})
+      act(() => {
+        store.current.actions.openMedia(media)
+      })
       expect(store.current.state.activeMedia.type).toBe(type)
 
       expect(store.current.state.activeMedia.src).toBe(src)
 
-      act(() => { store.current.actions.closeMedia() })
+      act(() => {
+        store.current.actions.closeMedia()
+      })
       expect(store.current.state.activeMedia).toBe(false)
     })
 
@@ -118,89 +137,117 @@ describe('test store', () => {
     it('toggle move forward', () => {
       expect(store.current.state.movement).toStrictEqual(initialMovement)
 
-      act(() => { store.current.actions.onMove('forward', true)})
+      act(() => {
+        store.current.actions.onMove('forward', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         forward: true,
       })
 
-      act(() => { store.current.actions.onMove('forward', false)})
+      act(() => {
+        store.current.actions.onMove('forward', false)
+      })
       expect(store.current.state.movement).toStrictEqual(initialMovement)
     })
 
     it('toggle move backward', () => {
       expect(store.current.state.movement).toStrictEqual(initialMovement)
 
-      act(() => { store.current.actions.onMove('backward', true)})
+      act(() => {
+        store.current.actions.onMove('backward', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         backward: true,
       })
 
-      act(() => { store.current.actions.onMove('backward', false)})
+      act(() => {
+        store.current.actions.onMove('backward', false)
+      })
       expect(store.current.state.movement).toStrictEqual(initialMovement)
     })
 
     it('toggle move right', () => {
       expect(store.current.state.movement).toStrictEqual(initialMovement)
 
-      act(() => { store.current.actions.onMove('right', true)})
+      act(() => {
+        store.current.actions.onMove('right', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         right: true,
       })
 
-      act(() => { store.current.actions.onMove('right', false)})
+      act(() => {
+        store.current.actions.onMove('right', false)
+      })
       expect(store.current.state.movement).toStrictEqual(initialMovement)
     })
 
     it('toggle move left', () => {
       expect(store.current.state.movement).toStrictEqual(initialMovement)
 
-      act(() => { store.current.actions.onMove('left', true)})
+      act(() => {
+        store.current.actions.onMove('left', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         left: true,
       })
 
-      act(() => { store.current.actions.onMove('left', false)})
+      act(() => {
+        store.current.actions.onMove('left', false)
+      })
       expect(store.current.state.movement).toStrictEqual(initialMovement)
     })
 
     it('should combine movements', () => {
-      act(() => { store.current.actions.onMove('forward', true)})
+      act(() => {
+        store.current.actions.onMove('forward', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         forward: true,
       })
 
-      act(() => { store.current.actions.onMove('right', true)})
+      act(() => {
+        store.current.actions.onMove('right', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         forward: true,
         right: true,
       })
 
-      act(() => { store.current.actions.onMove('right', false)})
+      act(() => {
+        store.current.actions.onMove('right', false)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         forward: true,
       })
 
-      act(() => { store.current.actions.onMove('left', true)})
+      act(() => {
+        store.current.actions.onMove('left', true)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         forward: true,
         left: true,
       })
 
-      act(() => { store.current.actions.onMove('left', false)})
+      act(() => {
+        store.current.actions.onMove('left', false)
+      })
       expect(store.current.state.movement).toStrictEqual({
         ...initialMovement,
         forward: true,
       })
 
-      act(() => { store.current.actions.onMove('forward', false)})
+      act(() => {
+        store.current.actions.onMove('forward', false)
+      })
       expect(store.current.state.movement).toStrictEqual(initialMovement)
     })
 
@@ -218,4 +265,3 @@ describe('test store', () => {
     it.todo('should close key guide')
   })
 })
-

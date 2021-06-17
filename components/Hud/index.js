@@ -9,48 +9,32 @@ const Hud = () => {
   const { movement } = useStore((store) => store.state)
 
   return (
-    <div className={styles["hud"]}>
-      <div
-        className={classNames(
-          styles["hud__section"],
-          styles["hud__logo"],
-        )}
-      >
+    <div className={styles['hud']}>
+      <div className={classNames(styles['hud__section'], styles['hud__logo'])}>
         <img src="/assets/images/logo-nf.png" />
       </div>
 
-      <div
-        className={classNames(
-          styles["hud__section"],
-          styles["hud__stats"],
-        )}
-      >
+      <div className={classNames(styles['hud__section'], styles['hud__stats'])}>
         2
         <img src="/assets/images/stats-contents-visited.png" />
-
         18
         <img src="/assets/images/stats-tracks-visited.png" />
       </div>
 
-      <div
-        className={classNames(
-          styles["hud__section"],
-          styles["hud__icon"],
-        )}
-      >
+      <div className={classNames(styles['hud__section'], styles['hud__icon'])}>
         // TODO icon
       </div>
 
       <div
         className={classNames(
-          styles["hud__section"],
-          styles["hud__controls-move"],
+          styles['hud__section'],
+          styles['hud__controls-move']
         )}
       >
-        <div className={styles["hud__controls-move__w"]}>
+        <div className={styles['hud__controls-move__w']}>
           <Keycap value="W" active={movement.forward} />
         </div>
-        <div className={styles["hud__controls-move__asd"]}>
+        <div className={styles['hud__controls-move__asd']}>
           <Keycap value="A" active={movement.left} />
           <Keycap value="S" active={movement.backward} />
           <Keycap value="D" active={movement.right} />
@@ -59,8 +43,8 @@ const Hud = () => {
 
       <div
         className={classNames(
-          styles["hud__section"],
-          styles["hud__controls-look"],
+          styles['hud__section'],
+          styles['hud__controls-look']
         )}
       >
         <Keycap value="E" />
@@ -69,20 +53,15 @@ const Hud = () => {
         <Keycap value="F" />
       </div>
 
-      <div
-        className={classNames(
-          styles["hud__section"],
-          styles["hud__guide"],
-        )}
-      >
+      <div className={classNames(styles['hud__section'], styles['hud__guide'])}>
         press <Keycap value="Q" bordered /> for key guide
       </div>
 
       {false && (
         <div
           className={classNames(
-            styles["hud__section"],
-            styles["hud__interaction"],
+            styles['hud__section'],
+            styles['hud__interaction']
           )}
         >
           interaction

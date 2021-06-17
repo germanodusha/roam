@@ -20,17 +20,19 @@ const MediaCenter = () => {
   const { activeMedia } = useStore((store) => store.state)
 
   const onOpenMedia = (type) => () => {
-    openMedia(createDefaultMedia({
-      type,
-      ...type === MediaTypes.TEXT && {
-        content: [
-          'texto',
-          '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
-          '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
-          'texto2',
-        ],
-      },
-    }))
+    openMedia(
+      createDefaultMedia({
+        type,
+        ...(type === MediaTypes.TEXT && {
+          content: [
+            'texto',
+            '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
+            '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
+            'texto2',
+          ],
+        }),
+      })
+    )
   }
 
   const Media = MediaCenterWapper[activeMedia.type]
@@ -38,14 +40,14 @@ const MediaCenter = () => {
   return (
     <>
       {activeMedia && Media && (
-        <div className={styles["media"]}>
-          <div className={styles["media-glow"]}>
+        <div className={styles['media']}>
+          <div className={styles['media-glow']}>
             <Media />
           </div>
         </div>
       )}
 
-      <div className={styles["media__dev"]}>
+      <div className={styles['media__dev']}>
         {activeMedia ? (
           <button onClick={closeMedia}>close</button>
         ) : (
@@ -62,4 +64,3 @@ const MediaCenter = () => {
 }
 
 export default MediaCenter
-
