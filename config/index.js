@@ -13,7 +13,7 @@ export default {
 
   maze: {
     showCollisions: false,
-    gltf: '/gltf/maze_2.glb',
+    gltf: '/gltf/maze.glb',
   },
 
   player: {
