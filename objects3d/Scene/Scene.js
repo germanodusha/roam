@@ -8,6 +8,7 @@ import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
 import GLTFWalls from '../GLTFWalls'
 import Player from '../Player'
+import PrimitiveObject from '@/3d/PrimitiveObject'
 import styles from './scene.module.scss'
 
 const View = () => {
@@ -60,6 +61,7 @@ const Scene = () => {
             showCollisions={config.maze.showCollisions}
           />
         </Physics>
+        <PrimitiveObject position={[-65, 1, 10]} />
       </Suspense>
     </Canvas>
   )
