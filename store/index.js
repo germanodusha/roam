@@ -39,16 +39,24 @@ export const useStore = create((set) => {
         console.log('listeners go here')
       },
       onLoaded: () => {
-        setState(({ state }) => { state.activeMedia = activeMedia })
+        setState(({ state }) => {
+          state.activeMedia = activeMedia
+        })
       },
       openMedia: (activeMedia) => {
-        setState(({ state }) => { state.activeMedia = activeMedia })
+        setState(({ state }) => {
+          state.activeMedia = activeMedia
+        })
       },
       closeMedia: () => {
-        setState(({ state }) => { state.activeMedia = false })
+        setState(({ state }) => {
+          state.activeMedia = false
+        })
       },
       onMove: (direction, value) => {
-        setState(({ state }) => { state.movement[direction] = value })
+        setState(({ state }) => {
+          state.movement[direction] = value
+        })
       },
     },
   }

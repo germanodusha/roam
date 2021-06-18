@@ -4,10 +4,14 @@ import { useLoader } from '@react-three/fiber'
 const PrimitiveObject = () => {
   const materials = useLoader(MTLLoader, '/gltf/12316_Goggles_v1_L3.mtl')
 
-  const object = useLoader(OBJLoader, '/gltf/12316_Goggles_v1_L3.obj', (loader) => {
-    materials.preload()
-    loader.setMaterials(materials)
-  })
+  const object = useLoader(
+    OBJLoader,
+    '/gltf/12316_Goggles_v1_L3.obj',
+    (loader) => {
+      materials.preload()
+      loader.setMaterials(materials)
+    }
+  )
 
   return (
     <primitive
