@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { MTLLoader, OBJLoader } from 'three-stdlib'
 import { useLoader } from '@react-three/fiber'
@@ -17,19 +17,20 @@ const PrimitiveObject = ({ position }) => {
     }
   )
 
-  const ref = useRef()
+  const [selected, setSelected] = useState(undefined)
+  const ref = useRef(null)
   const lightRef = useRef()
 
-  const selected = useMemo(() => {
-    if (!ref?.current) return undefined
+  useEffect(() => {
+    if (!ref.current) return undefined
 
     ref.current.children[0].material.color = new THREE.Color('green')
     ref.current.children[1].material.color = new THREE.Color('green')
 
-    return [
+    setSelected([
       { current: ref.current.children[0] },
       { current: ref.current.children[1] },
-    ]
+    ])
   }, [ref])
 
   // const [selected, setSelected] = useState(undefined)
