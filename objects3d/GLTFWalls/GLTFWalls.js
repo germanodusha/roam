@@ -2,6 +2,7 @@ import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import { useBox } from '@react-three/cannon'
+import { useControls } from 'leva'
 import useTexturedMaterial from '../useTexturedMaterial'
 
 const Wall = ({ children, material, node, geometry, showCollisions }) => {
@@ -35,6 +36,8 @@ const Wall = ({ children, material, node, geometry, showCollisions }) => {
 }
 
 const GLTFWalls = ({ path, showCollisions }) => {
+  const { maze } = useControls({ maze: true })
+
   const { nodes } = useGLTF(path)
 
   const texturedMaterial = useTexturedMaterial({
@@ -54,21 +57,25 @@ const GLTFWalls = ({ path, showCollisions }) => {
 
   const idsNodes = useMemo(() => Object.keys(nodes), [nodes])
 
-  return idsNodes.map((id) => {
-    const node = nodes[id]
+  return (
+    <group name="maze" visible={maze}>
+      {idsNodes.map((id) => {
+        const node = nodes[id]
 
-    if (node.type !== 'Mesh') return null
-    return (
-      <Wall
-        key={node.uuid}
-        geometry={node.geometry}
-        node={node}
-        showCollisions={showCollisions}
-      >
-        {texturedMaterial}
-      </Wall>
-    )
-  })
+        if (node.type !== 'Mesh') return null
+        return (
+          <Wall
+            key={node.uuid}
+            geometry={node.geometry}
+            node={node}
+            showCollisions={showCollisions}
+          >
+            {texturedMaterial}
+          </Wall>
+        )
+      })}
+    </group>
+  )
 }
 
 export default GLTFWalls

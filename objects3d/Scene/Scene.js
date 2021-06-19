@@ -1,7 +1,12 @@
 import { Suspense, useEffect } from 'react'
 import * as THREE from 'three'
-import { Canvas, useThree, useLoader } from '@react-three/fiber'
-import { Stats, PerspectiveCamera, MapControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import {
+  useCubeTexture,
+  Stats,
+  PerspectiveCamera,
+  MapControls,
+} from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
 import { useControls } from 'leva'
 import config from '../../config'
@@ -12,9 +17,9 @@ import PrimitiveObject from '@/3d/PrimitiveObject'
 import styles from './scene.module.scss'
 
 const View = () => {
-  const { playerEnabled } = useControls({ playerEnabled: true })
+  const { player } = useControls({ player: true })
 
-  if (playerEnabled) return <Player />
+  if (player) return <Player />
 
   return (
     <>
@@ -25,21 +30,27 @@ const View = () => {
 }
 
 const Environment = () => {
-  const { scene } = useThree()
-  const hdri = useLoader(THREE.TextureLoader, '/assets/images/hdri-8k.jpg')
+  const { hdri } = useControls({ hdri: true })
+
+  const cubeMap = useCubeTexture(
+    ['px.png', 'nx.png', 'ny.png', 'py.png', 'pz.png', 'nz.png'],
+    { path: '/assets/images/' }
+  )
 
   useEffect(() => {
-    if (!hdri) return
-
-    hdri.encoding = THREE.sRGBEncoding
-    hdri.mapping = THREE.EquirectangularReflectionMapping
-    scene.background = hdri
-  }, [scene, hdri])
+    if (!cubeMap) return
+    cubeMap.flipY = true
+    cubeMap.encoding = THREE.sRGBEncoding
+  }, [cubeMap])
 
   return (
     <group>
       <ambientLight intensity={1} color="white" position={[10, 10, -100]} />
       <ambientLight intensity={0.4} color="blue" position={[10, 10, -100]} />
+      <mesh visible={hdri}>
+        <sphereGeometry args={[150]} />
+        <meshBasicMaterial envMap={cubeMap} side={THREE.DoubleSide} />
+      </mesh>
     </group>
   )
 }
@@ -48,7 +59,11 @@ const Scene = () => {
   const [controlsEnabled] = useQueryString({ key: 'showcontrols' })
 
   return (
-    <Canvas className={styles.scene} shadowMap>
+    <Canvas
+      gl={{ clearColor: new THREE.Color(0, 0, 0) }}
+      className={styles.scene}
+      shadowMap
+    >
       <Suspense fallback={null}>
         {controlsEnabled && <Stats />}
 
