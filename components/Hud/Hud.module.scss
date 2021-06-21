@@ -1,8 +1,4 @@
 .hud {
-  // position: fixed;
-  // width: 100vw;
-  // height: 100vh;
-
   &__section {
     position: fixed;
     padding: 1em;
@@ -14,19 +10,16 @@
     top: 0;
     left: 0;
     right: 0;
-    // background-color: rgba(0, 255, 255, 0.2);
   }
 
   &__stats {
     top: 0;
     left: 0;
-    // background-color: rgba(0, 0, 255, 0.2);
   }
 
   &__icon {
     top: 0;
     right: 0;
-    // background-color: rgba(255, 0, 255, 0.2);
   }
 
   &__controls-move {
@@ -45,16 +38,15 @@
   &__controls-look {
     right: 0;
     top: 50vh;
-    // background-color: rgba(0, 0, 255, 0.2);
   }
 
   &__guide {
     display: flex;
     justify-content: center;
+    align-items: center;
     bottom: 0;
     left: 0;
     right: 0;
-    // background-color: rgba(0, 0, 255, 0.2);
   }
 
   &__interaction {
@@ -66,4 +58,11 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+.status {
+  opacity: 0.3;
+  color: white;
+  font-family: Allan;
+  font-size: 2rem;
 }
