@@ -42,6 +42,7 @@ const PosHelper = () => {
     controls.current.addEventListener('dragging-changed', updateLeva)
 
     return () => {
+      if (!controls.current) return
       controls.current.removeEventListener('dragging-changed', updateLeva)
     }
   }, [controls, set])
@@ -79,18 +80,13 @@ const View = () => {
     camera.current.position.set(-125, 55, 30)
   }, [camera, playerEnabled])
 
+  if (playerEnabled) return <Player />
+
   return (
     <>
       <PerspectiveCamera makeDefault ref={camera} />
-
-      {playerEnabled ? (
-        <Player />
-      ) : (
-        <>
-          <MapControls enabled={!lockCamera} />
-          <PosHelper visible={lockCamera} />
-        </>
-      )}
+      <MapControls enabled={!playerEnabled && !lockCamera} />
+      <PosHelper visible={lockCamera} />
     </>
   )
 }
