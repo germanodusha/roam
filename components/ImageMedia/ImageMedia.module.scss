@@ -1,0 +1,8 @@
+.img-media {
+  display: flex;
+
+  & img {
+    max-width: 70vw;
+    max-height: 70vh;
+  }
+}

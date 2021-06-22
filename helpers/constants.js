@@ -1,7 +1,6 @@
 export const MediaTypes = {
-  AUDIO: 'audio',
+  IMAGE: 'image',
   VIDEO: 'video',
   TEXT: 'text',
   TRACK: 'track',
-  LINK: 'link',
 }

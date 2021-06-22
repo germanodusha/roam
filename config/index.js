@@ -1,4 +1,6 @@
 export default {
+  storage: '/content',
+
   ground: {
     size: [500, 500],
   },
