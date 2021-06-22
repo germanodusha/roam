@@ -54,7 +54,6 @@ const MediaCenter = () => {
           <>
             <button onClick={onOpenMedia(MediaTypes.AUDIO)}>audio</button>
             <button onClick={onOpenMedia(MediaTypes.TEXT)}>text</button>
-            <button onClick={onOpenMedia(MediaTypes.LINK)}>link</button>
             <button onClick={onOpenMedia(MediaTypes.VIDEO)}>video</button>
           </>
         )}

@@ -1,4 +1,3 @@
-import { useCallback, useState, useMemo } from 'react'
 import classNames from 'classnames'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
@@ -15,8 +14,8 @@ const HudSection = ({ children, className }) => (
 )
 
 const Hud = () => {
-  const { onMove } = useStore((store) => store.actions)
-  const { movement } = useStore((store) => store.state)
+  // const { onMove } = useStore((store) => store.actions)
+  const { movement, counter } = useStore((store) => store.state)
 
   return (
     <div className={styles['hud']}>
@@ -25,9 +24,12 @@ const Hud = () => {
       </HudSection>
 
       <HudSection className={styles['hud__stats']}>
-        2
+        <span>{counter.main}</span>
         <img src="/assets/images/stats-contents-visited.png" />
-        18
+
+        <div className={styles['hud__stats__spacer']} />
+
+        <span>{counter.extra}</span>
         <img src="/assets/images/stats-tracks-visited.png" />
       </HudSection>
 
