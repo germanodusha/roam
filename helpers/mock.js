@@ -1,5 +1,5 @@
-export const createDefaultMedia = ({ type, src, content }) => ({
-  id: 1,
+export const createDefaultMedia = ({ id = 1, type, src, content }) => ({
+  id,
   type,
   title: 'title',
   track: 'a',

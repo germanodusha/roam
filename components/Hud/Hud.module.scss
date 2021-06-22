@@ -14,13 +14,37 @@
     top: 0;
     left: 0;
     right: 0;
-    // background-color: rgba(0, 255, 255, 0.2);
+
+    & img {
+      width: 8em;
+      height: 8em;
+      object-fit: contain;
+      object-position: center top;
+    }
   }
 
   &__stats {
-    top: 0;
-    left: 0;
-    // background-color: rgba(0, 0, 255, 0.2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    top: -1.5em;
+    left: 1em;
+
+    & img {
+      width: 3.5em;
+      height: 3.5em;
+    }
+
+    & span {
+      color: red;
+      font-family: 'Breathe Fire II';
+      font-size: 6.5em;
+      font-style: italic;
+    }
+
+    &__spacer {
+      width: 5.5em;
+    }
   }
 
   &__icon {
