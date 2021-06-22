@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import styles from './Keycap.module.scss'
 
-const Keycap = ({ value, active, bordered, onClick }) => {
+const Keycap = ({ small = false, value, active, bordered, onClick }) => {
   return (
     <div
       onClick={onClick}

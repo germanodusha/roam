@@ -9,6 +9,7 @@
   opacity: 0.3;
   color: white;
   text-shadow: 0 0 5px white;
+  margin: 0 1em;
 
   &-bordered {
     border-color: white;
@@ -34,5 +35,16 @@
     opacity: 1;
     color: red;
     text-shadow: 0 0 5px red;
+  }
+
+  &-small {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 14px;
+
+    & span {
+      font-size: 3rem !important;
+      transform: translateY(0.15rem);
+    }
   }
 }
