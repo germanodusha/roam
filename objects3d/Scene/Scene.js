@@ -1,14 +1,15 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense, useRef, useEffect } from 'react'
 import * as THREE from 'three'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree, useLoader } from '@react-three/fiber'
 import {
-  useCubeTexture,
   Stats,
   PerspectiveCamera,
   MapControls,
+  TransformControls,
+  useCubeTexture,
 } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
-import { useControls } from 'leva'
+import { useControls, button } from 'leva'
 import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
 import GLTFWalls from '../GLTFWalls'
@@ -16,15 +17,79 @@ import Player from '../Player'
 import PrimitiveObject from '@/3d/PrimitiveObject'
 import styles from './scene.module.scss'
 
+const PosHelper = () => {
+  const controls = useRef(null)
+
+  const [{ position }, set] = useControls(() => ({
+    position: {
+      value: { x: config.player.initialPos[0], z: config.player.initialPos[2] },
+      step: 1,
+    },
+  }))
+
+  useEffect(() => {
+    if (!controls.current) return
+
+    const updateLeva = (dragging) => {
+      if (dragging.value) return
+
+      set({
+        position: {
+          x: controls.current.positionStart.x + controls.current.offset.x,
+          z: controls.current.positionStart.z + controls.current.offset.z,
+        },
+      })
+    }
+
+    controls.current.addEventListener('dragging-changed', updateLeva)
+
+    return () => {
+      if (!controls.current) return
+      controls.current.removeEventListener('dragging-changed', updateLeva)
+    }
+  }, [controls, set])
+
+  return (
+    <TransformControls
+      enabled
+      showX
+      showY={false}
+      showZ
+      size={0.5}
+      position={[position.x, 1.5, position.z]}
+      ref={controls}
+    >
+      <mesh>
+        <meshBasicMaterial color={new THREE.Color('red')} wireframe />
+        <sphereGeometry args={[0.7]} />
+      </mesh>
+    </TransformControls>
+  )
+}
+
 const View = () => {
   const { player } = useControls({ player: true })
+  const camera = useRef()
+
+  const { player, lockCamera } = useControls({
+    player: true,
+    lockCamera: false,
+    cameraPos: button(() => console.warn(camera.current)),
+  })
+
+  useEffect(() => {
+    if (!camera.current || playerEnabled) return
+    camera.current.rotation.set(-1.2, -0.55, -0.9)
+    camera.current.position.set(-125, 55, 30)
+  }, [camera, playerEnabled])
 
   if (player) return <Player />
 
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 5, 0]} />
-      <MapControls />
+      <PerspectiveCamera makeDefault ref={camera} />
+      <MapControls enabled={!playerEnabled && !lockCamera} />
+      <PosHelper visible={lockCamera} />
     </>
   )
 }
