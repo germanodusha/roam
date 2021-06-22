@@ -890,6 +890,14 @@
     utility-types "^3.10.0"
     zustand "^3.5.1"
 
+"@react-three/postprocessing@^2.0.4-alpha.2":
+  version "2.0.4-alpha.2"
+  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.0.4-alpha.2.tgz#24deb4044cd1aebae76147fc3ae0ec1a17def78d"
+  integrity sha512-7HD0Gg6qbsFnJHJEu813DT/KO+LUTA5/gjiK8lRixhpQLseixdZaSyXXqopW1EYR0zDKT/EzniJMU6x/u4Lhqw==
+  dependencies:
+    postprocessing "^6.22.0"
+    react-merge-refs "^1.1.0"
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.3.tgz#3802ddd21a50a949b6721ddd72da36e67e7f1b2d"
@@ -4420,6 +4428,11 @@ postcss@^7.0.32:
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
+
+postprocessing@^6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.22.0.tgz#a36116d7cc16e2648c49e789825e780375e5c6e0"
+  integrity sha512-/Bv0mpcqeDZ+hbuk6l25kb9OK99DUInE1R8LszOQLUTnuv+MAWJR5hvdmT4c2dMSCEKYWtE70nf3p0BWvqEMVA==
 
 potpack@^1.0.1:
   version "1.0.1"

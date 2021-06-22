@@ -24,12 +24,10 @@ const useFrocusOnNear = ({
     if (!isFocus && isCloseToCenter && isNear) {
       setFocus(true)
       if (typeof onFocus === 'function') onFocus()
-      console.log('centered')
     }
     if (isFocus && (!isCloseToCenter || !isNear)) {
       setFocus(false)
       if (typeof onDefocus === 'function') onDefocus()
-      console.log('uncentered')
     }
   })
 
