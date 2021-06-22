@@ -151,25 +151,25 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
     })
 
-    // it('should toggle media link', () => {
-    //   expect(store.current.state.activeMedia).toBe(false)
+    it('should toggle media link', () => {
+      expect(store.current.state.activeMedia).toBe(false)
 
-    //   const type = MediaTypes.LINK
-    //   const src = 'https://blog.com'
-    //   const media = createDefaultMedia({ type, src })
+      const type = MediaTypes.LINK
+      const src = 'https://blog.com'
+      const media = createDefaultMedia({ type, src })
 
-    //   act(() => {
-    //     store.current.actions.openMedia(media)
-    //   })
-    //   expect(store.current.state.activeMedia.type).toBe(type)
+      act(() => {
+        store.current.actions.openMedia(media)
+      })
+      expect(store.current.state.activeMedia.type).toBe(type)
 
-    //   expect(store.current.state.activeMedia.src).toBe(src)
+      expect(store.current.state.activeMedia.src).toBe(src)
 
-    //   act(() => {
-    //     store.current.actions.closeMedia()
-    //   })
-    //   expect(store.current.state.activeMedia).toBe(false)
-    // })
+      act(() => {
+        store.current.actions.closeMedia()
+      })
+      expect(store.current.state.activeMedia).toBe(false)
+    })
 
     it.todo('should toggle main track')
   })
