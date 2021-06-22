@@ -68,7 +68,6 @@ const PosHelper = () => {
 }
 
 const View = () => {
-  const { player } = useControls({ player: true })
   const camera = useRef()
 
   const { player, lockCamera } = useControls({
@@ -78,17 +77,17 @@ const View = () => {
   })
 
   useEffect(() => {
-    if (!camera.current || playerEnabled) return
+    if (!camera.current || player) return
     camera.current.rotation.set(-1.2, -0.55, -0.9)
     camera.current.position.set(-125, 55, 30)
-  }, [camera, playerEnabled])
+  }, [camera, player])
 
   if (player) return <Player />
 
   return (
     <>
       <PerspectiveCamera makeDefault ref={camera} />
-      <MapControls enabled={!playerEnabled && !lockCamera} />
+      <MapControls enabled={!player && !lockCamera} />
       <PosHelper visible={lockCamera} />
     </>
   )
