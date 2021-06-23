@@ -15,12 +15,14 @@ import useQueryString from '../../hooks/useQueryString'
 import GLTFWalls from '../GLTFWalls'
 import Player from '../Player'
 import PrimitiveObject from '@/3d/PrimitiveObject'
+import CloudSound from '@/3d/CloudSound'
 import styles from './scene.module.scss'
 
 const PosHelper = () => {
   const controls = useRef(null)
 
-  const [{ position }, set] = useControls(() => ({
+  const [{ position, positionHelper }, set] = useControls(() => ({
+    positionHelper: false,
     position: {
       value: { x: config.player.initialPos[0], z: config.player.initialPos[2] },
       step: 1,
@@ -51,7 +53,8 @@ const PosHelper = () => {
 
   return (
     <TransformControls
-      enabled
+      visible={positionHelper}
+      enabled={positionHelper}
       showX
       showY={false}
       showZ
@@ -68,25 +71,25 @@ const PosHelper = () => {
 }
 
 const View = () => {
-  const camera = useRef()
+  // const camera = useRef()
 
   const { player, lockCamera } = useControls({
     player: true,
     lockCamera: false,
-    cameraPos: button(() => console.warn(camera.current)),
+    // cameraPos: button(() => console.warn(camera.current)),
   })
 
-  useEffect(() => {
-    if (!camera.current || player) return
-    camera.current.rotation.set(-1.2, -0.55, -0.9)
-    camera.current.position.set(-125, 55, 30)
-  }, [camera, player])
+  // useEffect(() => {
+  //   if (!camera.current || player) return
+  //   camera.current.rotation.set(-1.2, -0.55, -0.9)
+  //   camera.current.position.set(-125, 55, 30)
+  // }, [camera, player])
 
   if (player) return <Player />
 
   return (
     <>
-      <PerspectiveCamera makeDefault ref={camera} />
+      {/**<PerspectiveCamera ref={camera} />**/}
       <MapControls enabled={!player && !lockCamera} />
       <PosHelper visible={lockCamera} />
     </>
@@ -141,6 +144,7 @@ const Scene = () => {
           />
         </Physics>
         <PrimitiveObject position={[-65, 1, 10]} />
+        <CloudSound />
       </Suspense>
     </Canvas>
   )

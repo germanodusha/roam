@@ -1,5 +1,5 @@
 import { useSphere } from '@react-three/cannon'
-import { PointerLockControls } from '@react-three/drei'
+import { PerspectiveCamera, PointerLockControls } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Vector3 } from 'three'

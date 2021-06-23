@@ -3,15 +3,14 @@ import useKeyPressEvent from '../../hooks/useKeyPressEvent'
 import { useStore } from '../../store'
 import { createDefaultMedia } from '../../helpers/mock'
 import { MediaTypes } from '../../helpers/constants'
-import AudioMedia from '../AudioMedia'
 import TextMedia from '../TextMedia'
-import LinkMedia from '../LinkMedia'
+import ImageMedia from '../ImageMedia'
 import VideoMedia from '../VideoMedia'
 
 const MediaCenterWapper = {
-  [MediaTypes.AUDIO]: AudioMedia,
+  [MediaTypes.IMAGE]: ImageMedia,
+  ['image-with-glow']: ImageMedia,
   [MediaTypes.TEXT]: TextMedia,
-  [MediaTypes.LINK]: LinkMedia,
   [MediaTypes.VIDEO]: VideoMedia,
   [undefined]: () => null,
 }
@@ -47,8 +46,12 @@ const MediaCenter = () => {
     <>
       {activeMedia && Media && (
         <div className={styles['media']}>
-          <div className={styles['media-glow']}>
-            <Media />
+          <div
+            className={
+              activeMedia.type !== 'image-with-glow' && styles['media-glow']
+            }
+          >
+            <Media imageWithGlow={activeMedia.type === 'image-with-glow'} />
           </div>
         </div>
       )}
@@ -58,7 +61,12 @@ const MediaCenter = () => {
           <button onClick={closeMedia}>e para voltar</button>
         ) : (
           <>
-            <button onClick={onOpenMedia(MediaTypes.AUDIO)}>audio</button>
+            <button onClick={onOpenMedia(MediaTypes.IMAGE)}>
+              image sem glow
+            </button>
+            <button onClick={onOpenMedia('image-with-glow')}>
+              image com glow
+            </button>
             <button onClick={onOpenMedia(MediaTypes.TEXT)}>text</button>
             <button onClick={onOpenMedia(MediaTypes.VIDEO)}>video</button>
           </>
