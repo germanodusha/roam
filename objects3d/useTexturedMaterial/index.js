@@ -31,7 +31,6 @@ const useTextureMaterial = ({
       texture.wrapS = THREE.MirroredRepeatWrapping
       texture.wrapT = THREE.MirroredRepeatWrapping
       texture.repeat.set(repeatX, repeatY)
-      console.log(1, texture)
     })
   }, [repeatY, repeatX, base, bump, normalMap, ao, rough])
 
