@@ -65,7 +65,7 @@ const Hud = () => {
         <HudSection className={styles['hud__interaction']}>
           <h1>{nearInteraction.title}</h1>
           <div>
-            <StatusText red>Press</StatusText>
+            <StatusText red>press</StatusText>
             <Keycap
               inverted
               bordered
