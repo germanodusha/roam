@@ -88,26 +88,6 @@ describe('test store', () => {
       expect(store.current.state.counter.main).toBe(1)
     })
 
-    it('should toggle media audio', () => {
-      expect(store.current.state.activeMedia).toBe(false)
-
-      const type = MediaTypes.AUDIO
-      const src = 'https://google.com'
-      const media = createDefaultMedia({ type, src })
-
-      act(() => {
-        store.current.actions.openMedia(media)
-      })
-      expect(store.current.state.activeMedia.type).toBe(type)
-
-      expect(store.current.state.activeMedia.src).toBe(src)
-
-      act(() => {
-        store.current.actions.closeMedia()
-      })
-      expect(store.current.state.activeMedia).toBe(false)
-    })
-
     it('should toggle media text', () => {
       expect(store.current.state.activeMedia).toBe(false)
 
@@ -118,7 +98,7 @@ describe('test store', () => {
       act(() => {
         store.current.actions.openMedia(media)
       })
-      expect(store.current.state.activeMedia.type).toBe(type)
+      expect(store.current.state.activeMedia.type).toBe('text')
 
       expect(store.current.state.activeMedia.content).toHaveLength(
         content.length
@@ -141,7 +121,7 @@ describe('test store', () => {
       act(() => {
         store.current.actions.openMedia(media)
       })
-      expect(store.current.state.activeMedia.type).toBe(type)
+      expect(store.current.state.activeMedia.type).toBe('video')
 
       expect(store.current.state.activeMedia.src).toBe(src)
 
@@ -151,17 +131,17 @@ describe('test store', () => {
       expect(store.current.state.activeMedia).toBe(false)
     })
 
-    it('should toggle media link', () => {
+    it('should toggle media image', () => {
       expect(store.current.state.activeMedia).toBe(false)
 
-      const type = MediaTypes.LINK
+      const type = MediaTypes.IMAGE
       const src = 'https://blog.com'
       const media = createDefaultMedia({ type, src })
 
       act(() => {
         store.current.actions.openMedia(media)
       })
-      expect(store.current.state.activeMedia.type).toBe(type)
+      expect(store.current.state.activeMedia.type).toBe('image')
 
       expect(store.current.state.activeMedia.src).toBe(src)
 
@@ -178,7 +158,7 @@ describe('test store', () => {
     it.todo('should ignore object text')
     it.todo('should ignore object audio')
     it.todo('should ignore object video')
-    it.todo('should ignore object link')
+    it.todo('should ignore object image')
   })
 
   describe('init game', () => {
