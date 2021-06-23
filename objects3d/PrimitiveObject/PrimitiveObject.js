@@ -3,9 +3,16 @@ import * as THREE from 'three'
 import { MTLLoader, OBJLoader } from 'three-stdlib'
 import { useLoader } from '@react-three/fiber'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
-// import useFocusOnNear from '@/hooks/useFocusOnNear'
+import useFocusOnNear from '@/hooks/useFocusOnNear'
+import { useStore } from '../../store'
+import {
+  createDefaultInteraction,
+  createDefaultMedia,
+} from '../../helpers/mock'
+import { MediaTypes } from '../../helpers/constants'
 
 const PrimitiveObject = ({ position }) => {
+  const { onChangeInteraction } = useStore((state) => state.actions)
   const materials = useLoader(MTLLoader, '/gltf/12316_Goggles_v1_L3.mtl')
 
   const object = useLoader(
@@ -33,40 +40,20 @@ const PrimitiveObject = ({ position }) => {
     ])
   }, [ref])
 
-  // const [selected, setSelected] = useState(undefined)
-
-  // const onFocus = (r) => {
-  //   if (!r.current) return
-
-  //   r.current.children[0].material.color = new THREE.Color('green')
-  //   r.current.children[1].material.color = new THREE.Color('green')
-
-  //   setSelected([
-  //     { current: r.current.children[0] },
-  //     { current: r.current.children[1] },
-  //   ])
-  // }
-
-  // const onDefocus = (r) => {
-  //   if (!r.current) return
-
-  //   r.current.children[0].material.color = new THREE.Color()
-  //   r.current.children[1].material.color = new THREE.Color()
-
-  //   setSelected(undefined)
-  // }
-
-  // useFocusOnNear({
-  //   ref: ref2,
-  //   onFocus: () => onFocus(ref2),
-  //   onDefocus: () => onDefocus(ref2),
-  // })
-
-  // useFocusOnNear({
-  //   ref: ref3,
-  //   onFocus: () => onFocus(ref3),
-  //   onDefocus: () => onDefocus(ref3),
-  // })
+  useFocusOnNear({
+    ref: ref,
+    onFocus: () =>
+      onChangeInteraction(
+        createDefaultInteraction({
+          media: createDefaultMedia({
+            id: 1,
+            type: MediaTypes.TEXT,
+            content: ['adsdssd'],
+          }),
+        })
+      ),
+    onDefocus: () => onChangeInteraction(null),
+  })
 
   return (
     <>

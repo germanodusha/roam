@@ -2,16 +2,6 @@ import create from 'zustand'
 import produce, { original } from 'immer'
 import { MediaTypes } from '@/helpers/constants'
 
-const media = {
-  id: 1,
-  type: 'audio', // audio | video | text | track
-  title: 'title',
-  track: 'a',
-  album: '',
-  src: 'https://google.com',
-  model3d: 'something',
-}
-
 export const useStore = create((set) => {
   const setState = (fn) => set(produce(fn))
 
@@ -24,6 +14,7 @@ export const useStore = create((set) => {
       right: false,
       jump: false,
     },
+    nearInteraction: null,
     active: false,
     medias: [],
     achievements: [],
@@ -37,6 +28,7 @@ export const useStore = create((set) => {
   return {
     state: initialState,
     actions: {
+      // game
       reset: () => {
         set({ state: { ...initialState } })
       },
@@ -48,6 +40,8 @@ export const useStore = create((set) => {
           state.activeMedia = activeMedia
         })
       },
+
+      // media
       openMedia: (activeMedia) => {
         setState(({ state }) => {
           state.activeMedia = activeMedia
@@ -68,6 +62,15 @@ export const useStore = create((set) => {
           state.activeMedia = false
         })
       },
+
+      // near interaction
+      onChangeInteraction: (interaction) => {
+        setState(({ state }) => {
+          state.nearInteraction = interaction
+        })
+      },
+
+      // player
       onMove: (direction, value) => {
         setState(({ state }) => {
           state.movement[direction] = value

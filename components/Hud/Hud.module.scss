@@ -81,8 +81,29 @@
     right: 0;
     left: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    & h1 {
+      white-space: pre-line;
+      font-family: 'Dungeon';
+      font-size: 8em;
+      text-align: center;
+      color: red;
+    }
+
+    & > div {
+      display: flex;
+    }
+
+    &__keycap {
+      opacity: 1;
+      color: red;
+      border-color: red;
+      box-shadow: 0 0 5px red;
+      text-shadow: 0 0 5px red;
+    }
   }
 }
 
@@ -91,4 +112,9 @@
   color: white;
   font-family: Allan;
   font-size: 2rem;
+
+  &-red {
+    color: red;
+    opacity: 1;
+  }
 }

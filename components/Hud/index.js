@@ -3,8 +3,14 @@ import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import styles from './Hud.module.scss'
 
-const StatusText = ({ children }) => {
-  return <span className={styles['status']}>{children}</span>
+const StatusText = ({ red, children }) => {
+  return (
+    <span
+      className={classNames(styles['status'], { [styles['status-red']]: red })}
+    >
+      {children}
+    </span>
+  )
 }
 
 const HudSection = ({ children, className }) => (
@@ -14,8 +20,10 @@ const HudSection = ({ children, className }) => (
 )
 
 const Hud = () => {
-  // const { onMove } = useStore((store) => store.actions)
-  const { movement, counter } = useStore((store) => store.state)
+  const { openMedia, onChangeInteraction } = useStore((store) => store.actions)
+  const { movement, counter, nearInteraction } = useStore(
+    (store) => store.state
+  )
 
   return (
     <div className={styles['hud']}>
@@ -53,7 +61,32 @@ const Hud = () => {
         <Keycap value="F" />
       </HudSection>
 
-      {false && (
+      {nearInteraction ? (
+        <HudSection className={styles['hud__interaction']}>
+          <h1>{nearInteraction.title}</h1>
+          <div>
+            <StatusText red>Press</StatusText>
+            <Keycap
+              inverted
+              bordered
+              small
+              value="F"
+              onKeyDown={() => openMedia(nearInteraction.media)}
+              className={styles['hud__interaction__keycap']}
+            />
+            <StatusText red>to open it or</StatusText>
+            <Keycap
+              inverted
+              bordered
+              small
+              value="Q"
+              onKeyDown={() => onChangeInteraction(null)}
+              className={styles['hud__interaction__keycap']}
+            />
+            <StatusText red>to ignore</StatusText>
+          </div>
+        </HudSection>
+      ) : (
         <HudSection className={styles['hud__guide']}>
           <StatusText>press</StatusText>
           <Keycap value="Q" bordered small />

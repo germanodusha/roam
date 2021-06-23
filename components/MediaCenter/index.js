@@ -1,4 +1,5 @@
 import styles from './MediaCenter.module.scss'
+import useKeyPressEvent from '../../hooks/useKeyPressEvent'
 import { useStore } from '../../store'
 import { createDefaultMedia } from '../../helpers/mock'
 import { MediaTypes } from '../../helpers/constants'
@@ -18,6 +19,11 @@ const MediaCenterWapper = {
 const MediaCenter = () => {
   const { closeMedia, openMedia } = useStore((store) => store.actions)
   const { activeMedia } = useStore((store) => store.state)
+
+  useKeyPressEvent({
+    key: 'e',
+    onKeyDown: closeMedia,
+  })
 
   const onOpenMedia = (type) => () => {
     openMedia(
@@ -49,7 +55,7 @@ const MediaCenter = () => {
 
       <div className={styles['media__dev']}>
         {activeMedia ? (
-          <button onClick={closeMedia}>close</button>
+          <button onClick={closeMedia}>e para voltar</button>
         ) : (
           <>
             <button onClick={onOpenMedia(MediaTypes.AUDIO)}>audio</button>
