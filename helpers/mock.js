@@ -10,7 +10,7 @@ export const createDefaultMedia = ({ id = 1, type, src, content }) => ({
 })
 
 export const createDefaultInteraction = ({ media, showDismiss = true }) => ({
-  title: 'You found an object\nwish to open it?',
+  title: 'YOU FOUND AN OBJECT\nWISH TO OPEN IT?',
   media,
   showDismiss,
 })
