@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import { createDefaultMedia } from '@/helpers/mock'
+import { createDefaultMedia, createDefaultInteraction } from '@/helpers/mock'
 import { MediaTypes } from '@/helpers/constants'
 import { useStore } from '@/store'
 
@@ -154,22 +154,8 @@ describe('test store', () => {
     it.todo('should toggle main track')
   })
 
-  describe('ignore media', () => {
-    it.todo('should ignore object text')
-    it.todo('should ignore object audio')
-    it.todo('should ignore object video')
-    it.todo('should ignore object image')
-  })
-
   describe('init game', () => {
     it.todo('should validate init game')
-  })
-
-  describe('intro game', () => {
-    it.todo('should show intro - title')
-    it.todo('should show intro - description')
-    it.todo('should show intro - key guide')
-    it.todo('should enter the game')
   })
 
   describe('player movements', () => {
@@ -302,8 +288,29 @@ describe('test store', () => {
   })
 
   describe('object interaction', () => {
-    it.todo('should activate object')
-    it.todo('should disable object')
+    it('should toggle interacion modal', () => {
+      expect(store.current.state.nearInteraction).toBe(null)
+
+      const objectInteraction = createDefaultInteraction({ media: {} })
+      act(() => {
+        store.current.actions.onChangeInteraction(objectInteraction)
+      })
+      expect(store.current.state.nearInteraction).toStrictEqual(
+        objectInteraction
+      )
+      expect(store.current.state.nearInteraction).toHaveProperty('title')
+      expect(store.current.state.nearInteraction).toHaveProperty('media')
+      expect(store.current.state.nearInteraction).toHaveProperty('showDismiss')
+
+      act(() => {
+        store.current.actions.onChangeInteraction(null)
+      })
+      expect(store.current.state.nearInteraction).toStrictEqual(null)
+    })
+
+    it.todo('should close near interaction when open media')
+    it.todo('should delay for open next near interaction')
+    it.todo('should ignore interaction')
     it.todo('should activate other object when some object already active')
   })
 
