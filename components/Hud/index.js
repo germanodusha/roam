@@ -1,6 +1,8 @@
+import { useMemo } from 'react'
 import classNames from 'classnames'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
+import { MediaTypes } from '@/helpers/constants'
 import styles from './Hud.module.scss'
 
 const StatusText = ({ red, children }) => {
@@ -24,6 +26,46 @@ const Hud = () => {
   const { movement, counter, nearInteraction } = useStore(
     (store) => store.state
   )
+
+  const showTrack = useMemo(
+    () => nearInteraction?.media.type === MediaTypes.TRACK,
+    [nearInteraction]
+  )
+
+  if (showTrack)
+    return (
+      <HudSection className={styles['hud__interaction']}>
+        <h1>{'SIMON GRAB DEAFBRICK DUMA' || nearInteraction.media.title}</h1>
+        <h3>{'Title Track #1' || nearInteraction.media.track}</h3>
+        <span className={styles['hud__interaction__time']}>04:56</span>
+        <img />
+        <div>
+          <StatusText>use</StatusText>
+          <Keycap
+            bordered
+            small
+            value="Q"
+            onKeyDown={() => console.log('q pressed')}
+          />
+          <StatusText>for play/pause and</StatusText>
+          <Keycap
+            inverted
+            bordered
+            small
+            value="+"
+            onKeyDown={() => console.log('+ pressed')}
+          />
+          <Keycap
+            inverted
+            bordered
+            small
+            value="-"
+            onKeyDown={() => console.log('- pressed')}
+          />
+          <StatusText>for volume</StatusText>
+        </div>
+      </HudSection>
+    )
 
   return (
     <div className={styles['hud']}>
@@ -63,7 +105,7 @@ const Hud = () => {
 
       {nearInteraction ? (
         <HudSection className={styles['hud__interaction']}>
-          <h1>{nearInteraction.title}</h1>
+          <h1 className={styles['red']}>{nearInteraction.title}</h1>
           <div>
             <StatusText red>press</StatusText>
             <Keycap

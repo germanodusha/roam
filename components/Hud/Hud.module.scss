@@ -86,11 +86,35 @@
     justify-content: center;
 
     & h1 {
+      line-height: 70%;
       white-space: pre-line;
       font-family: 'Dungeon';
-      font-size: 8em;
+      font-size: 6em;
       text-align: center;
-      color: red;
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-shadow: 0 0 5px white;
+    }
+
+    & h3 {
+      font-family: 'Dungeon';
+      color: white;
+      font-size: 5em;
+      font-style: italic;
+      margin: 0;
+      padding: 0;
+      text-shadow: 0 0 5px white;
+    }
+
+    &__time {
+      color: white;
+      font-family: 'AntPolt Expd';
+      font-style: italic;
+      font-weight: 900;
+      font-size: 3em;
+      text-shadow: 0 0 5px white;
+      padding-bottom: 1em;
     }
 
     & > div {
@@ -105,6 +129,11 @@
       text-shadow: 0 0 5px red;
     }
   }
+}
+
+.red {
+  color: red;
+  text-shadow: 0 0 5px red;
 }
 
 .status {
