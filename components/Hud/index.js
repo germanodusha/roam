@@ -5,6 +5,7 @@ import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
 import useDesappearState from '@/hooks/useDesappearState'
 import StatusText from '@/components/StatusText'
+import { createDefaultMedia } from '@/helpers/mock'
 import styles from './Hud.module.scss'
 
 const HudSection = ({ children, className, show }) => (
@@ -45,6 +46,52 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
           className={styles['hud__interaction__keycap']}
         />
         <StatusText red>to ignore</StatusText>
+      </div>
+
+      <div style={{ display: 'flex' }}>
+        <StatusText red>DEV - video:</StatusText>
+        <Keycap
+          inverted
+          bordered
+          small
+          value="V"
+          className={styles['hud__interaction__keycap']}
+          onKeyDown={() =>
+            openMedia({
+              media: createDefaultMedia({
+                id: 1,
+                type: MediaTypes.VIDEO,
+                title: 'The Labyrinth of Crete:\nThe Myth Of The\nMinotaur',
+                caption:
+                  'HTTPS://WWW.EXPLORECRETE.COM/HISTORY/LABYRINTH MINOTAUR.HTM',
+                src: 'https://youtube.com',
+              }),
+            })
+          }
+        />
+      </div>
+
+      <div style={{ display: 'flex' }}>
+        <StatusText red>DEV - image:</StatusText>
+        <Keycap
+          inverted
+          bordered
+          small
+          value="I"
+          className={styles['hud__interaction__keycap']}
+          onKeyDown={() =>
+            openMedia({
+              media: createDefaultMedia({
+                id: 1,
+                type: MediaTypes.IMAGE,
+                title: 'The Labyrinth of Crete:\nThe Myth Of The\nMinotaur',
+                caption:
+                  'HTTPS://WWW.EXPLORECRETE.COM/HISTORY/LABYRINTH MINOTAUR.HTM',
+                src: 'https://youtube.com',
+              }),
+            })
+          }
+        />
       </div>
     </HudSection>
   )

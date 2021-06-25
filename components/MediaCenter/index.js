@@ -9,6 +9,7 @@ import ImageMedia from '@/components/ImageMedia'
 import VideoMedia from '@/components/VideoMedia'
 import StatusText from '@/components/StatusText'
 import Keycap from '@/components/Keycap'
+import MediaCover from '@/components/MediaCover'
 
 const MediaCenterWapper = {
   [MediaTypes.IMAGE]: ImageMedia,
@@ -22,6 +23,10 @@ const MediaCenter = () => {
   const { closeMedia } = useStore((store) => store.actions)
   const { activeMedia } = useStore((store) => store.state)
   const [state, show] = useDesappearState({ stateToPersist: activeMedia })
+  const [cover, appearCover] = useDesappearState({ stateToPersist: showCover })
+  const [content, appearContent] = useDesappearState({
+    stateToPersist: !showCover,
+  })
 
   const Media = state.media ? MediaCenterWapper[state.media.type] : undefined
 
@@ -56,7 +61,18 @@ const MediaCenter = () => {
       </div>
 
       <div className={styles['media-glow']}>
-        <Media showCover={showCover} media={state?.media} />
+        <div className={styles['media__wrapper']}>
+          {cover && (
+            <MediaCover
+              show={appearCover}
+              title={state?.media?.title}
+              caption={state?.media?.caption}
+              className={styles['media__wrapper__cover']}
+            />
+          )}
+
+          {content && <Media appear={appearContent} media={state?.media} />}
+        </div>
       </div>
     </div>
   )
