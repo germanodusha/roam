@@ -3,17 +3,9 @@ import classNames from 'classnames'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
+import useDesappearState from '@/hooks/useDesappearState'
+import StatusText from '@/components/StatusText'
 import styles from './Hud.module.scss'
-
-const StatusText = ({ red, children }) => {
-  return (
-    <span
-      className={classNames(styles['status'], { [styles['status-red']]: red })}
-    >
-      {children}
-    </span>
-  )
-}
 
 const HudSection = ({ children, className, show }) => (
   <div
@@ -28,24 +20,7 @@ const HudSection = ({ children, className, show }) => (
 )
 
 const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
-  const [show, setShow] = useState(false)
-  const [state, setState] = useState({})
-
-  useEffect(() => {
-    if (media) {
-      setState(media)
-      const timeoutShow = setTimeout(() => {
-        setShow(true)
-      }, 50)
-      return () => clearTimeout(timeoutShow)
-    } else {
-      setShow(false)
-      const timeoutHide = setTimeout(() => {
-        setState({})
-      }, 550)
-      return () => clearTimeout(timeoutHide)
-    }
-  }, [media])
+  const [state, show] = useDesappearState({ stateToPersist: media })
 
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
@@ -76,24 +51,7 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
 }
 
 const TrackDisplay = ({ mediaTrack, openMedia, onChangeInteraction }) => {
-  const [show, setShow] = useState(false)
-  const [state, setState] = useState({})
-
-  useEffect(() => {
-    if (mediaTrack) {
-      setState(mediaTrack)
-      const timeoutShow = setTimeout(() => {
-        setShow(true)
-      }, 50)
-      return () => clearTimeout(timeoutShow)
-    } else {
-      setShow(false)
-      const timeoutHide = setTimeout(() => {
-        setState({})
-      }, 550)
-      return () => clearTimeout(timeoutHide)
-    }
-  }, [mediaTrack])
+  const [state, show] = useDesappearState({ stateToPersist: mediaTrack })
 
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
@@ -104,38 +62,40 @@ const TrackDisplay = ({ mediaTrack, openMedia, onChangeInteraction }) => {
         className={styles['hud__interaction__icon']}
       />
       <span className={styles['hud__interaction__time']}>04:56</span>
-      <div>
-        <StatusText>use</StatusText>
-        <Keycap
-          bordered
-          small
-          value="Q"
-          onKeyDown={() => console.log('q pressed')}
-        />
-        <StatusText>for play/pause and</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="+"
-          onKeyDown={() => console.log('+ pressed')}
-        />
-        <Keycap
-          inverted
-          bordered
-          small
-          value="-"
-          onKeyDown={() => console.log('- pressed')}
-        />
-        <StatusText>for volume</StatusText>
-      </div>
+      {false && (
+        <div>
+          <StatusText>use</StatusText>
+          <Keycap
+            bordered
+            small
+            value="Q"
+            onKeyDown={() => console.log('q pressed')}
+          />
+          <StatusText>for play/pause and</StatusText>
+          <Keycap
+            inverted
+            bordered
+            small
+            value="+"
+            onKeyDown={() => console.log('+ pressed')}
+          />
+          <Keycap
+            inverted
+            bordered
+            small
+            value="-"
+            onKeyDown={() => console.log('- pressed')}
+          />
+          <StatusText>for volume</StatusText>
+        </div>
+      )}
     </HudSection>
   )
 }
 
 const Hud = () => {
   const { openMedia, onChangeInteraction } = useStore((store) => store.actions)
-  const { nearInteraction } = useStore((store) => store.state)
+  const { activeMedia, nearInteraction } = useStore((store) => store.state)
   const { movement, counter } = useStore((store) => store.state)
   const [media, setMedia] = useState(false)
   const [mediaTrack, setMediaTrack] = useState(false)
@@ -150,7 +110,7 @@ const Hud = () => {
     ;(isMediaTrack ? setMediaTrack : setMedia)(nearInteraction)
   }, [nearInteraction])
 
-  const showFullMenu = !mediaTrack
+  const showFullMenu = !mediaTrack && !activeMedia
 
   return (
     <div className={styles['hud']}>
@@ -186,12 +146,14 @@ const Hud = () => {
         </div>
       </HudSection>
 
-      <HudSection show={showFullMenu} className={styles['hud__controls-look']}>
-        <Keycap value="E" />
-        <Keycap value="R" />
-        <Keycap value="Q" />
-        <Keycap value="F" />
-      </HudSection>
+      {/**
+        <HudSection show={showFullMenu} className={styles['hud__controls-look']}>
+          <Keycap value="E" />
+          <Keycap value="R" />
+          <Keycap value="Q" />
+          <Keycap value="F" />
+        </HudSection>
+      **/}
 
       <HudSection show={showFullMenu} className={styles['hud__guide']}>
         <StatusText>press</StatusText>

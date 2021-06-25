@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Leva hidden={!controlsEnabled} />
+      <Leva collapsed hidden={!controlsEnabled} />
       <Component {...pageProps} />
     </>
   )

@@ -4,6 +4,7 @@ export const createDefaultMedia = ({
   artist = 'artist',
   title = 'title',
   track = 'track',
+  caption = '',
   src,
   content,
 }) => ({
@@ -11,6 +12,7 @@ export const createDefaultMedia = ({
   artist,
   type,
   title,
+  caption,
   track,
   album: '',
   src,

@@ -1,78 +1,64 @@
+import { useState } from 'react'
 import styles from './MediaCenter.module.scss'
-import useKeyPressEvent from '../../hooks/useKeyPressEvent'
+import classNames from 'classnames'
 import { useStore } from '../../store'
-import { createDefaultMedia } from '../../helpers/mock'
 import { MediaTypes } from '../../helpers/constants'
-import TextMedia from '../TextMedia'
-import ImageMedia from '../ImageMedia'
-import VideoMedia from '../VideoMedia'
+import useDesappearState from '@/hooks/useDesappearState'
+import TextMedia from '@/components/TextMedia'
+import ImageMedia from '@/components/ImageMedia'
+import VideoMedia from '@/components/VideoMedia'
+import StatusText from '@/components/StatusText'
+import Keycap from '@/components/Keycap'
 
 const MediaCenterWapper = {
   [MediaTypes.IMAGE]: ImageMedia,
-  ['image-with-glow']: ImageMedia,
   [MediaTypes.TEXT]: TextMedia,
   [MediaTypes.VIDEO]: VideoMedia,
   [undefined]: () => null,
 }
 
 const MediaCenter = () => {
-  const { closeMedia, openMedia } = useStore((store) => store.actions)
+  const [showCover, setShowCover] = useState(true)
+  const { closeMedia } = useStore((store) => store.actions)
   const { activeMedia } = useStore((store) => store.state)
+  const [state, show] = useDesappearState({ stateToPersist: activeMedia })
 
-  useKeyPressEvent({
-    key: 'e',
-    onKeyDown: closeMedia,
-  })
+  const Media = state.media ? MediaCenterWapper[state.media.type] : undefined
 
-  const onOpenMedia = (type) => () => {
-    openMedia(
-      createDefaultMedia({
-        type,
-        ...(type === MediaTypes.TEXT && {
-          content: [
-            'texto',
-            '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
-            '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
-            'texto2',
-          ],
-        }),
-      })
-    )
-  }
+  const onNextPage = () => setShowCover((v) => !v)
 
-  const Media = MediaCenterWapper[activeMedia.type]
+  if (!state || !Media) return null
 
   return (
-    <>
-      {activeMedia && Media && (
-        <div className={styles['media']}>
-          <div
-            className={
-              activeMedia.type !== 'image-with-glow' && styles['media-glow']
-            }
-          >
-            <Media imageWithGlow={activeMedia.type === 'image-with-glow'} />
-          </div>
-        </div>
-      )}
-
-      <div className={styles['media__dev']}>
-        {activeMedia ? (
-          <button onClick={closeMedia}>e para voltar</button>
-        ) : (
-          <>
-            <button onClick={onOpenMedia(MediaTypes.IMAGE)}>
-              image sem glow
-            </button>
-            <button onClick={onOpenMedia('image-with-glow')}>
-              image com glow
-            </button>
-            <button onClick={onOpenMedia(MediaTypes.TEXT)}>text</button>
-            <button onClick={onOpenMedia(MediaTypes.VIDEO)}>video</button>
-          </>
+    <div
+      className={classNames(styles['media'], { [styles['media-show']]: show })}
+    >
+      <div
+        className={classNames(
+          styles['media__status'],
+          styles['media__status__exit']
         )}
+      >
+        <StatusText>press</StatusText>
+        <Keycap value="e" bordered small onKeyDown={closeMedia} />
+        <StatusText>to go back to the maze</StatusText>
       </div>
-    </>
+
+      <div
+        className={classNames(
+          styles['media__status'],
+          styles['media__status__actions']
+        )}
+      >
+        <StatusText>use</StatusText>
+        <Keycap value="f" bordered small onKeyDown={onNextPage} />
+        <StatusText>for text scroll</StatusText>
+      </div>
+
+      <div className={styles['media-glow']}>
+        <Media showCover={showCover} media={state?.media} />
+      </div>
+    </div>
   )
 }
 

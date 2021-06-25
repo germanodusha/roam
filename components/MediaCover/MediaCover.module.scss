@@ -1,0 +1,33 @@
+.cover {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  white-space: pre-wrap;
+  opacity: 0;
+  transition: 0.5s opacity;
+
+  &-show {
+    opacity: 1;
+  }
+
+  &__title {
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    align-items: center;
+
+    & h1 {
+      font-size: 3em;
+      padding: 0;
+      margin: 0;
+      font-family: 'AntPolt Expd';
+      font-style: italic;
+      font-weight: bold;
+    }
+  }
+
+  & span {
+    font-size: 0.5em;
+    padding-bottom: 2em;
+  }
+}
