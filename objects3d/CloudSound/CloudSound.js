@@ -6,6 +6,13 @@ import {
 import { PositionalAudio, useGLTF } from '@react-three/drei'
 import { useControls, button } from 'leva'
 import config from '../../config'
+import useFocusOnNear from '@/hooks/useFocusOnNear'
+import { useStore } from '../../store'
+import { MediaTypes } from '../../helpers/constants'
+import {
+  createDefaultInteraction,
+  createDefaultMedia,
+} from '../../helpers/mock'
 
 const Cloud = () => {
   const {
@@ -38,6 +45,8 @@ const initialPos = config.player.initialPos
 initialPos[1] = 0.7
 
 const CloudSound = () => {
+  const { onChangeInteraction } = useStore((state) => state.actions)
+  const object = useRef()
   const audio = useRef()
 
   useControls({
@@ -48,8 +57,24 @@ const CloudSound = () => {
     }),
   })
 
+  useFocusOnNear({
+    ref: object,
+    onFocus: () =>
+      onChangeInteraction(
+        createDefaultInteraction({
+          media: createDefaultMedia({
+            id: 1,
+            type: MediaTypes.TRACK,
+            artist: 'SIMON GRAB DEAFBRICK DUMA',
+            track: 'Title Track #1',
+          }),
+        })
+      ),
+    onDefocus: () => onChangeInteraction(null),
+  })
+
   return (
-    <group position={initialPos}>
+    <group ref={object} position={initialPos}>
       <PositionalAudio
         autoplay={false}
         loop

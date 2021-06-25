@@ -2,6 +2,12 @@
   &__section {
     position: fixed;
     padding: 1em;
+    opacity: 0;
+    transition: 0.5s opacity;
+
+    &-show {
+      opacity: 1;
+    }
   }
 
   &__logo {
@@ -16,6 +22,11 @@
       height: 8em;
       object-fit: contain;
       object-position: center top;
+      transition: 0.5s filter;
+    }
+
+    &-white {
+      filter: saturate(0%) brightness(400%);
     }
   }
 
@@ -117,6 +128,12 @@
       padding-bottom: 1em;
     }
 
+    &__icon {
+      max-height: 30vh;
+
+      // height: 50%;
+    }
+
     & > div {
       display: flex;
     }
@@ -132,8 +149,8 @@
 }
 
 .red {
-  color: red;
-  text-shadow: 0 0 5px red;
+  color: red !important;
+  text-shadow: 0 0 5px red !important;
 }
 
 .status {
