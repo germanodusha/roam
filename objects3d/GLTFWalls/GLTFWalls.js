@@ -36,7 +36,11 @@ const Wall = ({ children, material, node, geometry, showCollisions }) => {
 }
 
 const GLTFWalls = ({ path, showCollisions }) => {
-  const { maze } = useControls({ maze: true })
+  const { enabled } = useControls(
+    'maze',
+    { enabled: true },
+    { collapsed: true }
+  )
 
   const { nodes } = useGLTF(path)
 
@@ -58,7 +62,7 @@ const GLTFWalls = ({ path, showCollisions }) => {
   const idsNodes = useMemo(() => Object.keys(nodes), [nodes])
 
   return (
-    <group name="maze" visible={maze}>
+    <group name="maze" visible={enabled}>
       {idsNodes.map((id) => {
         const node = nodes[id]
 

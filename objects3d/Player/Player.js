@@ -80,7 +80,6 @@ function Player() {
     <>
       <mesh ref={ref} />
       {/**<PointerLockControls />**/}
-      <PointerLockControls />
     </>
   )
 }
