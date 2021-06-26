@@ -2,6 +2,12 @@
   &__section {
     position: fixed;
     padding: 1em;
+    opacity: 0;
+    transition: 0.5s opacity;
+
+    &-show {
+      opacity: 1;
+    }
   }
 
   &__logo {
@@ -16,6 +22,11 @@
       height: 8em;
       object-fit: contain;
       object-position: center top;
+      transition: 0.5s filter;
+    }
+
+    &-white {
+      filter: saturate(0%) brightness(400%);
     }
   }
 
@@ -86,11 +97,41 @@
     justify-content: center;
 
     & h1 {
+      line-height: 70%;
       white-space: pre-line;
       font-family: 'Dungeon';
-      font-size: 8em;
+      font-size: 6em;
       text-align: center;
-      color: red;
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-shadow: 0 0 5px white;
+    }
+
+    & h3 {
+      font-family: 'Dungeon';
+      color: white;
+      font-size: 5em;
+      font-style: italic;
+      margin: 0;
+      padding: 0;
+      text-shadow: 0 0 5px white;
+    }
+
+    &__time {
+      color: white;
+      font-family: 'AntPolt Expd';
+      font-style: italic;
+      font-weight: 900;
+      font-size: 3em;
+      text-shadow: 0 0 5px white;
+      padding-bottom: 1em;
+    }
+
+    &__icon {
+      max-height: 30vh;
+
+      // height: 50%;
     }
 
     & > div {
@@ -107,14 +148,7 @@
   }
 }
 
-.status {
-  opacity: 0.3;
-  color: white;
-  font-family: Allan;
-  font-size: 2rem;
-
-  &-red {
-    color: red;
-    opacity: 1;
-  }
+.red {
+  color: red !important;
+  text-shadow: 0 0 5px red !important;
 }

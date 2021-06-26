@@ -4,4 +4,12 @@ const withTM = require('next-transpile-modules')([
   'three',
 ])
 
-module.exports = withTM()
+module.exports = withTM({
+  webpack: function (config) {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    })
+    return config
+  },
+})
