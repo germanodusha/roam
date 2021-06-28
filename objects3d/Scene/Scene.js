@@ -352,10 +352,10 @@ const objects = [
     path: '/gltf/box.obj',
     scale: 0.001,
   },
-  {
-    path: '/gltf/casco desert.obj',
-    scale: 0.06,
-  },
+  // {
+  //   path: '/gltf/casco desert.obj',
+  //   scale: 0.06,
+  // },
   {
     path: '/gltf/Gameboy.obj',
     scale: 0.5,
