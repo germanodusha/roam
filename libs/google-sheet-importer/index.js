@@ -14,7 +14,7 @@ const TOKEN_PATH = 'token.json'
 fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err)
   // Authorize a client with credentials, then call the Google Sheets API.
-  authorize(JSON.parse(content), listTable)
+  authorize(JSON.parse(content), getLists)
 })
 
 /**
@@ -74,12 +74,17 @@ function getNewToken(oAuth2Client, callback) {
 const Data = {
   objetos: {
     range: 'Lista de conteúdo dos objetos!A2:J',
-    file: 'export/content_objects.json',
+    file: '../../data/content_objects.js',
   },
   extras: {
     range: 'Lista de conteúdos extras!A1:E',
-    file: 'export/content_extras.json',
+    file: '../../data/content_extras.js',
   },
+}
+
+function getLists(auth) {
+  listTable(auth, Data.objetos.range, Data.objetos.file)
+  listTable(auth, Data.extras.range, Data.extras.file)
 }
 
 /**
@@ -87,14 +92,12 @@ const Data = {
  * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
-function listTable(auth) {
-  const actual = 'extras'
-
+function listTable(auth, range, saveTo) {
   const sheets = google.sheets({ version: 'v4', auth })
   sheets.spreadsheets.values.get(
     {
       spreadsheetId: '1Af7vnj6b1oiaqKT2NkKQcBls-Fyz5TtM06ynI3SOSWA',
-      range: Data[actual].range,
+      range,
     },
     (err, res) => {
       if (err) return console.log('The API returned an error: ' + err)
@@ -102,26 +105,29 @@ function listTable(auth) {
       if (rows.length) {
         // Print columns A and E, which correspond to indices 0 and 4.
         const columns = rows[0]
-        const data = rows.map((row, i) => {
-          if (i === 0) return
-          const object = row.reduce(
-            (prev, cur, i) => ({
-              ...prev,
-              [columns[i]]: cur,
-            }),
-            {}
-          )
-          return object
-        })
+        const data = rows
+          .map((row, i) => {
+            if (i === 0) return
+            const object = row.reduce(
+              (prev, cur, i) => ({
+                ...prev,
+                [columns[i]]: cur,
+              }),
+              {}
+            )
+            return object
+          })
+          .filter((row) => {
+            if (!row) return false
+            if (!Object.values(row).length) return false
+            return true
+          })
 
-        fs.writeFile(
-          `${Data[actual].file}`,
-          JSON.stringify(data, null, '  '),
-          (err) => {
-            if (err) return console.error(err)
-            console.log('saved')
-          }
-        )
+        const text = `export default ${JSON.stringify(data, null, '  ')}`
+        fs.writeFile(saveTo, text, (err) => {
+          if (err) return console.error(err)
+          console.log(`${saveTo} saved`)
+        })
       } else {
         console.log('No data found.')
       }

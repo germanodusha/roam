@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "lint": "eslint --fix",
     "format": "prettier --write --ignore-unknown .",
-    "precommit": ".husky/pre-commit"
+    "precommit": ".husky/pre-commit",
+    "update:data": "cd libs/google-sheet-importer && node . && cd ../../ && npx prettier data/content_*.js && npx eslint --fix data/content_*.js"
   },
   "dependencies": {
     "@react-three/cannon": "2.1.2",
