@@ -48,14 +48,14 @@ const GLTFWalls = ({ path, showCollisions }) => {
     path: '/materials/wall/',
     repeatX: 0.01,
     repeatY: 0.01,
-    aoMapIntensity: 5,
+    aoMapIntensity: 1,
     baseColorPath: 'basecolor.jpg',
-    bumpScale: 10,
+    bumpScale: 0.2,
     displacementPath: 'displacement.png',
-    normal: 1,
+    normal: 0,
     normalPath: 'normal.jpg',
     ambientOcclusionPath: 'ambientOcclusion.jpg',
-    roughness: 5,
+    roughness: 0.01,
     roughnessPath: 'roughness.jpg',
   })
 

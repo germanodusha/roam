@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
-import { useThree, useLoader } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber'
 
 const useTextureMaterial = ({
   path = '',
@@ -10,29 +10,34 @@ const useTextureMaterial = ({
   baseColorPath,
   bumpScale = 10,
   displacementPath,
-  normal = 1,
-  normalPath,
+  // normal = 1,
+  // normalPath,
   ambientOcclusionPath,
-  roughness = 5,
-  roughnessPath,
+  // roughness = 5,
+  // roughnessPath,
 }) => {
-  const { scene } = useThree()
-
-  const [base, bump, normalMap, ao, rough] = useLoader(THREE.TextureLoader, [
+  const [
+    base,
+    bump,
+    //normalMap,
+    ao,
+    // rough,
+  ] = useLoader(THREE.TextureLoader, [
     `${path}${baseColorPath}`,
     `${path}${displacementPath}`,
-    `${path}${normalPath}`,
+    // `${path}${normalPath}`,
     `${path}${ambientOcclusionPath}`,
-    `${path}${roughnessPath}`,
+    // `${path}${roughnessPath}`,
   ])
 
   useEffect(() => {
-    ;[base, bump, normalMap, ao, rough].forEach((texture) => {
+    // ;[base, bump, normalMap, ao, rough].forEach((texture) => {
+    ;[base, bump, ao].forEach((texture) => {
       texture.wrapS = THREE.MirroredRepeatWrapping
       texture.wrapT = THREE.MirroredRepeatWrapping
       texture.repeat.set(repeatX, repeatY)
     })
-  }, [repeatY, repeatX, base, bump, normalMap, ao, rough])
+  }, [repeatY, repeatX, base, bump, ao])
 
   const texturedMaterial = useRef(
     <meshPhysicalMaterial
@@ -42,12 +47,14 @@ const useTextureMaterial = ({
       bumpMap={bump}
       aoMapIntensity={aoMapIntensity}
       aoMap={ao}
-      normal={normal}
-      normalMap={normalMap}
-      roughness={roughness}
-      roughnessMap={rough}
-      envMap={scene.background}
+      // normal={normal}
+      // normalMap={normalMap}
+      // roughness={roughness}
+      // roughnessMap={rough}
+      // envMap={scene.background}
       side={THREE.DoubleSide}
+      reflectivity={0.5}
+      metalness={0}
     />
   ).current
 

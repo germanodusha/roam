@@ -3,6 +3,7 @@ import { PerspectiveCamera, PointerLockControls } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Vector3 } from 'three'
+import { useControls } from 'leva'
 import config from '../../config'
 import KeyBindings from '../../config/keybindings.json'
 import { useStore } from '../../store'
@@ -21,6 +22,8 @@ function Player() {
   const { camera } = useThree()
 
   const currentVelocity = useRef([0, 0, 0])
+
+  const { lockPointer } = useControls('view', { lockPointer: true })
 
   useEffect(
     () =>
@@ -79,7 +82,7 @@ function Player() {
   return (
     <>
       <mesh ref={ref} />
-      {/**<PointerLockControls />**/}
+      {lockPointer && <PointerLockControls />}
     </>
   )
 }

@@ -107,6 +107,7 @@ const Hud = () => {
       setMediaTrack(false)
       return
     }
+    if (!nearInteraction.media) return
     const isMediaTrack = nearInteraction.media.type === MediaTypes.TRACK
     ;(isMediaTrack ? setMediaTrack : setMedia)(nearInteraction)
   }, [nearInteraction])
