@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { OBJLoader } from 'three-stdlib'
 import { useLoader } from '@react-three/fiber'
 import useFocusOnNear from '@/hooks/useFocusOnNear'
@@ -13,7 +13,7 @@ const PrimitiveObject = ({
   log = false,
   scale = 1,
 }) => {
-  const { onChangeInteraction } = useStore((state) => state.actions)
+  const { onChangeInteraction, addGlow } = useStore((state) => state.actions)
   const ref = useRef(null)
   const object = useLoader(OBJLoader, path)
 
@@ -31,8 +31,8 @@ const PrimitiveObject = ({
         return { current: mesh }
       })
 
-    console.log('added meshes to glow', meshes)
-  }, [ref, material])
+    addGlow(meshes)
+  }, [ref, material, addGlow])
 
   useFocusOnNear({
     ref: ref,
@@ -48,31 +48,6 @@ const PrimitiveObject = ({
       object={object}
     />
   )
-  // return (
-  //   <group>
-  //     <ambientLight
-  //       layers={10}
-  //       color={new THREE.Color(0, 1, 0)}
-  //       intensity={1}
-  //       ref={lightRef}
-  //     />
-
-  //     <primitive
-  //       ref={ref}
-  //       position={position}
-  //       scale={[1 * scale, 1 * scale, 1 * scale]}
-  //       object={object}
-  //     />
-
-  //     <EffectComposer>
-  //       <SelectiveBloom
-  //         selection={selected}
-  //         lights={[lightRef]}
-  //         {...bloomProps}
-  //       />
-  //     </EffectComposer>
-  //   </group>
-  // )
 }
 
 export default PrimitiveObject
