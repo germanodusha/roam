@@ -35,7 +35,7 @@ const PosHelper = () => {
           x: config.player.initialPos[0],
           z: config.player.initialPos[2],
         },
-        step: 1,
+        step: 0.1,
       },
     }),
     { collapsed: true }

@@ -114,7 +114,9 @@ const Hud = () => {
 
   const showFullMenu = !mediaTrack && !activeMedia
 
-  if (true) return null
+  const { hud } = useControls('player', { hud: true })
+
+  if (!hud) return null
 
   return (
     <div className={styles['hud']}>
