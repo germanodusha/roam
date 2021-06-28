@@ -47,52 +47,6 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
         />
         <StatusText red>to ignore</StatusText>
       </div>
-
-      <div style={{ display: 'flex' }}>
-        <StatusText red>DEV - video:</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="V"
-          className={styles['hud__interaction__keycap']}
-          onKeyDown={() =>
-            openMedia({
-              media: createDefaultMedia({
-                id: 1,
-                type: MediaTypes.VIDEO,
-                title: 'The Labyrinth of Crete:\nThe Myth Of The\nMinotaur',
-                caption:
-                  'HTTPS://WWW.EXPLORECRETE.COM/HISTORY/LABYRINTH MINOTAUR.HTM',
-                src: 'https://youtube.com',
-              }),
-            })
-          }
-        />
-      </div>
-
-      <div style={{ display: 'flex' }}>
-        <StatusText red>DEV - image:</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="I"
-          className={styles['hud__interaction__keycap']}
-          onKeyDown={() =>
-            openMedia({
-              media: createDefaultMedia({
-                id: 1,
-                type: MediaTypes.IMAGE,
-                title: 'The Labyrinth of Crete:\nThe Myth Of The\nMinotaur',
-                caption:
-                  'HTTPS://WWW.EXPLORECRETE.COM/HISTORY/LABYRINTH MINOTAUR.HTM',
-                src: 'https://youtube.com',
-              }),
-            })
-          }
-        />
-      </div>
     </HudSection>
   )
 }
@@ -153,6 +107,7 @@ const Hud = () => {
       setMediaTrack(false)
       return
     }
+    if (!nearInteraction.media) return
     const isMediaTrack = nearInteraction.media.type === MediaTypes.TRACK
     ;(isMediaTrack ? setMediaTrack : setMedia)(nearInteraction)
   }, [nearInteraction])

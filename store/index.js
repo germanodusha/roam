@@ -23,6 +23,7 @@ export const useStore = create((set) => {
       extra: 0,
     },
     activeMedia: false,
+    glow: {},
   }
 
   return {
@@ -74,6 +75,16 @@ export const useStore = create((set) => {
       onMove: (direction, value) => {
         setState(({ state }) => {
           state.movement[direction] = value
+        })
+      },
+
+      // glow
+      addGlow: (meshs) => {
+        meshs.forEach((mesh) => {
+          if (mesh.current.type !== 'Mesh') return
+          setState(({ state }) => {
+            state.glow[mesh.current.id] = mesh.current
+          })
         })
       },
     },

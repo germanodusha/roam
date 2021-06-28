@@ -49,13 +49,17 @@ const CloudSound = () => {
   const object = useRef()
   const audio = useRef()
 
-  useControls({
-    play: button(() => {
-      alert('play')
+  useControls(
+    'sound',
+    {
+      play: button(() => {
+        alert('play')
 
-      audio.current.play()
-    }),
-  })
+        audio.current.play()
+      }),
+    },
+    { collapsed: true }
+  )
 
   useFocusOnNear({
     ref: object,
