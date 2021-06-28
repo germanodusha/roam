@@ -6,6 +6,6 @@ During the nineteenth century, the remains of this ancient Egyptian structure we
 
 In 1898, the [Harpers Dictionary of Classical Antiquities](https://en.wikipedia.org/wiki/Harper%27s_Dictionary_of_Classical_Literature_and_Antiquities) described the structure as "the largest of all the temples of Egypt, the so-called Labyrinth, of which, however, only the foundation stones have been preserved."
 
-Herodotus' description of the Egyptian Labyrinth inspired some central scenes in [Bolesław Prus'](https://en.wikipedia.org/wiki/Boles%C5%82aw_Prus) 1895 historical novel, [Pharaoh](https://en.wikipedia.org/wiki/Pharaoh_(Prus_novel)#Inspirations).
+Herodotus' description of the Egyptian Labyrinth inspired some central scenes in [Bolesław Prus'](https://en.wikipedia.org/wiki/Boles%C5%82aw_Prus) 1895 historical novel, [Pharaoh](<https://en.wikipedia.org/wiki/Pharaoh_(Prus_novel)#Inspirations>).
 
 Link: https://en.wikipedia.org/wiki/Labyrinth

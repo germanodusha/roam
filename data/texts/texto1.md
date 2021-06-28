@@ -1,4 +1,5 @@
 ## 'I am really scared': Family lost in corn maze calls 911 for help
+
 If a Massachusetts family says they got the Halloween scare of a lifetime by getting lost inside a dark and creepy Salem-area corn maze and had to call 911 for rescue, believe them.
 
 A Massachusetts family got the Halloween scare of a lifetime by getting lost inside a dark and creepy Salem-area corn maze and had to call 911 for rescue.
@@ -26,9 +27,8 @@ He said a Danvers police with a tracking dog quickly plunged into the depths of 
 
 Within a minute or so upon arrival, the police officer located the family. The family didn't realize they had almost made their way out; they were just 25 feet from the street, Connors said.
 
-"Usually we see smiles coming out of the maze," he said. "I could understand the family's  concern, because they had a little one with them. And I’m sure they won’t be the last family who gets lost in there.”
+"Usually we see smiles coming out of the maze," he said. "I could understand the family's concern, because they had a little one with them. And I’m sure they won’t be the last family who gets lost in there.”
 
 Said Connors: "I have a funny feeling it's going to be a real busy season."
 
 Link: https://www.nbcnews.com/id/wbna44875752
-

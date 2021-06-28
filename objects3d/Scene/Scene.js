@@ -6,10 +6,11 @@ import {
   MapControls,
   TransformControls,
   useCubeTexture,
+  OrthographicCamera,
 } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
-import { useControls } from 'leva'
+import { useControls, button } from 'leva'
 import config from '../../config'
 import useQueryString from '../../hooks/useQueryString'
 import GLTFWalls from '../GLTFWalls'
@@ -82,11 +83,14 @@ const PosHelper = () => {
 }
 
 const View = () => {
+  const camera = useRef(null)
+
   const { player, lockCamera } = useControls(
-    'view',
+    'player',
     {
       player: true,
       lockCamera: false,
+      cameraPos: button(() => console.warn(camera.current)),
     },
     { collapsed: true }
   )
@@ -95,6 +99,14 @@ const View = () => {
 
   return (
     <>
+      <OrthographicCamera
+        ref={camera}
+        makeDefault
+        position={[14.43, 67.28, 25.48]}
+        quaternion={[-0.24, 0.61, 0.2]}
+        rotation={[-1.33, 0.93, 1.28]}
+        zoom={10}
+      />
       <MapControls enabled={!player && !lockCamera} />
       <PosHelper visible={lockCamera} />
     </>
@@ -110,11 +122,7 @@ const Environment = () => {
     [glow]
   )
 
-  const { hdri } = useControls(
-    'environment',
-    { hdri: true },
-    { collapsed: true }
-  )
+  const { hdri } = useControls('player', { hdri: true }, { collapsed: true })
 
   const cubeMap = useCubeTexture(
     ['px.png', 'nx.png', 'ny.png', 'py.png', 'pz.png', 'nz.png'],

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import classNames from 'classnames'
+import { useControls } from 'leva'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
 import useDesappearState from '@/hooks/useDesappearState'
 import StatusText from '@/components/StatusText'
-import { createDefaultMedia } from '@/helpers/mock'
 import styles from './Hud.module.scss'
 
 const HudSection = ({ children, className, show }) => (
@@ -113,6 +113,8 @@ const Hud = () => {
   }, [nearInteraction])
 
   const showFullMenu = !mediaTrack && !activeMedia
+
+  if (true) return null
 
   return (
     <div className={styles['hud']}>
