@@ -1,8 +1,19 @@
-export const createDefaultMedia = ({ id = 1, type, src, content }) => ({
-  id,
+export const createDefaultMedia = ({
+  id = 1,
   type,
-  title: 'title',
-  track: 'a',
+  artist = 'artist',
+  title = 'title',
+  track = 'track',
+  caption = '',
+  src,
+  content,
+}) => ({
+  id,
+  artist,
+  type,
+  title,
+  caption,
+  track,
   album: '',
   src,
   model3d: 'something',

@@ -1,15 +1,21 @@
 import { Scrollbars } from 'react-custom-scrollbars'
-import { useStore } from '../../store'
+import classNames from 'classnames'
+import ReactMarkdown from 'react-markdown'
 import styles from './TextMedia.module.scss'
+import sampleText from '../../data/texts/sample.md'
 
-const TextMedia = () => {
-  const { activeMedia } = useStore((store) => store.state)
-
+const TextMedia = ({ appear }) => {
   return (
-    <Scrollbars universal className={styles['text-media']}>
-      {activeMedia.content.map((content) => (
-        <p>{content}</p>
-      ))}
+    <Scrollbars
+      autoHide
+      universal
+      className={classNames(styles['text-media'], {
+        [styles['text-media-show']]: appear,
+      })}
+    >
+      <div className={classNames(styles['text-media__inner'])}>
+        <ReactMarkdown>{sampleText}</ReactMarkdown>
+      </div>
     </Scrollbars>
   )
 }
