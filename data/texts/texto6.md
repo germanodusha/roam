@@ -34,7 +34,7 @@ No one can force a feeling upon you! It is YOU who has the ultimate say as to ho
 **5. Embrace the Freedom That the Feeling of Being Alone Can Offer**
 
 Instead of wallowing in self pity, which many are prone to do because of loneliness, try looking at your circumstance as a new-found freedom.
-Most people are in constant need of approval of their viewpoints. Try enjoying the fact that  you don’t need everyone you care about to support your decisions.
+Most people are in constant need of approval of their viewpoints. Try enjoying the fact that you don’t need everyone you care about to support your decisions.
 
 **6. Acknowledge the Person You Are Now**
 
