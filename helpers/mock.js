@@ -5,6 +5,7 @@ export const createDefaultMedia = ({
   title = 'title',
   track = 'track',
   caption = '',
+  album = '',
   src,
   content,
 }) => ({
@@ -14,9 +15,9 @@ export const createDefaultMedia = ({
   title,
   caption,
   track,
-  album: '',
+  album,
   src,
-  model3d: 'something',
+  // model3d: 'something',
   content,
 })
 

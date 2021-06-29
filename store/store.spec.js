@@ -150,12 +150,6 @@ describe('test store', () => {
       })
       expect(store.current.state.activeMedia).toBe(false)
     })
-
-    it.todo('should toggle main track')
-  })
-
-  describe('init game', () => {
-    it.todo('should validate init game')
   })
 
   describe('player movements', () => {
@@ -311,7 +305,6 @@ describe('test store', () => {
     it.todo('should close near interaction when open media')
     it.todo('should delay for open next near interaction')
     it.todo('should ignore interaction')
-    it.todo('should activate other object when some object already active')
   })
 
   describe('key guide', () => {
