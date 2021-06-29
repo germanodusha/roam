@@ -1,5 +1,13 @@
 const objects = [
   {
+    path: '/gltf/Faca.obj',
+    scale: 0.67,
+  },
+  {
+    path: '/gltf/Oculos.obj',
+    scale: 0.67,
+  },
+  {
     path: '/gltf/10139_GardeningGloves_v1_L3.obj',
     scale: 0.02,
   },

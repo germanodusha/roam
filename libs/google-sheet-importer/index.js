@@ -8,10 +8,46 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
-const TOKEN_PATH = 'token.json'
+const PROJECT_PATH = '/home/guigallo/git/roam/libs/google-sheet-importer'
+const TOKEN_PATH = `${PROJECT_PATH}/token.json`
+const CREDENTIALS_PATH = `${PROJECT_PATH}/credentials.json`
+
+const Data = {
+  objetos: {
+    range: 'Lista de conteúdo dos objetos!A2:J',
+    file: 'export/contentObjects.js',
+  },
+  extras: {
+    range: 'Lista de conteúdos extras!A1:E',
+    file: 'export/contentExtras.js',
+  },
+  contentCoordinatesSounds: {
+    range: 'coordenadas corpos sonoros!A1:C',
+    file: 'export/contentCoordinatesSounds.js',
+  },
+  contentCoordinatesObjects: {
+    range: 'coordenadas objetos!A1:C',
+    file: 'export/contentCoordinatesObjects.js',
+  },
+}
+
+function getLists(auth) {
+  listTable(auth, Data.objetos.range, Data.objetos.file)
+  listTable(auth, Data.extras.range, Data.extras.file)
+  listTable(
+    auth,
+    Data.contentCoordinatesSounds.range,
+    Data.contentCoordinatesSounds.file
+  )
+  listTable(
+    auth,
+    Data.contentCoordinatesObjects.range,
+    Data.contentCoordinatesObjects.file
+  )
+}
 
 // Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
+fs.readFile(CREDENTIALS_PATH, (err, content) => {
   if (err) return console.log('Error loading client secret file:', err)
   // Authorize a client with credentials, then call the Google Sheets API.
   authorize(JSON.parse(content), getLists)
@@ -71,22 +107,6 @@ function getNewToken(oAuth2Client, callback) {
   })
 }
 
-const Data = {
-  objetos: {
-    range: 'Lista de conteúdo dos objetos!A2:J',
-    file: '../../data/content_objects.js',
-  },
-  extras: {
-    range: 'Lista de conteúdos extras!A1:E',
-    file: '../../data/content_extras.js',
-  },
-}
-
-function getLists(auth) {
-  listTable(auth, Data.objetos.range, Data.objetos.file)
-  listTable(auth, Data.extras.range, Data.extras.file)
-}
-
 /**
  * Prints the names and majors of students in a sample spreadsheet:
  * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
@@ -124,7 +144,7 @@ function listTable(auth, range, saveTo) {
           })
 
         const text = `export default ${JSON.stringify(data, null, '  ')}`
-        fs.writeFile(saveTo, text, (err) => {
+        fs.writeFile(`${PROJECT_PATH}/${saveTo}`, text, (err) => {
           if (err) return console.error(err)
           console.log(`${saveTo} saved`)
         })
