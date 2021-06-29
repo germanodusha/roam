@@ -26,10 +26,11 @@ function Player() {
   const { lockPointer } = useControls('player', { lockPointer: true })
 
   useEffect(
-    () =>
+    () => {
       api.velocity.subscribe(
         (newVelocity) => (currentVelocity.current = newVelocity)
-      ),
+      )
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )

@@ -6,8 +6,9 @@ import useFocusOnNear from '@/hooks/useFocusOnNear'
 import { useControls } from 'leva'
 import { useStore } from '../../store'
 import { createDefaultInteraction } from '@/helpers/mock'
+import MediaFactory from '@/helpers/mediaFactory'
 import objects from '@/data/objects'
-import medias from '@/data/medias'
+import contentObjects from '@/data/contentObjects'
 import positions from '@/data/positions'
 
 const PrimitiveObject = ({
@@ -119,7 +120,7 @@ const ObjectsWrapper = () => {
 
   return positions.map((position, i) => {
     const object = objects[i]
-    const media = medias[i]
+    const content = MediaFactory(contentObjects[i])
 
     if (!object) return null
 
@@ -130,7 +131,7 @@ const ObjectsWrapper = () => {
         path={object.path}
         position={position}
         material={defaultMaterial}
-        media={media}
+        media={content}
       />
     )
   })

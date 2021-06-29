@@ -1,65 +1,12 @@
 import contentCoordinatesSounds from '@/data/contentCoordinatesSounds'
 // import contentCoordinatesObjects from '@/data/contentCoordinatesObjects'
-// import contentExtras from '@/data/contentExtras'
+import contentExtras from '@/data/contentExtras'
 import contentObjects from '@/data/contentObjects'
-import { createDefaultMedia } from '@/helpers/mock'
 import { MediaTypes } from '@/helpers/constants'
-
-const MediaFactory = (data) => {
-  const isVideo = Boolean(data.Video)
-  if (isVideo) {
-    return createDefaultMedia({
-      id: data.id,
-      type: MediaTypes.VIDEO,
-      title: data['Título'],
-      caption: data.Legenda,
-      src: data.Video,
-
-      artist: null,
-      track: null,
-      album: null,
-      content: null,
-    })
-  }
-
-  const isImage = Boolean(data['Imagem\n(nome)'])
-  if (isImage) {
-    return createDefaultMedia({
-      id: data.id,
-      type: MediaTypes.IMAGE,
-      title: data['Título'],
-      caption: data.Legenda,
-      src: `/content/${data['Imagem\n(nome)']}`,
-
-      artist: null,
-      track: null,
-      album: null,
-      content: null,
-    })
-  }
-
-  const isText = Boolean(data.Text)
-  if (isText) {
-    return createDefaultMedia({
-      id: data.id,
-      type: MediaTypes.TEXT,
-      title: data['Título'],
-      caption: data.Legenda,
-      content: data.Text,
-
-      artist: null,
-      track: null,
-      album: null,
-      src: null,
-    })
-  }
-}
+import MediaFactory from '@/helpers/mediaFactory'
 
 describe('teste media factory', () => {
   describe('create objects', () => {
-    const findByAttribute = (attribute) =>
-      contentObjects.find((content) => content[attribute])
-
     const filterByAttribute = (attribute) =>
       contentObjects.filter((content) => content[attribute])
 
@@ -120,6 +67,18 @@ describe('teste media factory', () => {
   })
 
   describe('create sounds', () => {
+    it('create sounds', () => {
+      expect(contentExtras.length).toBeGreaterThan(0)
+      contentExtras.forEach((contentExtra) => {
+        expect(contentExtra).toHaveProperty('id')
+        const media = MediaFactory(contentExtra)
+        expect(media.type).toBe(MediaTypes.TRACK)
+        expect(media).toHaveProperty('title')
+        expect(media).toHaveProperty('track')
+        expect(media.src.indexOf('.mp3')).toBeGreaterThan(0)
+      })
+    })
+
     it('check sounds coordinates', () => {
       contentCoordinatesSounds.forEach((coordinate) => {
         expect(coordinate).toHaveProperty('id')
