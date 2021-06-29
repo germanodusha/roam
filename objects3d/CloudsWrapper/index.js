@@ -38,9 +38,10 @@ const CloudSound = ({ media, position, cloudNodes }) => {
       <PositionalAudio autoplay={false} loop ref={audio} url={media.src} />
 
       <group position={[-0.5, 0.5, -0.5]}>
-        {cloud.map((mesh) => (
-          <primitive key={mesh.uuid} object={mesh} />
-        ))}
+        {cloud.map((mesh) => {
+          if (mesh.type !== 'Mesh') return null
+          return <primitive key={mesh.uuid} object={mesh} />
+        })}
       </group>
     </group>
   )
