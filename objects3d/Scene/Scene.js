@@ -16,7 +16,7 @@ import useQueryString from '../../hooks/useQueryString'
 import GLTFWalls from '../GLTFWalls'
 import Player from '../Player'
 import PrimitiveObject from '@/3d/PrimitiveObject'
-import CloudSound from '@/3d/CloudSound'
+import CloudsWrapper from '@/3d/CloudSound'
 import { useStore } from '../../store'
 import objects from '@/data/objects'
 import medias from '@/data/medias'
@@ -272,7 +272,7 @@ const Scene = () => {
           )
         })}
 
-        <CloudSound />
+        <CloudsWrapper />
       </Suspense>
     </Canvas>
   )

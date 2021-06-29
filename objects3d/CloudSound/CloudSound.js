@@ -1,12 +1,8 @@
-import {
-  // useEffect,
-  useRef,
-} from 'react'
-// import * as THREE from 'three'
+import { useRef, useMemo } from 'react'
 import { PositionalAudio, useGLTF } from '@react-three/drei'
 import { useControls, button } from 'leva'
-import config from '../../config'
 import useFocusOnNear from '@/hooks/useFocusOnNear'
+import contentCoordinatesSounds from '@/data/contentCoordinatesSounds'
 import { useStore } from '../../store'
 import { MediaTypes } from '../../helpers/constants'
 import {
@@ -14,37 +10,7 @@ import {
   createDefaultMedia,
 } from '../../helpers/mock'
 
-const Cloud = () => {
-  const {
-    nodes,
-    // materials
-  } = useGLTF('/gltf/fluffy-cloud/scene.gltf')
-
-  // useEffect(() => {
-  //   const green = new THREE.Color(0, 1, 0)
-
-  //   Object.keys(materials).map((id) => {
-  //     const material = materials[id]
-  //     console.log(material)
-  //     material.color = green
-  //     material.emissive = green
-  //     material.emissiveColor = green
-  //   })
-  // }, [materials])
-
-  return (
-    <group position={[-0.5, 0.5, -0.5]}>
-      {Object.keys(nodes).map((id) => (
-        <primitive key={id} object={nodes[id]} />
-      ))}
-    </group>
-  )
-}
-
-const initialPos = config.player.initialPos
-initialPos[1] = 0.7
-
-const CloudSound = () => {
+const CloudSound = ({ position, trackId, cloudNodes }) => {
   const { onChangeInteraction } = useStore((state) => state.actions)
   const object = useRef()
   const audio = useRef()
@@ -77,18 +43,41 @@ const CloudSound = () => {
     onDefocus: () => onChangeInteraction(null),
   })
 
+  const cloud = useMemo(() => {
+    return Object.values(cloudNodes).map((mesh) => mesh.clone())
+  }, [cloudNodes])
+
   return (
-    <group ref={object} position={initialPos}>
+    <group ref={object} position={position}>
       <PositionalAudio
         autoplay={false}
         loop
         ref={audio}
-        url="/assets/acdc.mp3"
+        url={`/content/faixa${trackId}.mp3`}
       />
 
-      <Cloud />
+      <group position={[-0.5, 0.5, -0.5]}>
+        {cloud.map((mesh) => (
+          <primitive key={mesh.uuid} object={mesh} />
+        ))}
+      </group>
     </group>
   )
 }
 
-export default CloudSound
+const CloudsWrapper = () => {
+  const { nodes } = useGLTF('/gltf/fluffy-cloud/scene.gltf')
+
+  return contentCoordinatesSounds.map((coordinate, i) => {
+    return (
+      <CloudSound
+        key={coordinate.id}
+        trackId={i + 1}
+        position={[coordinate.x, 1, coordinate.z]}
+        cloudNodes={nodes}
+      />
+    )
+  })
+}
+
+export default CloudsWrapper
