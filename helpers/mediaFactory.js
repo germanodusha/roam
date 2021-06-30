@@ -1,7 +1,24 @@
 import { createDefaultMedia } from '@/helpers/mock'
 import { MediaTypes } from '@/helpers/constants'
 
+const getYoutubeId = (url) => {
+  const isShortUrl = url.indexOf('/watch') < 0
+  if (isShortUrl) {
+    const splited = url.split('/')
+    const code = splited[splited.length - 1]
+
+    return code
+  }
+
+  const [, params] = url.split('v=')
+  const [code] = params.split('&')
+
+  return code
+}
+
 const MediaFactory = (data) => {
+  if (!data) return null
+
   const isVideo = Boolean(data.Video)
   if (isVideo) {
     return createDefaultMedia({
@@ -9,7 +26,7 @@ const MediaFactory = (data) => {
       type: MediaTypes.VIDEO,
       title: data['Título'],
       caption: data.Legenda,
-      src: data.Video,
+      src: getYoutubeId(data.Video),
 
       artist: null,
       track: null,
@@ -55,7 +72,7 @@ const MediaFactory = (data) => {
     return createDefaultMedia({
       id: data.id,
       type: MediaTypes.TRACK,
-      artist: data['Nome do Artista'],
+      artist: data['Nome do artista'],
       title: data['Título da track'],
       src: `/content/${data.Arquivo}`,
 

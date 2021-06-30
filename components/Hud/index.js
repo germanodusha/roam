@@ -57,7 +57,7 @@ const TrackDisplay = ({ mediaTrack, openMedia, onChangeInteraction }) => {
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
       <h1>{state.media?.artist}</h1>
-      <h3>{state.media?.track}</h3>
+      <h3>{state.media?.title}</h3>
       <img
         src="/assets/images/Icon-Track.png"
         className={styles['hud__interaction__icon']}

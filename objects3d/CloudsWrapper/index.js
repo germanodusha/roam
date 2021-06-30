@@ -33,6 +33,7 @@ const CloudSound = ({ media, position, cloudNodes }) => {
     return Object.values(cloudNodes).map((mesh) => mesh.clone())
   }, [cloudNodes])
 
+  if (!media) return null
   return (
     <group ref={object} position={position}>
       <PositionalAudio autoplay={false} loop ref={audio} url={media.src} />
