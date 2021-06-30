@@ -9,8 +9,9 @@ import KeyBindings from '../../config/keybindings.json'
 import { useStore } from '../../store'
 
 function Player() {
-  const { onMove } = useStore((store) => store.actions)
-  const { movement } = useStore((store) => store.state)
+  const lockRef = useRef()
+  const { onMove, setPointerLock } = useStore((store) => store.actions)
+  const { movement, game } = useStore((store) => store.state)
   const speed = config.player.speed
 
   const [ref, api] = useSphere(() => ({
@@ -80,10 +81,14 @@ function Player() {
     api.velocity.set(newVelocity.x, currentVelocity.current[1], newVelocity.z)
   })
 
+  useEffect(() => {
+    setPointerLock(lockRef)
+  }, [lockRef, setPointerLock])
+
   return (
     <>
       <mesh ref={ref} />
-      {lockPointer && <PointerLockControls />}
+      {game.mouse && lockPointer && <PointerLockControls ref={lockRef} />}
     </>
   )
 }

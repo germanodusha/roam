@@ -1,6 +1,5 @@
-import { useRef, useMemo } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import { PositionalAudio, useGLTF } from '@react-three/drei'
-import { useControls, button } from 'leva'
 import useFocusOnNear from '@/hooks/useFocusOnNear'
 import contentCoordinatesSounds from '@/data/contentCoordinatesSounds'
 import contentExtras from '@/data/contentExtras'
@@ -9,25 +8,24 @@ import MediaFactory from '@/helpers/mediaFactory'
 import { createDefaultInteraction } from '@/helpers/mock'
 
 const CloudSound = ({ media, position, cloudNodes }) => {
+  const { muted } = useStore(({ state }) => state.game)
   const { onChangeInteraction } = useStore((state) => state.actions)
   const object = useRef()
   const audio = useRef()
-
-  useControls(
-    'sound',
-    {
-      play: button(() => {
-        audio.current.play()
-      }),
-    },
-    { collapsed: true }
-  )
 
   useFocusOnNear({
     ref: object,
     onFocus: () => onChangeInteraction(createDefaultInteraction({ media })),
     onDefocus: () => onChangeInteraction(null),
   })
+
+  useEffect(() => {
+    if (!audio.current) return
+    if (!muted) {
+      audio.current.muted = false
+      audio.current.play()
+    }
+  }, [audio, muted])
 
   const cloud = useMemo(() => {
     return Object.values(cloudNodes).map((mesh) => mesh.clone())
@@ -36,7 +34,13 @@ const CloudSound = ({ media, position, cloudNodes }) => {
   if (!media) return null
   return (
     <group ref={object} position={position}>
-      <PositionalAudio autoplay={false} loop ref={audio} url={media.src} />
+      <PositionalAudio
+        autoplay={false}
+        loop
+        muted
+        ref={audio}
+        url={media.src}
+      />
 
       <group position={[-0.5, 0.5, -0.5]}>
         {cloud.map((mesh) => {
