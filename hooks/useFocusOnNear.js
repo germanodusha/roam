@@ -4,7 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 const useFrocusOnNear = ({
   ref,
   centerTolerance = 0.4,
-  distanceTolerance = 3,
+  distanceTolerance = 1.4,
   onFocus,
   onDefocus,
 } = {}) => {

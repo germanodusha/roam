@@ -6,7 +6,7 @@
   align-items: center;
   border: 3px solid transparent;
   border-radius: 20px;
-  opacity: 0.3;
+  opacity: 0.45;
   color: white;
   text-shadow: 0 0 5px white;
   margin: 0 1em;
@@ -27,6 +27,11 @@
     font-weight: bold;
     font-size: 5rem;
     transform: translateY(0.3rem);
+
+    &-bordered {
+      font-family: 'Arial';
+      transform: translateY(0) scale(0.8) !important;
+    }
   }
 
   &-active,

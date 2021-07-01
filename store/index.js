@@ -43,6 +43,16 @@ export const useStore = create((set) => {
           state.game.muted = false
         })
       },
+      enableLocker: () => {
+        setState(({ state }) => {
+          state.game.mouse = true
+        })
+      },
+      disableLocker: () => {
+        setState(({ state }) => {
+          state.game.mouse = false
+        })
+      },
       onLoaded: () => {
         setState(({ state }) => {
           state.activeMedia = activeMedia
@@ -62,16 +72,12 @@ export const useStore = create((set) => {
       // media
       openMedia: (activeMedia) => {
         setState(({ state }) => {
+          state.nearInteraction = null
           state.activeMedia = activeMedia
 
-          if (!original(state.achievements).includes(activeMedia)) {
-            state.achievements.push(activeMedia)
-
-            if (activeMedia.type === MediaTypes.TRACK) {
-              state.counter.main += 1
-            } else {
-              state.counter.extra += 1
-            }
+          if (!original(state.achievements).includes(activeMedia.media)) {
+            state.achievements.push(activeMedia.media)
+            state.counter.extra += 1
           }
         })
       },
@@ -85,6 +91,13 @@ export const useStore = create((set) => {
       onChangeInteraction: (interaction) => {
         setState(({ state }) => {
           state.nearInteraction = interaction
+
+          if (!interaction || interaction.media.type !== MediaTypes.TRACK)
+            return
+          if (!original(state.achievements).includes(interaction.media)) {
+            state.achievements.push(interaction.media)
+            state.counter.main += 1
+          }
         })
       },
 

@@ -9,8 +9,8 @@ import { createDefaultInteraction } from '@/helpers/mock'
 import MediaFactory from '@/helpers/mediaFactory'
 import objects from '@/data/objects'
 import contentObjects from '@/data/contentObjects'
-import coordinateObjects from '@/data/positions'
-// import coordinateObjects from '@/data/contentCoordinatesObjects'
+// import coordinateObjects from '@/data/positions'
+import coordinateObjects from '@/data/contentCoordinatesObjects'
 
 const PrimitiveObject = ({
   position,
@@ -22,6 +22,7 @@ const PrimitiveObject = ({
 }) => {
   const { onChangeInteraction, addGlow } = useStore((state) => state.actions)
   const ref = useRef(null)
+  const focusRef = useRef(null)
   const object = useLoader(OBJLoader, path)
 
   useEffect(() => {
@@ -42,18 +43,20 @@ const PrimitiveObject = ({
   }, [ref, material, addGlow])
 
   useFocusOnNear({
-    ref: ref,
+    ref: focusRef,
     onFocus: () => onChangeInteraction(createDefaultInteraction({ media })),
     onDefocus: () => onChangeInteraction(null),
   })
 
   return (
-    <primitive
-      ref={ref}
-      position={position}
-      scale={[1 * scale, 1 * scale, 1 * scale]}
-      object={object}
-    />
+    <group ref={focusRef} position={position}>
+      <primitive
+        ref={ref}
+        position={[0, -0.4, 0]}
+        scale={[1 * scale, 1 * scale, 1 * scale]}
+        object={object}
+      />
+    </group>
   )
 }
 
@@ -130,8 +133,8 @@ const ObjectsWrapper = () => {
         key={object.path}
         scale={object.scale || 1}
         path={object.path}
-        position={position}
-        // position={[position.x, 1, position.z]}
+        // position={position}
+        position={[position.x, 1, position.z]}
         material={defaultMaterial}
         media={content}
       />
