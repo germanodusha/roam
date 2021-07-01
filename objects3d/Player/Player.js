@@ -10,9 +10,7 @@ import { useStore } from '../../store'
 
 function Player() {
   const lockRef = useRef()
-  const { onMove, cleanPointerLock, setPointerLock } = useStore(
-    (store) => store.actions
-  )
+  const { onMove } = useStore((store) => store.actions)
   const { movement, game } = useStore((store) => store.state)
   const speed = config.player.speed
 

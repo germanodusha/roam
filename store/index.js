@@ -43,6 +43,16 @@ export const useStore = create((set) => {
           state.game.muted = false
         })
       },
+      enableLocker: () => {
+        setState(({ state }) => {
+          state.game.mouse = true
+        })
+      },
+      disableLocker: () => {
+        setState(({ state }) => {
+          state.game.mouse = false
+        })
+      },
       onLoaded: () => {
         setState(({ state }) => {
           state.activeMedia = activeMedia

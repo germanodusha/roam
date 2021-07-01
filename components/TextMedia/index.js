@@ -4,6 +4,14 @@ import ReactMarkdown from 'react-markdown'
 import styles from './TextMedia.module.scss'
 
 const TextMedia = ({ appear, markdowns, media }) => {
+  // const { enableLocker, disableLocker } = useStore((store) => store.actions)
+
+  // useEffect(() => {
+  //   disableLocker()
+
+  //   return () => { enableLocker() }
+  // }, [enableLocker, disableLocker])
+
   return (
     <Scrollbars
       autoHide
