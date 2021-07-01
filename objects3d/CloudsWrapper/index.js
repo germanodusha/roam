@@ -57,7 +57,7 @@ const CloudSound = ({ media, position }) => {
         <sphereGeometry args={[0.5, 16, 16]} />
         <meshBasicMaterial
           wireframeLinewidth={4}
-          color={new THREE.Color(1, 1, 1)}
+          color={new THREE.Color(0, 1, 0)}
           wireframe
         />
       </mesh>
