@@ -80,9 +80,9 @@ const MediaCenter = () => {
           styles['media__status__actions']
         )}
       >
-        <StatusText>use</StatusText>
+        <StatusText>press</StatusText>
         <Keycap value="f" bordered small onKeyDown={onNextPage} />
-        <StatusText>for text scroll</StatusText>
+        <StatusText>for scroll</StatusText>
       </div>
 
       <div className={styles['media-glow']}>

@@ -74,14 +74,9 @@ export const useStore = create((set) => {
         setState(({ state }) => {
           state.activeMedia = activeMedia
 
-          if (!original(state.achievements).includes(activeMedia)) {
-            state.achievements.push(activeMedia)
-
-            if (activeMedia.type === MediaTypes.TRACK) {
-              state.counter.main += 1
-            } else {
-              state.counter.extra += 1
-            }
+          if (!original(state.achievements).includes(activeMedia.media)) {
+            state.achievements.push(activeMedia.media)
+            state.counter.extra += 1
           }
         })
       },
@@ -95,6 +90,13 @@ export const useStore = create((set) => {
       onChangeInteraction: (interaction) => {
         setState(({ state }) => {
           state.nearInteraction = interaction
+
+          if (!interaction || interaction.media.type !== MediaTypes.TRACK)
+            return
+          if (!original(state.achievements).includes(interaction.media)) {
+            state.achievements.push(interaction.media)
+            state.counter.main += 1
+          }
         })
       },
 
