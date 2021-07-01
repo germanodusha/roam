@@ -95,11 +95,12 @@ const TrackDisplay = ({ mediaTrack, openMedia, onChangeInteraction }) => {
 }
 
 const Hud = () => {
-  const { openMedia, onChangeInteraction } = useStore((store) => store.actions)
-  const { activeMedia, nearInteraction } = useStore((store) => store.state)
-  const { movement, counter } = useStore((store) => store.state)
   const [media, setMedia] = useState(false)
   const [mediaTrack, setMediaTrack] = useState(false)
+  const { openMedia, onChangeInteraction } = useStore((store) => store.actions)
+  const { movement, counter, activeMedia, nearInteraction } = useStore(
+    (store) => store.state
+  )
 
   useEffect(() => {
     if (!nearInteraction) {

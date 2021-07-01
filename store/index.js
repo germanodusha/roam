@@ -6,7 +6,11 @@ export const useStore = create((set) => {
   const setState = (fn) => set(produce(fn))
 
   const initialState = {
-    loading: true,
+    game: {
+      mouse: true,
+      muted: true,
+      pointerLock: { current: {} },
+    },
     movement: {
       forward: false,
       backward: false,
@@ -34,11 +38,19 @@ export const useStore = create((set) => {
         set({ state: { ...initialState } })
       },
       init: () => {
-        console.log('listeners go here')
+        setState(({ state }) => {
+          state.game.mouse = true
+          state.game.muted = false
+        })
       },
       onLoaded: () => {
         setState(({ state }) => {
           state.activeMedia = activeMedia
+        })
+      },
+      setPointerLock: (pointerLock) => {
+        setState(({ state }) => {
+          state.game.pointerLock = pointerLock
         })
       },
 

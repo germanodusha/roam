@@ -158,13 +158,15 @@ const Environment = () => {
         <meshBasicMaterial envMap={cubeMap} side={THREE.DoubleSide} />
       </mesh>
 
-      <EffectComposer>
-        <SelectiveBloom
-          selection={selected}
-          lights={[lightRef]}
-          {...bloomProps}
-        />
-      </EffectComposer>
+      {selected.length > 0 && lightRef.current && (
+        <EffectComposer>
+          <SelectiveBloom
+            selection={selected}
+            lights={[lightRef]}
+            {...bloomProps}
+          />
+        </EffectComposer>
+      )}
     </group>
   )
 }
