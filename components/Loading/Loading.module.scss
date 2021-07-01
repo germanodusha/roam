@@ -1,19 +1,7 @@
 .loading {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'Breathe Fire II';
   font-size: 3em;
   color: white;
-  background-color: rgba(0, 0, 255, 1);
-  background-image: url(/assets/images/wall-compress.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 
   &__pointer {
     cursor: pointer;

@@ -1,5 +1,6 @@
 import { useProgress } from '@react-three/drei'
 import classNames from 'classnames'
+import WallBricks from '@/components/WallBricks'
 import { useStore } from '../../store'
 import styles from './Loading.module.scss'
 
@@ -16,14 +17,14 @@ const Loading = () => {
 
   if (!game.muted) return null
   return (
-    <div
+    <WallBricks
       onClick={onClick}
       className={classNames(styles['loading'], {
         [styles['loading__pointer']]: !isLoading,
       })}
     >
       {isLoading ? parseInt(progress) + '%' : <span>play</span>}
-    </div>
+    </WallBricks>
   )
 }
 

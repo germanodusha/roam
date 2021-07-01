@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import {
-  PositionalAudio,
+  Html,
+  // PositionalAudio,
   // useGLTF
 } from '@react-three/drei'
+import { useAudio } from 'react-use'
 import useFocusOnNear from '@/hooks/useFocusOnNear'
 import contentCoordinatesSounds from '@/data/contentCoordinatesSounds'
 import contentExtras from '@/data/contentExtras'
@@ -13,25 +15,31 @@ import { createDefaultInteraction } from '@/helpers/mock'
 
 const CloudSound = ({ media, position }) => {
   const ref = useRef()
-  const { muted } = useStore(({ state }) => state.game)
+  // const { muted } = useStore(({ state }) => state.game)
   const { onChangeInteraction, addGlow } = useStore((state) => state.actions)
   const object = useRef()
-  const audio = useRef()
 
+  // const { isFocus } =
   useFocusOnNear({
     ref: object,
-    onFocus: () => onChangeInteraction(createDefaultInteraction({ media })),
-    onDefocus: () => onChangeInteraction(null),
+    onFocus: () => {
+      onChangeInteraction(createDefaultInteraction({ media }))
+      controls.play()
+    },
+    onDefocus: () => {
+      onChangeInteraction(null)
+      controls.pause()
+    },
     distanceTolerance: 1.5,
   })
 
-  useEffect(() => {
-    if (!audio.current) return
-    if (!muted) {
-      audio.current.muted = false
-      audio.current.play()
-    }
-  }, [audio, muted])
+  const [audio, , controls] = useAudio({
+    src: media?.src,
+    crossOrigin: 'anonymous',
+    loop: true,
+    autoPlay: false,
+    muted: false,
+  })
 
   // const cloud = useMemo(() => {
   //   return Object.values(cloudNodes).map((mesh) => mesh.clone())
@@ -45,13 +53,16 @@ const CloudSound = ({ media, position }) => {
   if (!media) return null
   return (
     <group ref={object} position={position}>
-      <PositionalAudio
-        autoplay={false}
-        loop
-        muted
-        ref={audio}
-        url={media.src}
-      />
+      <Html>{audio}</Html>
+
+      <mesh ref={ref}>
+        <sphereGeometry args={[0.5, 16, 16]} />
+        <meshBasicMaterial
+          wireframeLinewidth={4}
+          color={new THREE.Color(0, 1, 0)}
+          wireframe
+        />
+      </mesh>
 
       <mesh ref={ref}>
         <sphereGeometry args={[0.5, 16, 16]} />
