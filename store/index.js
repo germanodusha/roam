@@ -27,6 +27,7 @@ export const useStore = create((set) => {
       extra: 0,
     },
     activeMedia: false,
+    formatedTime: '00:00',
     glow: {},
   }
 
@@ -84,6 +85,11 @@ export const useStore = create((set) => {
       closeMedia: () => {
         setState(({ state }) => {
           state.activeMedia = false
+        })
+      },
+      updateTimer: (formatedTime = '00:00') => {
+        setState(({ state }) => {
+          state.formatedTime = formatedTime
         })
       },
 

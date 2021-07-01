@@ -51,8 +51,9 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
   )
 }
 
-const TrackDisplay = ({ mediaTrack, openMedia, onChangeInteraction }) => {
+const TrackDisplay = ({ mediaTrack }) => {
   const [state, show] = useDesappearState({ stateToPersist: mediaTrack })
+  const { formatedTime } = useStore((store) => store.state)
 
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
@@ -62,7 +63,7 @@ const TrackDisplay = ({ mediaTrack, openMedia, onChangeInteraction }) => {
         src="/assets/images/Icon-Track.png"
         className={styles['hud__interaction__icon']}
       />
-      <span className={styles['hud__interaction__time']}>04:56</span>
+      <span className={styles['hud__interaction__time']}>{formatedTime}</span>
       {false && (
         <div>
           <StatusText>use</StatusText>

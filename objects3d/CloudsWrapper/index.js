@@ -13,10 +13,28 @@ import { useStore } from '../../store'
 import MediaFactory from '@/helpers/mediaFactory'
 import { createDefaultInteraction } from '@/helpers/mock'
 
+const toMMSS = (secondsRaw) => {
+  var secs = parseInt(secondsRaw, 10)
+  var hours = Math.floor(secs / 3600)
+  var minutes = Math.floor((secs - hours * 3600) / 60)
+  var seconds = secs - hours * 3600 - minutes * 60
+
+  if (minutes < 10) {
+    minutes = '0' + minutes
+  }
+  if (seconds < 10) {
+    seconds = '0' + seconds
+  }
+
+  return minutes + ':' + seconds
+}
+
 const CloudSound = ({ media, position }) => {
   const ref = useRef()
   // const { muted } = useStore(({ state }) => state.game)
-  const { onChangeInteraction, addGlow } = useStore((state) => state.actions)
+  const { onChangeInteraction, addGlow, updateTimer } = useStore(
+    (state) => state.actions
+  )
   const object = useRef()
 
   // const { isFocus } =
@@ -39,7 +57,19 @@ const CloudSound = ({ media, position }) => {
     loop: true,
     autoPlay: false,
     muted: false,
+    onTimeUpdate: (e) => {
+      if (!e || !e.target) return
+
+      const time = e?.target?.currentTime || 0
+      const formatedTime = toMMSS(time)
+
+      updateTimer(formatedTime)
+    },
   })
+
+  useEffect(() => {
+    return () => updateTimer('00:00')
+  }, [updateTimer])
 
   // const cloud = useMemo(() => {
   //   return Object.values(cloudNodes).map((mesh) => mesh.clone())
