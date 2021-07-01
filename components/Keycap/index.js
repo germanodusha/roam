@@ -28,7 +28,13 @@ const Keycap = ({
         className
       )}
     >
-      <span className={styles['keycap__inner']}>{value.toUpperCase()}</span>
+      <span
+        className={classNames(styles['keycap__inner'], {
+          [styles['keycap__inner-bordered']]: bordered,
+        })}
+      >
+        {value.toUpperCase()}
+      </span>
     </div>
   )
 }
