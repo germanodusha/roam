@@ -1,7 +1,9 @@
 import classNames from 'classnames'
+import { MediaTypes } from '../../helpers/constants'
 import styles from './MediaCover.module.scss'
 
-const MediaCover = ({ show, title, caption, className }) => {
+const MediaCover = ({ show, title, caption, className, media }) => {
+  if (media.type === MediaTypes.VIDEO) return null
   return (
     <div
       className={classNames(

@@ -1,11 +1,11 @@
 import classNames from 'classnames'
 import styles from './VideoMedia.module.scss'
 
-const VideoMedia = ({ appear, media }) => {
+const VideoMedia = ({ media }) => {
   return (
     <div
       className={classNames(styles['video'], {
-        [styles['video-show']]: appear,
+        [styles['video-show']]: true,
       })}
     >
       <iframe

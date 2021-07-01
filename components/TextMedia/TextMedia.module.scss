@@ -23,4 +23,16 @@
       filter: blur(1.2px);
     }
   }
+
+  &__status {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+
+    &__actions {
+      bottom: 1em;
+      left: 0;
+      right: 0;
+    }
+  }
 }

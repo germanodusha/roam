@@ -36,10 +36,48 @@ const markdowns = {
   'texto11.md': texto11,
 }
 
+const TextStatus = ({}) => {
+  return (
+    <div
+      className={classNames(
+        styles['media__status'],
+        styles['media__status__actions']
+      )}
+    >
+      <StatusText>press</StatusText>
+      <Keycap value="f" bordered small />
+      <StatusText>for scroll</StatusText>
+    </div>
+  )
+}
+
+const ToggleCover = ({ onNextPage }) => {
+  return (
+    <div
+      className={classNames(
+        styles['media__status'],
+        styles['media__status__actions']
+      )}
+    >
+      <StatusText>press</StatusText>
+      <Keycap value="f" bordered small onKeyDown={onNextPage} />
+      <StatusText>for scroll</StatusText>
+    </div>
+  )
+}
+
 const MediaCenterWapper = {
   [MediaTypes.IMAGE]: ImageMedia,
   [MediaTypes.TEXT]: TextMedia,
   [MediaTypes.VIDEO]: VideoMedia,
+  [undefined]: () => null,
+}
+
+const MediaCenterStatus = {
+  ['hide-cover']: ToggleCover,
+  [MediaTypes.IMAGE]: ToggleCover,
+  [MediaTypes.TEXT]: TextStatus,
+  [MediaTypes.VIDEO]: () => null,
   [undefined]: () => null,
 }
 
@@ -55,7 +93,23 @@ const MediaCenter = () => {
 
   const Media = state.media ? MediaCenterWapper[state.media.type] : undefined
 
+  const getStatus = () => {
+    if (!state.media) return MediaCenterStatus[undefined]
+    if (state.media.type === MediaTypes.VIDEO)
+      return MediaCenterStatus[undefined]
+    if (state.media.type === MediaTypes.TEXT && !showCover)
+      return MediaCenterStatus[undefined]
+    if (cover) return MediaCenterStatus['hide-cover']
+    return MediaCenterStatus[state.media.type]
+  }
+  const Status = getStatus()
+
   const onNextPage = () => setShowCover((v) => !v)
+
+  const onClose = () => {
+    closeMedia()
+    setShowCover(true)
+  }
 
   if (!state || !Media) return null
 
@@ -70,20 +124,11 @@ const MediaCenter = () => {
         )}
       >
         <StatusText>press</StatusText>
-        <Keycap value="e" bordered small onKeyDown={closeMedia} />
+        <Keycap value="e" bordered small onKeyDown={onClose} />
         <StatusText>to go back to the maze</StatusText>
       </div>
 
-      <div
-        className={classNames(
-          styles['media__status'],
-          styles['media__status__actions']
-        )}
-      >
-        <StatusText>press</StatusText>
-        <Keycap value="f" bordered small onKeyDown={onNextPage} />
-        <StatusText>for scroll</StatusText>
-      </div>
+      <Status onNextPage={onNextPage} />
 
       <div className={styles['media-glow']}>
         <div className={styles['media__wrapper']}>
@@ -93,6 +138,15 @@ const MediaCenter = () => {
               title={state?.media?.title}
               caption={state?.media?.caption}
               className={styles['media__wrapper__cover']}
+              media={state.media}
+            />
+          )}
+
+          {cover && state?.media?.type === MediaTypes.VIDEO && (
+            <Media
+              appear={appearContent}
+              media={state?.media}
+              {...(state?.media?.type === MediaTypes.TEXT ? { markdowns } : {})}
             />
           )}
 

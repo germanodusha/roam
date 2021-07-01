@@ -72,6 +72,7 @@ export const useStore = create((set) => {
       // media
       openMedia: (activeMedia) => {
         setState(({ state }) => {
+          state.nearInteraction = null
           state.activeMedia = activeMedia
 
           if (!original(state.achievements).includes(activeMedia.media)) {

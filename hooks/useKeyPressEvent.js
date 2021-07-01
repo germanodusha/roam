@@ -10,7 +10,11 @@ export default function useKeyPressEvent({
   useEffect(() => {
     function downHandler({ key, ...e }) {
       if (!targetKey) return
-      if (key === targetKey.toLowerCase() || key === targetKey.toUpperCase()) {
+      if (
+        key === targetKey ||
+        key === targetKey.toLowerCase() ||
+        key === targetKey.toUpperCase()
+      ) {
         setKeyPressed(true)
         if (typeof onKeyDown === 'function') onKeyDown(e)
       }
@@ -18,7 +22,11 @@ export default function useKeyPressEvent({
 
     function upHandler({ key, ...e }) {
       if (!targetKey) return
-      if (key === targetKey.toLowerCase() || key === targetKey.toUpperCase()) {
+      if (
+        key === targetKey ||
+        key === targetKey.toLowerCase() ||
+        key === targetKey.toUpperCase()
+      ) {
         setKeyPressed(false)
         if (typeof onKeyUp === 'function') onKeyUp(e)
       }

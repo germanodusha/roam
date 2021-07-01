@@ -11,7 +11,7 @@ import { useStore } from '../../store'
 function Player() {
   const lockRef = useRef()
   const { onMove } = useStore((store) => store.actions)
-  const { movement, game } = useStore((store) => store.state)
+  const { movement, game, activeMedia } = useStore((store) => store.state)
   const speed = config.player.speed
 
   const [ref, api] = useSphere(() => ({
@@ -59,6 +59,11 @@ function Player() {
   useFrame(() => {
     camera.position.copy(ref.current.position)
     camera.position.y = config.player.height
+
+    if (activeMedia) {
+      api.velocity.set(0, 0, 0)
+      return
+    }
 
     const frontVector = new Vector3(
       0,
