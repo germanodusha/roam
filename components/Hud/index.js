@@ -123,7 +123,9 @@ const Hud = () => {
     <div className={styles['hud']}>
       <HudSection show className={classNames(styles['hud__logo'])}>
         <img
-          className={classNames({ [styles['hud__logo-white']]: !!mediaTrack })}
+          className={classNames({
+            [styles['hud__logo-white']]: mediaTrack || activeMedia,
+          })}
           src="/assets/images/logo-nf.png"
         />
       </HudSection>
