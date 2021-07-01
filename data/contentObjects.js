@@ -7,10 +7,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem1.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1VftkfV5OmJ9C9yPSvcJf39Wh8BvHuAJi/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1Mj1kzT6PQUfc5qdGc5DRqc2rgLYH90pr/view?usp=sharing',
   },
   {
     id: '2',
@@ -20,10 +16,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem2.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1NpzEvGtLHYoqtlbQrwKJyCoQvRagVlwS/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1sdVpTkKc2QUAvoM2ECtCe6etZEWgUGlj/view?usp=sharing',
   },
   {
     id: '3',
@@ -33,10 +25,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem3.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1TewGVxUvOxKtkdyXXpkPbnzzWPCzMVHK/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1ud2MkIgeBiviuQXGCm8is4PYsMmaCYgE/view?usp=sharing',
   },
   {
     id: '4',
@@ -46,10 +34,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem4.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1qWh8ZT3t3zJYxX0FHIvjKlnhePiWnK4x/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1v7ObNdmCo29q8P9FVvhKAOsaKLmLS_8c/view?usp=sharing',
   },
   {
     id: '5',
@@ -59,10 +43,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem5.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1uwGfOz2kCaJ1RclRAoSlo-E8b_anrPi3/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1P8Xs6rd258vHLOD_yH2zx_hhpEu3xKdD/view?usp=sharing',
   },
   {
     id: '6',
@@ -72,10 +52,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem6.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1kC2u6NSeGI0h3u6Y9N8vqZLXywts1p4s/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1W2i2lMmCR7xSOUG6JOqFZMdJU5KgptgI/view?usp=sharing',
   },
   {
     id: '7',
@@ -85,10 +61,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem7.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1N2S3iFIK9dvbLQ4d6L79ocNn5T2huSKw/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/12uQqX05DqrnjsAoZfniLa9VgIE945WBH/view?usp=sharing',
   },
   {
     id: '8',
@@ -99,10 +71,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem8.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1MHsZzgnniQCYr7xqc1FGyWRxeQPpHdZz/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1DKHAtJra7sffUEwHaGgMS8aycPTedTMp/view?usp=sharing',
   },
   {
     id: '9',
@@ -112,10 +80,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem9.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1dWB-_ykP3qznHjc1YMMYBqZktElXwU8f/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1fvZCCJLlQ2qo3u_czlMXtMoi4CzUBeBQ/view?usp=sharing',
   },
   {
     id: '10',
@@ -125,10 +89,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem10.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1hs87LeSfGsth-vpMHh7rxerbDLQQDXMr/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1XBk5e6FvZSKyBlpSxKpdaIk-Wk1eAYOB/view?usp=sharing',
   },
   {
     id: '11',
@@ -138,10 +98,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem11.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1LUyk_Voe6kTONucWcfo1W04m_LlhaMBW/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/13IRJGh1Kj1mijiUmxosZxbIZAEmHRMBh/view?usp=sharing',
   },
   {
     id: '12',
@@ -151,10 +107,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem12.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1UBfY8UBq7p6WEy2Xo9NWmJoEnt6TZdO6/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1hAD1sEZ7JxHB25PpRmkx4nuOs5ehklWh/view?usp=sharing',
   },
   {
     id: '13',
@@ -164,10 +116,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem13.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1S5K8CMwqsY_ToUmvDH8TaeerkNVQtnlV/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1UP-n-lMbsJgS3wke5tSOThsXFPKFaZhZ/view?usp=sharing',
   },
   {
     id: '14',
@@ -177,10 +125,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem14.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1tjSAtceZ4PQAp30shTaGWR-aH4gIZ5v7/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1ZqQK11gRqqSVvOkrKHTZXDIjUV0LZFqb/view?usp=sharing',
   },
   {
     id: '15',
@@ -190,10 +134,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem15.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1UITXYomZIG7krIxRrD46Z7e38Y78btuQ/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1V8pgDPeFeGHWzTNC38Hxan-2EWaae887/view?usp=sharing',
   },
   {
     id: '16',
@@ -203,10 +143,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem16.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/14obgnm235t_VEdXZM3x1vkr_hbNtOshp/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1YERejBHY-aID4HCF3OlNUGG1ikpv18IE/view?usp=sharing',
   },
   {
     id: '17',
@@ -216,10 +152,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem17.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/14obgnm235t_VEdXZM3x1vkr_hbNtOshp/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1DxdbJYzPBspUruBUew_a8npEV0K-or2Y/view?usp=sharing',
   },
   {
     id: '18',
@@ -229,10 +161,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem18.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1mOpqM7DzMPTlFakrAigMvSds9TXPBRZc/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1r97uFzsrHj6oEe6GFOM5R1uMb9P3Mzu_/view?usp=sharing',
   },
   {
     id: '19',
@@ -242,10 +170,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem19.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1RsvM-loFd9_JwyLU47BN3MRyjGevKfKr/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1It62byMt8SQAgfWCsWAHg_qr2LDMXwMs/view?usp=sharing',
   },
   {
     id: '20',
@@ -255,10 +179,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem20.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1bzTIm3ZbIhKXlVqz9gplSRsMBVlITDCN/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1-kbfvvy6n0_vcmUypH7bl1hSq6hLfwMl/view?usp=sharing',
   },
   {
     id: '21',
@@ -268,10 +188,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem21.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1tOE5TZ4VyuICo1OTpwEXyqr_1r9Cj06e/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1ob8Hp3vwmcBuREPP-n9v70H4Es0MYmNn/view?usp=sharing',
   },
   {
     id: '22',
@@ -281,10 +197,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem22.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1tOE5TZ4VyuICo1OTpwEXyqr_1r9Cj06e/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1e52vfX4PY-LS9g_Pe3FFQBFy2oVrl-uj/view?usp=sharing',
   },
   {
     id: '23',
@@ -294,10 +206,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem23.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1mUN2EjfUfOmqmuKUfHjvN2ia-1M_8vbe/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1BolUkGH-AzPOg-XzwSktFqWs4eIVUYmf/view?usp=sharing',
   },
   {
     id: '24',
@@ -308,10 +216,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem24.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/17kGJ8-ZBUIxcmejujQl40_aSoAvLGmDF/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1b3YU6LBUJlvmGv9npPXoevycQJKE4DCl/view?usp=sharing',
   },
   {
     id: '25',
@@ -322,10 +226,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem25.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/138nypmMc7LkAeleuMoPx4MT96Ydtt3Nc/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/11iMW-Q3XjkkZWN8aH45vBglA0f6dN2IF/view?usp=sharing',
   },
   {
     id: '26',
@@ -335,10 +235,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem26.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1aWbfj0fc7FVMTylyhQU75Cj97od38EaO/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1JZrFBKqpAjMH5HH1GqzpjcS3eIO8Oq-C/view?usp=sharing',
   },
   {
     id: '27',
@@ -348,10 +244,6 @@ export default [
     Audio: '',
     Text: '',
     'Imagem\n(nome)': 'imagem27.png',
-    'Imagem\n(editada)':
-      'https://drive.google.com/file/d/1EOInSXqrj82irsT6_UfvKxy2K9sJc7z_/view?usp=sharing',
-    'Image (original)':
-      'https://drive.google.com/file/d/1s2p4JJ-kLqsj8xbfrH3gYJH0n3hDOaOs/view?usp=sharing',
   },
   {
     id: '28',
@@ -439,8 +331,6 @@ export default [
     Audio: '',
     Text: 'texto1.md',
     'Imagem\n(nome)': '',
-    'Imagem\n(editada)': '',
-    'Image (original)': '',
     NOTES:
       'https://docs.google.com/document/d/1gSM_hnm55iYyfaChSufBJ_0zrYfQE3P2mYCvDm6vRGM/edit?usp=sharing',
   },

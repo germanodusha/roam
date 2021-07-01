@@ -9,7 +9,8 @@ import { createDefaultInteraction } from '@/helpers/mock'
 import MediaFactory from '@/helpers/mediaFactory'
 import objects from '@/data/objects'
 import contentObjects from '@/data/contentObjects'
-import positions from '@/data/positions'
+import coordinateObjects from '@/data/positions'
+// import coordinateObjects from '@/data/contentCoordinatesObjects'
 
 const PrimitiveObject = ({
   position,
@@ -118,7 +119,7 @@ const ObjectsWrapper = () => {
     new THREE.MeshPhongMaterial({ side: THREE.FrontSide })
   ).current
 
-  return positions.map((position, i) => {
+  return coordinateObjects.map((position, i) => {
     const object = objects[i]
     const content = MediaFactory(contentObjects[i])
 
@@ -130,6 +131,7 @@ const ObjectsWrapper = () => {
         scale={object.scale || 1}
         path={object.path}
         position={position}
+        // position={[position.x, 1, position.z]}
         material={defaultMaterial}
         media={content}
       />

@@ -10,7 +10,9 @@ import { useStore } from '../../store'
 
 function Player() {
   const lockRef = useRef()
-  const { onMove, setPointerLock } = useStore((store) => store.actions)
+  const { onMove, cleanPointerLock, setPointerLock } = useStore(
+    (store) => store.actions
+  )
   const { movement, game } = useStore((store) => store.state)
   const speed = config.player.speed
 
@@ -81,9 +83,13 @@ function Player() {
     api.velocity.set(newVelocity.x, currentVelocity.current[1], newVelocity.z)
   })
 
-  useEffect(() => {
-    setPointerLock(lockRef)
-  }, [lockRef, setPointerLock])
+  // useEffect(() => {
+  //   setPointerLock(lockRef)
+
+  //   return () => {
+  //     cleanPointerLock({})
+  //   }
+  // }, [lockRef, setPointerLock])
 
   return (
     <>

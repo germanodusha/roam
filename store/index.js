@@ -48,6 +48,11 @@ export const useStore = create((set) => {
           state.activeMedia = activeMedia
         })
       },
+      cleanPointerLock: () => {
+        setState(({ state }) => {
+          state.game.pointerLock = { current: {} }
+        })
+      },
       setPointerLock: (pointerLock) => {
         setState(({ state }) => {
           state.game.pointerLock = pointerLock

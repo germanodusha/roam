@@ -10,6 +10,31 @@ import VideoMedia from '@/components/VideoMedia'
 import StatusText from '@/components/StatusText'
 import Keycap from '@/components/Keycap'
 import MediaCover from '@/components/MediaCover'
+import texto1 from '@/data/texts/texto1.md'
+import texto2 from '@/data/texts/texto2.md'
+import texto3 from '@/data/texts/texto3.md'
+import texto4 from '@/data/texts/texto4.md'
+import texto5 from '@/data/texts/texto5.md'
+import texto6 from '@/data/texts/texto6.md'
+import texto7 from '@/data/texts/texto7.md'
+import texto8 from '@/data/texts/texto8.md'
+import texto9 from '@/data/texts/texto9.md'
+import texto10 from '@/data/texts/texto10.md'
+import texto11 from '@/data/texts/texto11.md'
+
+const markdowns = {
+  'texto1.md': texto1,
+  'texto2.md': texto2,
+  'texto3.md': texto3,
+  'texto4.md': texto4,
+  'texto5.md': texto5,
+  'texto6.md': texto6,
+  'texto7.md': texto7,
+  'texto8.md': texto8,
+  'texto9.md': texto9,
+  'texto10.md': texto10,
+  'texto11.md': texto11,
+}
 
 const MediaCenterWapper = {
   [MediaTypes.IMAGE]: ImageMedia,
@@ -71,7 +96,13 @@ const MediaCenter = () => {
             />
           )}
 
-          {content && <Media appear={appearContent} media={state?.media} />}
+          {content && (
+            <Media
+              appear={appearContent}
+              media={state?.media}
+              {...(state?.media?.type === MediaTypes.TEXT ? { markdowns } : {})}
+            />
+          )}
         </div>
       </div>
     </div>

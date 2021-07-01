@@ -6,11 +6,7 @@ import styles from './Loading.module.scss'
 const Loading = () => {
   const { init } = useStore((state) => state.actions)
   const { game } = useStore((state) => state.state)
-  const progressState = useProgress()
-  const { active, loaded, progress } = progressState
-  // const { active, loaded, progress } = useProgress()
-
-  console.log(progressState)
+  const { active, loaded, progress } = useProgress()
 
   const isLoading = active || loaded === 0
 
