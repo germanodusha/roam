@@ -46,7 +46,7 @@ const TextStatus = ({}) => {
     >
       <StatusText>press</StatusText>
       <Keycap value="f" bordered small />
-      <StatusText>for scroll</StatusText>
+      <StatusText>for content</StatusText>
     </div>
   )
 }
@@ -61,7 +61,7 @@ const ToggleCover = ({ onNextPage }) => {
     >
       <StatusText>press</StatusText>
       <Keycap value="f" bordered small onKeyDown={onNextPage} />
-      <StatusText>for scroll</StatusText>
+      <StatusText>for content</StatusText>
     </div>
   )
 }

@@ -135,7 +135,7 @@ const Environment = () => {
   const bloomProps = useControls(
     'bloom',
     {
-      intensity: 3,
+      intensity: 1.5,
       luminanceThreshold: {
         value: 0.0025,
         step: 0.0005,
