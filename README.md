@@ -15,7 +15,9 @@ cd roam
 yarn
 yarn dev
 ```
+
 or
+
 ```bash
 cd roam
 npm install
