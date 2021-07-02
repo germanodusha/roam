@@ -116,7 +116,7 @@ const Howto = () => {
           </div>
 
           <span className={styles['howto__description']}>
-            these is your head
+            this is your head
           </span>
         </div>
       </div>
