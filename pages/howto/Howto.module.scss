@@ -1,23 +1,41 @@
+@import '../../styles/variables.scss';
+
 .howto {
   display: flex;
   flex-direction: column;
   color: red;
+  font-family: 'Dungeon';
 
-  & h3 {
-    font-size: 4em;
-    font-family: 'Dungeon';
-    margin: 0;
-    padding: 0.5em 0 0;
+  &__title {
+    display: flex;
+    align-items: center;
+
+    & h3 {
+      font-size: 4em;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0.5em 0 0;
+    }
 
     & span {
+      font-style: italic;
+      font-size: 3.9em;
+      padding-left: 0.25em;
       font-family: 'Breathe Fire II';
+      transform: translateY(0.12em);
     }
   }
 
   &__content {
     display: flex;
-    flex: 1 1;
+    flex-direction: column;
     padding: 3em 1em;
+    max-width: 900px;
+
+    @media #{$tablet} {
+      flex-direction: row;
+    }
 
     &__section {
       display: flex;
@@ -25,7 +43,20 @@
       flex: 1 1;
       margin: 0 1em;
       align-items: stretch;
-      width: 30vw;
+
+      @media #{$tablet} {
+        width: 40vw;
+      }
+
+      &--bold {
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+
+      &--desc {
+        font-family: Allan;
+        font-size: 1.5em !important;
+      }
 
       &--inner {
         display: flex;
@@ -33,18 +64,22 @@
         flex: 1 1;
         justify-content: center;
         align-items: center;
-        border: 3px solid red;
-        border-radius: 14px;
+        border: 10px solid red;
+        border-radius: 50px;
+
+        & span {
+          font-size: 3.5em;
+          line-height: 75%;
+        }
+
+        & img {
+          width: 30%;
+        }
       }
 
       & span {
         width: 100%;
         text-align: center;
-      }
-
-      &__controls {
-        &--horizontal {
-        }
       }
     }
   }
@@ -52,5 +87,12 @@
   &__status {
     display: flex;
     padding-bottom: 1em;
+  }
+
+  &__description {
+    font-family: Arial;
+    text-transform: uppercase;
+    font-size: 1em;
+    padding-top: 1em;
   }
 }
