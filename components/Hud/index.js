@@ -141,9 +141,11 @@ const Hud = () => {
         <img src="/assets/images/stats-tracks-visited.png" />
       </HudSection>
 
+      {/**
       <HudSection show={showFullMenu} className={styles['hud__icon']}>
         // TODO icon
       </HudSection>
+      **/}
 
       <HudSection show={showFullMenu} className={styles['hud__controls-move']}>
         <div className={styles['hud__controls-move__w']}>

@@ -1,5 +1,27 @@
 .index {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: red;
+
+  & h1 {
+    font-family: 'Breathe Fire II';
+    font-size: 15em;
+    font-style: italic;
+    padding: 0;
+    margin: 0;
+  }
+
+  & a {
+    display: flex;
+  }
+
+  &__logos {
+    position: absolute;
+    bottom: 1em;
+  }
+
+  & img {
+    height: 5em;
+    padding: 0 2em;
+  }
 }

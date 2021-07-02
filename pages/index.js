@@ -1,15 +1,45 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import WallBricks from '@/components/WallBricks'
+import Keycap from '@/components/Keycap'
+import StatusText from '@/components/StatusText'
 import styles from './index.module.scss'
 
 const Index = () => {
+  const router = useRouter()
+
   return (
     <WallBricks className={styles['index']}>
-      <h1>the maze</h1>
+      <h1>roam</h1>
       <Link href="/play">
-        <a>press Q to enter</a>
+        <a>
+          <StatusText red>press</StatusText>
+          <Keycap
+            small
+            active
+            bordered
+            value="q"
+            onKeyDown={() => router.push('/play')}
+          />
+
+          <StatusText red>to enter site</StatusText>
+        </a>
       </Link>
-      <div>novas frequencias in out festival 2020</div>
+
+      <div className={styles['index__logos']}>
+        <img
+          className={styles['index__logos-nf']}
+          src="/assets/images/Logo Novas Frequencias.png"
+        />
+        <img
+          className={styles['index__logos-inout']}
+          src="/assets/images/Logo In Out.png"
+        />
+        <img
+          className={styles['index__logos-prohelvetia']}
+          src="/assets/images/Logo-Prohelvetia.png"
+        />
+      </div>
     </WallBricks>
   )
 }
