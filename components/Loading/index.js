@@ -52,7 +52,16 @@ const Loading = () => {
             [styles['loading__pointer']]: !isLoading,
           })}
         >
-          {isLoading ? parseInt(progress) + '%' : <span>play</span>}
+          <div className={classNames(styles['loading__title'])}>
+            {isLoading ? parseInt(progress) + '%' : 'play'}
+          </div>
+          <div className={classNames(styles['loading__disclaimer'])}>
+            <span>Loading... Please wait</span>
+            <span>
+              ROAM IS TO BE EXPERIENCED ON DESKTOP, AND DEMANDS UPDATED SYSTEMS
+              AND BROWSERS (SAFARI MAY BE A PROBLEM)
+            </span>
+          </div>
         </WallBricks>
       )}
     </>

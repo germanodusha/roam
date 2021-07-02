@@ -1,7 +1,27 @@
 .loading {
-  font-family: 'Breathe Fire II';
-  font-size: 18em;
+  display: flex;
+  flex-direction: column;
   color: red;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1;
+    font-family: 'Breathe Fire II';
+    font-size: 45vh;
+  }
+
+  &__disclaimer {
+    text-transform: uppercase;
+    font-family: 'Arial';
+    font-size: 0.7em;
+    padding: 2em;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
   &__pointer {
     cursor: pointer;
