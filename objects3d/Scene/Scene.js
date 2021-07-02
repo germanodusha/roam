@@ -7,6 +7,7 @@ import {
   TransformControls,
   useCubeTexture,
   OrthographicCamera,
+  useTexture,
 } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
 import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
@@ -171,6 +172,16 @@ const Environment = () => {
   )
 }
 
+const Credits = () => {
+  const credits = useTexture('/assets/images/credits_v4.png')
+  return (
+    <mesh position={[-75.32, 1.3, 12.015]} rotation={[0, Math.PI / 2, 0]}>
+      <planeGeometry args={[0.96, 1.695]} />
+      <meshBasicMaterial transparent map={credits} />
+    </mesh>
+  )
+}
+
 const Scene = () => {
   const [controlsEnabled] = useQueryString({ key: 'showcontrols' })
 
@@ -192,6 +203,7 @@ const Scene = () => {
           />
         </Physics>
 
+        <Credits />
         <ObjectsWrapper />
         <CloudsWrapper />
       </Suspense>
