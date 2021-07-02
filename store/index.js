@@ -103,10 +103,16 @@ export const useStore = create((set) => {
       // near interaction
       onChangeInteraction: (interaction) => {
         setState(({ state }) => {
+          if (!interaction) {
+            state.nearInteraction = null
+            return
+          }
+
+          const hasMedia = state.activeMedia
+          if (hasMedia) return
+
           state.nearInteraction = interaction
           state.backgroundAudio = true
-
-          if (!interaction) return
 
           if (interaction.media.type === MediaTypes.TRACK) {
             state.backgroundAudio = false

@@ -175,8 +175,8 @@ const Environment = () => {
 const Credits = () => {
   const credits = useTexture('/assets/images/credits_v4.png')
   return (
-    <mesh position={[-75.32, 1.3, 12.015]} rotation={[0, Math.PI / 2, 0]}>
-      <planeGeometry args={[0.96, 1.695]} />
+    <mesh position={[-75.32, 1.8, 12.015]} rotation={[0, Math.PI / 2, 0]}>
+      <planeGeometry args={[0.96, 2.3]} />
       <meshBasicMaterial transparent map={credits} />
     </mesh>
   )
