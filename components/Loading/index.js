@@ -53,7 +53,7 @@ const Loading = () => {
           })}
         >
           <div className={classNames(styles['loading__title'])}>
-            {isLoading ? parseInt(progress) + '%' : 'play'}
+            {isLoading ? parseInt(progress) + '%' : 'enter'}
           </div>
           <div className={classNames(styles['loading__disclaimer'])}>
             <span>Loading... Please wait</span>
