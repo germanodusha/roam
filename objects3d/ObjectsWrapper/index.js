@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { OBJLoader } from 'three-stdlib'
-import { useLoader } from '@react-three/fiber'
+import { useLoader, useFrame } from '@react-three/fiber'
 import useFocusOnNear from '@/hooks/useFocusOnNear'
 import { useControls } from 'leva'
 import { useStore } from '../../store'
@@ -46,6 +46,12 @@ const PrimitiveObject = ({
     ref: focusRef,
     onFocus: () => onChangeInteraction(createDefaultInteraction({ media })),
     onDefocus: () => onChangeInteraction(null),
+  })
+
+  useFrame((state, delta) => {
+    if (!ref.current) return
+    ref.current.position.y = -0.2 + Math.sin(state.clock.elapsedTime) * 0.2
+    ref.current.rotation.y = ref.current.rotation.y += delta * 0.4
   })
 
   return (
