@@ -136,7 +136,7 @@ const Howto = () => {
           small
           active
           bordered
-          value="q"
+          value="e"
           onClick={() => router.back()}
           onKeyDown={() => router.back()}
         />

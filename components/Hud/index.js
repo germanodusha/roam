@@ -41,7 +41,7 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
           inverted
           bordered
           small
-          value="Q"
+          value="E"
           onKeyDown={() => onChangeInteraction(null)}
           className={styles['hud__interaction__keycap']}
         />
