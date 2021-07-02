@@ -58,8 +58,8 @@ const Loading = () => {
           <div className={classNames(styles['loading__disclaimer'])}>
             <span>Loading... Please wait</span>
             <span>
-              ROAM IS TO BE EXPERIENCED ON DESKTOP, AND DEMANDS UPDATED SYSTEMS
-              AND BROWSERS (SAFARI MAY BE A PROBLEM)
+              ROAM IS TO BE EXPERIENCED ON DESKTOP. IT DEMANDS UPDATED SYSTEMS
+              AND BROWSERS (GOOGLE CHROME IS RECOMMENDED).
             </span>
           </div>
         </WallBricks>
