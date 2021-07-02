@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Leva } from 'leva'
 import useQueryString from '@/hooks/useQueryString'
+import sounds from '@/data/contentExtras'
 import '../styles/globals.css'
 
 const head = {
@@ -40,6 +41,16 @@ function MyApp({ Component, pageProps }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+
+        {sounds.map((sound) => (
+          <link
+            key={sound.id}
+            rel="prefetch"
+            as="audio"
+            type="audio/mp3"
+            href={`/content/${sound.Arquivo}`}
+          />
+        ))}
       </Head>
 
       <Leva collapsed hidden={!controlsEnabled} />

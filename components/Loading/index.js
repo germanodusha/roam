@@ -40,7 +40,7 @@ const Loading = () => {
   return (
     <>
       <Head>
-        <link rel="preload" as="audio" href="/content/bgsound.mp3" />
+        <link rel="prefetch" as="audio" href="/content/bgsound.mp3" />
       </Head>
 
       <audio ref={audio} autoPlay loop src="/content/bgsound.mp3" />
