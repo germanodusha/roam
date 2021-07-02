@@ -1,0 +1,56 @@
+.howto {
+  display: flex;
+  flex-direction: column;
+  color: red;
+
+  & h3 {
+    font-size: 4em;
+    font-family: 'Dungeon';
+    margin: 0;
+    padding: 0.5em 0 0;
+
+    & span {
+      font-family: 'Breathe Fire II';
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex: 1 1;
+    padding: 3em 1em;
+
+    &__section {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1;
+      margin: 0 1em;
+      align-items: stretch;
+      width: 30vw;
+
+      &--inner {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid red;
+        border-radius: 14px;
+      }
+
+      & span {
+        width: 100%;
+        text-align: center;
+      }
+
+      &__controls {
+        &--horizontal {
+        }
+      }
+    }
+  }
+
+  &__status {
+    display: flex;
+    padding-bottom: 1em;
+  }
+}
