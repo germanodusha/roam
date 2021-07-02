@@ -33,7 +33,7 @@ const Loading = () => {
         [styles['loading__pointer']]: !isLoading,
       })}
     >
-      {isLoading ? parseInt(progress) + '%' : <span>play</span>}
+      {isLoading ? parseInt(progress) + '%' : <span>enter</span>}
     </WallBricks>
   )
 }
