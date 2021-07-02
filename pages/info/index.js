@@ -58,7 +58,7 @@ const Info = () => {
               small
               active
               bordered
-              value="q"
+              value="e"
               onClick={() => router.back()}
               onKeyDown={() => router.back()}
             />

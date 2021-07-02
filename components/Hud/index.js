@@ -167,11 +167,13 @@ const Hud = () => {
         </HudSection>
       **/}
 
-      <HudSection show={showFullMenu} className={styles['hud__guide']}>
-        <StatusText>press</StatusText>
-        <Keycap value="Q" bordered small />
-        <StatusText>for key guide</StatusText>
-      </HudSection>
+      {/**
+        <HudSection show={showFullMenu} className={styles['hud__guide']}>
+          <StatusText>press</StatusText>
+          <Keycap value="Q" bordered small />
+          <StatusText>for key guide</StatusText>
+        </HudSection>
+      **/}
 
       <ContentDisplay
         media={media}

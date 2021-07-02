@@ -29,6 +29,7 @@ export const useStore = create((set) => {
     activeMedia: false,
     formatedTime: '00:00',
     glow: {},
+    backgroundAudio: true,
   }
 
   return {
@@ -76,6 +77,12 @@ export const useStore = create((set) => {
           state.nearInteraction = null
           state.activeMedia = activeMedia
 
+          if (!activeMedia || !activeMedia.media) return
+
+          if (activeMedia.media.type === MediaTypes.VIDEO) {
+            state.backgroundAudio = false
+          }
+
           if (!original(state.achievements).includes(activeMedia.media)) {
             state.achievements.push(activeMedia.media)
             state.counter.extra += 1
@@ -97,12 +104,17 @@ export const useStore = create((set) => {
       onChangeInteraction: (interaction) => {
         setState(({ state }) => {
           state.nearInteraction = interaction
+          state.backgroundAudio = true
 
-          if (!interaction || interaction.media.type !== MediaTypes.TRACK)
-            return
-          if (!original(state.achievements).includes(interaction.media)) {
-            state.achievements.push(interaction.media)
-            state.counter.main += 1
+          if (!interaction) return
+
+          if (interaction.media.type === MediaTypes.TRACK) {
+            state.backgroundAudio = false
+
+            if (!original(state.achievements).includes(interaction.media)) {
+              state.achievements.push(interaction.media)
+              state.counter.main += 1
+            }
           }
         })
       },
