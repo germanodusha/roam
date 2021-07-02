@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <WallBricks className={styles['index']}>
       <h1>roam</h1>
-      <Link href="/play">
+      <Link href="/info">
         <a>
           <StatusText red>press</StatusText>
           <Keycap
@@ -19,7 +19,7 @@ const Index = () => {
             active
             bordered
             value="q"
-            onKeyDown={() => router.push('/play')}
+            onKeyDown={() => router.push('/info')}
           />
 
           <StatusText red>to enter site</StatusText>
