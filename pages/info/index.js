@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Scrollbars } from 'react-custom-scrollbars'
 import WallBricks from '@/components/WallBricks'
@@ -51,8 +50,8 @@ const Info = () => {
               active
               bordered
               value="f"
-              onClick={() => router.push('/play')}
-              onKeyDown={() => router.push('/play')}
+              onClick={() => router.push('/howto')}
+              onKeyDown={() => router.push('/howto')}
             />
             <StatusText red>to enter roam or</StatusText>
             <Keycap
