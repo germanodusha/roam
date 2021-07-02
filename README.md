@@ -1,30 +1,40 @@
-# Next.js Three.js Template
+# ROAM
 
-This template uses:
+Created by music artists Deafbrick (Brazil/UK), Duma (Kenya) and Simon Grab (Switzerland) and with visuals and coding from Genesys (Brazil), Roam is a meta-labyrinth: a first person 3D game shaped maze composed of approximately 50 references of labyrinths taken from cinema, poetry, visual arts, philosophy, society, popular culture and mythology. The goal is to find the artists' music scattered and hidden in the game's architecture. And to get lost.
 
-`threejs`: A lightweight, 3D library with a default WebGL renderer. The library also provides Canvas 2D, SVG and CSS3D renderers in the examples.
-`react-three-fiber`: A React renderer for Threejs on the web and react-native.
-`drei`: A growing collection of useful helpers and abstractions for react-three-fiber.
+## Next.js
 
-## TO DO
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-- [ ] Include some state management
-- [ ] Missing on README
-  - [ ] Eslint, prettier and husky
-  - [ ] Blender folder
-  - [ ] Generated jsx from glTF
-  - [ ] Folder structure
+## Getting Started
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+First, run the development server:
 
 ```bash
-npx create-next-app -e https://github.com/guigallo/next-three-template next-three
-# or
-yarn create next-app -e https://github.com/guigallo/next-three-template next-three
+cd roam
+yarn
+yarn dev
+```
+or
+```bash
+cd roam
+npm install
+npm run dev
 ```
 
-## Reference
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Based on [Next.js](https://nextjs.org/) [with-three-js](https://github.com/vercel/next.js/tree/master/examples/with-three-js) template.
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
