@@ -54,7 +54,7 @@ const Info = () => {
               onClick={() => router.push('/play')}
               onKeyDown={() => router.push('/play')}
             />
-            <StatusText red>to enter site or</StatusText>
+            <StatusText red>to enter roam or</StatusText>
             <Keycap
               small
               active

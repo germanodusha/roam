@@ -18,7 +18,7 @@ const Index = () => {
             small
             active
             bordered
-            value="q"
+            value="f"
             onKeyDown={() => router.push('/info')}
           />
 
