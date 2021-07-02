@@ -1,4 +1,4 @@
-### “Daedalus”, a word that, in being derived from a location in the fabled city of Knossos, was subsequently interpreted by many writers of classical antiquity to mean “cunningly wrought”, served throughout Greece’s Halcyon era, to describe all aspects of ancient craft and industry.
+“Daedalus”, a word that, in being derived from a location in the fabled city of Knossos, was subsequently interpreted by many writers of classical antiquity to mean “cunningly wrought”, served throughout Greece’s Halcyon era, to describe all aspects of ancient craft and industry.
 
 Applied to the vast multitude of clasps, twisted broaches ornaments and earrings forged beneath the secret inspiration of “Thetis” by the legendary metallurgist “Hephaestus” throughout the classical era, the word evolved to carry both the suggestion of genius and the portent of disaster caused by near sighted endeavor.
 
