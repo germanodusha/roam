@@ -94,7 +94,7 @@ const ObjectsWrapper = () => {
           (defaultMaterial.emissive = new THREE.Color(value)),
       },
       emissiveIntensity: {
-        value: 0.5,
+        value: 0.4,
         onChange: (value) => (defaultMaterial.emissiveIntensity = value),
       },
       fog: {
