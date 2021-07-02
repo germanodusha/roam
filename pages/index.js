@@ -22,7 +22,7 @@ const Index = () => {
             onKeyDown={() => router.push('/info')}
           />
 
-          <StatusText red>to enter site</StatusText>
+          <StatusText red>to enter roam</StatusText>
         </a>
       </Link>
 
