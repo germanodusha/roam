@@ -46,7 +46,7 @@ const TextStatus = ({}) => {
     >
       <StatusText>press</StatusText>
       <Keycap value="f" bordered small />
-      <StatusText>for scroll</StatusText>
+      <StatusText>for content</StatusText>
     </div>
   )
 }
