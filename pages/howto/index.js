@@ -16,8 +16,8 @@ const Arrows = () => {
           <span className="key-helper key-a">A</span>
           <span className="key-arrow">{'<'}</span>
         </div>
-        <div />
-        <div>
+        <div className="spacer" />
+        <div className="cell-d">
           <span className="key-arrow">{'>'}</span>
           <span className="key-helper key-d">D</span>
         </div>
@@ -31,18 +31,21 @@ const Arrows = () => {
         {`
           div {
             position: relative;
-            padding: 0.5em 1em;
             display: flex;
             flex-direction: column;
           }
           .controls-line {
             display: flex;
             flex-direction: row;
+            transform: translateY(5%);
           }
           .controls-line > div {
             display: flex;
             flex-direction: row;
             align-items: center;
+          }
+          .spacer {
+            width: 4em;
           }
           .key-arrow {
             font-size: 4em;
@@ -64,6 +67,9 @@ const Arrows = () => {
           .key-d {
             transform: translateX(50%);
           }
+          .cell-d {
+            transform: translateX(10%);
+          }
           .up {
           }
           .down {
@@ -79,6 +85,7 @@ const Arrows = () => {
     </div>
   )
 }
+
 const Howto = () => {
   const router = useRouter()
 
@@ -109,6 +116,7 @@ const Howto = () => {
               <br />
               vision
             </span>
+            <span className={styles['howto__content__section--spacer']} />
             <img src="/assets/images/Mouse360.png" />
             <span className={styles['howto__content__section--desc']}>
               explore the maze in 360º

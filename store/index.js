@@ -91,6 +91,7 @@ export const useStore = create((set) => {
       },
       closeMedia: () => {
         setState(({ state }) => {
+          state.backgroundAudio = true
           state.activeMedia = false
         })
       },
@@ -105,6 +106,7 @@ export const useStore = create((set) => {
         setState(({ state }) => {
           if (!interaction) {
             state.nearInteraction = null
+            state.backgroundAudio = true
             return
           }
 

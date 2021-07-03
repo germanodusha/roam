@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 .index {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
 
   & h1 {
     font-family: 'Breathe Fire II';
-    font-size: 17em;
+    font-size: 8em;
     font-style: italic;
     letter-spacing: 0.1em;
     padding: 0;
@@ -22,7 +24,30 @@
   }
 
   & img {
-    height: 5em;
-    padding: 0 2em;
+    height: 2em;
+    padding: 0 1em;
+  }
+
+  @media #{$tablet} {
+    & h1 {
+      font-size: 15em;
+    }
+
+    & img {
+      height: 5em;
+      padding: 0 2em;
+    }
+  }
+
+  @media #{$desktop} {
+    & h1 {
+      font-size: 20em;
+    }
+  }
+
+  @media #{$desktop-l} {
+    & h1 {
+      font-size: 30em;
+    }
   }
 }

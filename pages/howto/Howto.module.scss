@@ -9,6 +9,7 @@
   &__title {
     display: flex;
     align-items: center;
+    filter: blur(1px);
 
     & h3 {
       font-size: 4em;
@@ -24,6 +25,7 @@
       padding-left: 0.25em;
       font-family: 'Breathe Fire II';
       transform: translateY(0.12em);
+      font-weight: 900;
     }
   }
 
@@ -43,6 +45,7 @@
       flex: 1 1;
       margin: 0 1em;
       align-items: stretch;
+      filter: blur(1px);
 
       @media #{$tablet} {
         width: 40vw;
@@ -58,9 +61,14 @@
         font-size: 1.5em !important;
       }
 
+      &--spacer {
+        flex: 1 1;
+      }
+
       &--inner {
         display: flex;
         flex-direction: column;
+        padding: 1.5em;
         flex: 1 1;
         justify-content: center;
         align-items: center;
@@ -69,11 +77,11 @@
 
         & span {
           font-size: 3.5em;
-          line-height: 75%;
+          line-height: 90%;
         }
 
         & img {
-          width: 30%;
+          width: 35%;
         }
       }
 
@@ -87,6 +95,7 @@
   &__status {
     display: flex;
     padding-bottom: 1em;
+    filter: blur(1px);
   }
 
   &__description {
