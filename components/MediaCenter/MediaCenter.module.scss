@@ -14,7 +14,7 @@
   }
 
   &-glow {
-    box-shadow: 0 0 1.5em 2em rgba(0, 255, 0, 0.7);
+    box-shadow: 0 0 1.5em 2em rgba(12, 255, 0, 0.84);
   }
 
   &__status {
@@ -36,7 +36,7 @@
 
   &__wrapper {
     position: relative;
-    background-color: rgba(0, 255, 0, 0.7);
+    background-color: rgba(12, 255, 0, 0.84);
     width: 65vw !important;
     height: 55vh !important;
     text-align: center;
