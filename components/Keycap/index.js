@@ -7,16 +7,20 @@ const Keycap = ({
   value,
   active,
   bordered,
-  onClick,
   className,
-  onKeyDown = undefined,
-  onKeyUp = undefined,
+  onClick = () => {},
+  onKeyDown = () => {},
+  onKeyUp = () => {},
 }) => {
   useKeyPressEvent({ key: value, onKeyDown, onKeyUp })
 
   return (
     <div
       onClick={onClick}
+      onMouseUp={onKeyUp}
+      onMouseDown={onKeyDown}
+      onTouchEnd={onKeyUp}
+      onTouchStart={onKeyDown}
       className={classNames(
         styles['keycap'],
         {

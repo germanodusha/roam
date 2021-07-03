@@ -6,6 +6,7 @@ import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
 import useDesappearState from '@/hooks/useDesappearState'
 import StatusText from '@/components/StatusText'
+import KeyBindings from '../../config/keybindings.json'
 import styles from './Hud.module.scss'
 
 const HudSection = ({ children, className, show }) => (
@@ -23,6 +24,7 @@ const HudSection = ({ children, className, show }) => (
 const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
   const [state, show] = useDesappearState({ stateToPersist: media })
 
+  if (!media && !show) return null
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
       <h1 className={styles['red']}>{state.title}</h1>
@@ -55,6 +57,7 @@ const TrackDisplay = ({ mediaTrack }) => {
   const [state, show] = useDesappearState({ stateToPersist: mediaTrack })
   const { formatedTime } = useStore((store) => store.state)
 
+  if (!mediaTrack && !show) return null
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
       <h1>{state.media?.artist}</h1>
@@ -98,7 +101,9 @@ const TrackDisplay = ({ mediaTrack }) => {
 const Hud = () => {
   const [media, setMedia] = useState(false)
   const [mediaTrack, setMediaTrack] = useState(false)
-  const { openMedia, onChangeInteraction } = useStore((store) => store.actions)
+  const { onMove, openMedia, onChangeInteraction } = useStore(
+    (store) => store.actions
+  )
   const { movement, counter, activeMedia, nearInteraction } = useStore(
     (store) => store.state
   )
@@ -149,12 +154,32 @@ const Hud = () => {
 
       <HudSection show={showFullMenu} className={styles['hud__controls-move']}>
         <div className={styles['hud__controls-move__w']}>
-          <Keycap value="W" active={movement.forward} />
+          <Keycap
+            value="W"
+            active={movement.forward}
+            onKeyUp={() => onMove(KeyBindings.KeyW, false)}
+            onKeyDown={() => onMove(KeyBindings.KeyW, true)}
+          />
         </div>
         <div className={styles['hud__controls-move__asd']}>
-          <Keycap value="A" active={movement.left} />
-          <Keycap value="S" active={movement.backward} />
-          <Keycap value="D" active={movement.right} />
+          <Keycap
+            value="A"
+            active={movement.left}
+            onKeyUp={() => onMove(KeyBindings.KeyA, false)}
+            onKeyDown={() => onMove(KeyBindings.KeyA, true)}
+          />
+          <Keycap
+            value="S"
+            active={movement.backward}
+            onKeyUp={() => onMove(KeyBindings.KeyS, false)}
+            onKeyDown={() => onMove(KeyBindings.KeyS, true)}
+          />
+          <Keycap
+            value="D"
+            active={movement.right}
+            onKeyUp={() => onMove(KeyBindings.KeyD, false)}
+            onKeyDown={() => onMove(KeyBindings.KeyD, true)}
+          />
         </div>
       </HudSection>
 
