@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { Scrollbars } from 'react-custom-scrollbars'
 import WallBricks from '@/components/WallBricks'
 import Keycap from '@/components/Keycap'
 import StatusText from '@/components/StatusText'
@@ -91,65 +92,69 @@ const Howto = () => {
 
   return (
     <WallBricks className={styles['howto']}>
-      <div className={styles['howto__title']}>
-        <h3>How to travel in</h3>
-        <span>roam</span>
-      </div>
-
-      <div className={styles['howto__content']}>
-        <div className={styles['howto__content__section']}>
-          <div className={styles['howto__content__section--inner']}>
-            <Arrows />
+      <Scrollbars className={styles['howto__scroll']} universal autoHide>
+        <div className={styles['howto__scroll--inner']}>
+          <div className={styles['howto__title']}>
+            <h3>How to travel in</h3>
+            <span>roam</span>
           </div>
 
-          <span className={styles['howto__description']}>
-            these are your legs
-          </span>
-        </div>
+          <div className={styles['howto__content']}>
+            <div className={styles['howto__content__section']}>
+              <div className={styles['howto__content__section--inner']}>
+                <Arrows />
+              </div>
 
-        <div className={styles['howto__content__section']}>
-          <div className={styles['howto__content__section--inner']}>
-            <span className={styles['howto__content__section--bold']}>
-              use your mouse
-              <br />
-              to change
-              <br />
-              vision
-            </span>
-            <span className={styles['howto__content__section--spacer']} />
-            <img src="/assets/images/Mouse360.png" />
-            <span className={styles['howto__content__section--desc']}>
-              explore the maze in 360º
-            </span>
+              <span className={styles['howto__description']}>
+                these are your legs
+              </span>
+            </div>
+
+            <div className={styles['howto__content__section']}>
+              <div className={styles['howto__content__section--inner']}>
+                <span className={styles['howto__content__section--bold']}>
+                  use your mouse
+                  <br />
+                  to change
+                  <br />
+                  vision
+                </span>
+                <span className={styles['howto__content__section--spacer']} />
+                <img src="/assets/images/Mouse360.png" />
+                <span className={styles['howto__content__section--desc']}>
+                  explore the maze in 360º
+                </span>
+              </div>
+
+              <span className={styles['howto__description']}>
+                this is your head
+              </span>
+            </div>
           </div>
 
-          <span className={styles['howto__description']}>
-            this is your head
-          </span>
+          <div className={styles['howto__status']}>
+            <StatusText red>press</StatusText>
+            <Keycap
+              small
+              active
+              bordered
+              value="f"
+              onClick={() => router.push('/play')}
+              onKeyDown={() => router.push('/play')}
+            />
+            <StatusText red>to enter site or</StatusText>
+            <Keycap
+              small
+              active
+              bordered
+              value="e"
+              onClick={() => router.back()}
+              onKeyDown={() => router.back()}
+            />
+            <StatusText red>to go back</StatusText>
+          </div>
         </div>
-      </div>
-
-      <div className={styles['howto__status']}>
-        <StatusText red>press</StatusText>
-        <Keycap
-          small
-          active
-          bordered
-          value="f"
-          onClick={() => router.push('/play')}
-          onKeyDown={() => router.push('/play')}
-        />
-        <StatusText red>to enter site or</StatusText>
-        <Keycap
-          small
-          active
-          bordered
-          value="e"
-          onClick={() => router.back()}
-          onKeyDown={() => router.back()}
-        />
-        <StatusText red>to go back</StatusText>
-      </div>
+      </Scrollbars>
     </WallBricks>
   )
 }

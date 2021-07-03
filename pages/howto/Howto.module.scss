@@ -1,18 +1,30 @@
 @import '../../styles/variables.scss';
 
 .howto {
-  display: flex;
-  flex-direction: column;
   color: red;
   font-family: 'Dungeon';
 
+  &__scroll {
+    padding: 0 0.5em 0.5em;
+  }
+
+  &__scroll--inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
   &__title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     filter: blur(1px);
+    padding-top: 1em;
+    font-size: 2.5em;
 
     & h3 {
-      font-size: 4em;
       font-weight: 900;
       text-transform: uppercase;
       margin: 0;
@@ -21,11 +33,19 @@
 
     & span {
       font-style: italic;
-      font-size: 3.9em;
       padding-left: 0.25em;
       font-family: 'Breathe Fire II';
-      transform: translateY(0.12em);
+      transform: translateY(0.15em);
       font-weight: 900;
+    }
+
+    @media #{$tablet} {
+      font-size: 4em;
+      flex-direction: row;
+    }
+
+    @media #{$desktop} {
+      padding-top: 0;
     }
   }
 
@@ -35,7 +55,7 @@
     padding: 3em 1em;
     max-width: 900px;
 
-    @media #{$tablet} {
+    @media #{$desktop} {
       flex-direction: row;
     }
 
@@ -103,5 +123,10 @@
     text-transform: uppercase;
     font-size: 1em;
     padding-top: 1em;
+    padding-bottom: 2em;
+
+    @media #{$desktop} {
+      padding-bottom: 0;
+    }
   }
 }
