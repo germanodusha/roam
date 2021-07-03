@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { OBJLoader } from 'three-stdlib'
-import { useLoader, useFrame } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber'
 import useFocusOnNear from '@/hooks/useFocusOnNear'
+import useFloatingAnimation from '@/hooks/useFloatingAnimation'
 import { useControls } from 'leva'
 import { useStore } from '../../store'
 import { createDefaultInteraction } from '@/helpers/mock'
@@ -24,6 +25,7 @@ const PrimitiveObject = ({
   const ref = useRef(null)
   const focusRef = useRef(null)
   const object = useLoader(OBJLoader, path)
+  useFloatingAnimation(ref)
 
   useEffect(() => {
     if (log) console.warn(ref)
@@ -46,12 +48,6 @@ const PrimitiveObject = ({
     ref: focusRef,
     onFocus: () => onChangeInteraction(createDefaultInteraction({ media })),
     onDefocus: () => onChangeInteraction(null),
-  })
-
-  useFrame((state, delta) => {
-    if (!ref.current) return
-    ref.current.position.y = -0.2 + Math.sin(state.clock.elapsedTime) * 0.2
-    ref.current.rotation.y = ref.current.rotation.y += delta * 0.4
   })
 
   return (

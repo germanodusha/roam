@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { useFrame } from '@react-three/fiber'
 import {
   Html,
   // PositionalAudio,
@@ -80,19 +81,15 @@ const CloudSound = ({ media, position }) => {
     addGlow([ref])
   }, [ref, addGlow])
 
+  useFrame((state, delta) => {
+    if (!ref.current) return
+    ref.current.rotation.y = ref.current.rotation.y += delta * 0.4
+  })
+
   if (!media) return null
   return (
     <group ref={object} position={position}>
       <Html>{audio}</Html>
-
-      <mesh ref={ref}>
-        <sphereGeometry args={[0.5, 16, 16]} />
-        <meshBasicMaterial
-          wireframeLinewidth={4}
-          color={new THREE.Color(0, 1, 0)}
-          wireframe
-        />
-      </mesh>
 
       <mesh ref={ref}>
         <sphereGeometry args={[0.5, 16, 16]} />
