@@ -33,6 +33,8 @@ const Arrows = () => {
           div {
             position: relative;
             display: flex;
+            text-shadow: 0 0 5px red;
+            filter: blur(1.1px);
             flex-direction: column;
           }
           .controls-line {

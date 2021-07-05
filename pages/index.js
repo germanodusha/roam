@@ -10,21 +10,23 @@ const Index = () => {
 
   return (
     <WallBricks className={styles['index']}>
-      <h1>roam</h1>
-      <Link href="/info">
-        <a>
-          <StatusText red>press</StatusText>
-          <Keycap
-            small
-            active
-            bordered
-            value="f"
-            onKeyDown={() => router.push('/info')}
-          />
+      <div className={styles['index__main']}>
+        <h1>roam</h1>
+        <Link href="/info">
+          <a>
+            <StatusText red>press</StatusText>
+            <Keycap
+              small
+              active
+              bordered
+              value="f"
+              onKeyDown={() => router.push('/info')}
+            />
 
-          <StatusText red>to enter roam</StatusText>
-        </a>
-      </Link>
+            <StatusText red>to enter roam</StatusText>
+          </a>
+        </Link>
+      </div>
 
       <div className={styles['index__logos']}>
         <img

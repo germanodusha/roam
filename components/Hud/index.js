@@ -132,12 +132,18 @@ const Hud = () => {
       </HudSection>
 
       <HudSection show={showFullMenu} className={styles['hud__stats']}>
-        <span>{counter.main}/12</span>
+        <span>
+          {counter.main}
+          <span className={styles['hud__stats--small']}>/12</span>
+        </span>
         <img src="/assets/images/stats-contents-visited.png" />
 
         <div className={styles['hud__stats__spacer']} />
 
-        <span>{counter.extra}/51</span>
+        <span>
+          {counter.extra}
+          <span className={styles['hud__stats--small']}>/51</span>
+        </span>
         <img src="/assets/images/stats-tracks-visited.png" />
       </HudSection>
 

@@ -32,6 +32,10 @@
       font-family: 'Arial';
       transform: translateY(0) scale(0.8) !important;
     }
+
+    &-rotate90 {
+      transform: rotate(90deg) scale(0.8) !important;
+    }
   }
 
   &-active,

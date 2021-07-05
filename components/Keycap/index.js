@@ -11,6 +11,7 @@ const Keycap = ({
   className,
   onKeyDown = undefined,
   onKeyUp = undefined,
+  rotate90 = false,
 }) => {
   useKeyPressEvent({ key: value, onKeyDown, onKeyUp })
 
@@ -31,6 +32,7 @@ const Keycap = ({
       <span
         className={classNames(styles['keycap__inner'], {
           [styles['keycap__inner-bordered']]: bordered,
+          [styles['keycap__inner-rotate90']]: rotate90,
         })}
       >
         {value.toUpperCase()}
