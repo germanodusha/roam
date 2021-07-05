@@ -14,11 +14,11 @@ const CREDENTIALS_PATH = `${PROJECT_PATH}/credentials.json`
 
 const Data = {
   objetos: {
-    range: 'Lista de conteúdo dos objetos!A2:J',
+    range: 'Lista de conteúdo dos objetos!A2:G',
     file: 'export/contentObjects.js',
   },
   extras: {
-    range: 'Lista de conteúdos extras!A1:E',
+    range: 'Lista de conteúdos extras!A1:D',
     file: 'export/contentExtras.js',
   },
   contentCoordinatesSounds: {
@@ -120,7 +120,10 @@ function listTable(auth, range, saveTo) {
       range,
     },
     (err, res) => {
-      if (err) return console.log('The API returned an error: ' + err)
+      if (err) {
+        console.log('The API returned an error: ' + err)
+        throw err
+      }
       const rows = res.data.values
       if (rows.length) {
         // Print columns A and E, which correspond to indices 0 and 4.
