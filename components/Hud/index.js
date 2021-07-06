@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { useControls } from 'leva'
+import { isMobile } from 'react-device-detect'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
 import useDesappearState from '@/hooks/useDesappearState'
-import StatusText from '@/components/StatusText'
+import BottomButtons from '@/components/BottomButtons'
 import styles from './Hud.module.scss'
 
 const HudSection = ({ children, className, show }) => (
@@ -23,30 +24,32 @@ const HudSection = ({ children, className, show }) => (
 const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
   const [state, show] = useDesappearState({ stateToPersist: media })
 
+  const buttonsData = useMemo(
+    () => [
+      { type: 'text', text: 'press', red: true },
+      {
+        type: 'key',
+        value: 'F',
+        onKeyDown: () => media && openMedia(media),
+        className: styles['hud__interaction__keycap'],
+        mobile: 'OPEN',
+      },
+      { type: 'text', text: 'to open it or', red: true },
+      {
+        type: 'key',
+        value: 'E',
+        onKeyDown: () => onChangeInteraction(null),
+        className: styles['hud__interaction__keycap'],
+        mobile: 'IGNORE',
+      },
+    ],
+    [media, openMedia, onChangeInteraction]
+  )
+
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
       <h1 className={styles['red']}>{state.title}</h1>
-      <div>
-        <StatusText red>press</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="F"
-          onKeyDown={() => media && openMedia(media)}
-          className={styles['hud__interaction__keycap']}
-        />
-        <StatusText red>to open it or</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="E"
-          onKeyDown={() => onChangeInteraction(null)}
-          className={styles['hud__interaction__keycap']}
-        />
-        <StatusText red>to ignore</StatusText>
-      </div>
+      <BottomButtons data={buttonsData} />
     </HudSection>
   )
 }
@@ -64,33 +67,6 @@ const TrackDisplay = ({ mediaTrack }) => {
         className={styles['hud__interaction__icon']}
       />
       <span className={styles['hud__interaction__time']}>{formatedTime}</span>
-      {false && (
-        <div>
-          <StatusText>use</StatusText>
-          <Keycap
-            bordered
-            small
-            value="Q"
-            onKeyDown={() => console.log('q pressed')}
-          />
-          <StatusText>for play/pause and</StatusText>
-          <Keycap
-            inverted
-            bordered
-            small
-            value="+"
-            onKeyDown={() => console.log('+ pressed')}
-          />
-          <Keycap
-            inverted
-            bordered
-            small
-            value="-"
-            onKeyDown={() => console.log('- pressed')}
-          />
-          <StatusText>for volume</StatusText>
-        </div>
-      )}
     </HudSection>
   )
 }
@@ -155,12 +131,20 @@ const Hud = () => {
 
       <HudSection show={showFullMenu} className={styles['hud__controls-move']}>
         <div className={styles['hud__controls-move__w']}>
-          <Keycap value="W" active={movement.forward} />
+          <Keycap
+            value={isMobile ? '<' : 'W'}
+            active={movement.forward}
+            rotate90original={isMobile}
+          />
         </div>
         <div className={styles['hud__controls-move__asd']}>
-          <Keycap value="A" active={movement.left} />
-          <Keycap value="S" active={movement.backward} />
-          <Keycap value="D" active={movement.right} />
+          <Keycap value={isMobile ? '<' : 'A'} active={movement.left} />
+          <Keycap
+            value={isMobile ? '>' : 'S'}
+            active={movement.backward}
+            rotate90original={isMobile}
+          />
+          <Keycap value={isMobile ? '>' : 'D'} active={movement.right} />
         </div>
       </HudSection>
 

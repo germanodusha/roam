@@ -1,12 +1,28 @@
+import { useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import WallBricks from '@/components/WallBricks'
-import Keycap from '@/components/Keycap'
-import StatusText from '@/components/StatusText'
+import BottomButtons from '@/components/BottomButtons'
 import styles from './index.module.scss'
 
 const Index = () => {
   const router = useRouter()
+
+  const buttonsData = useMemo(
+    () => [
+      { type: 'text', text: 'press', red: true },
+      {
+        type: 'key',
+        value: 'F',
+        active: true,
+        onClick: () => router.push('/info'),
+        onKeyDown: () => router.push('/info'),
+        mobile: 'ENTER',
+      },
+      { type: 'text', text: 'to enter roam', red: true },
+    ],
+    [router.push]
+  )
 
   return (
     <WallBricks className={styles['index']}>
@@ -14,16 +30,10 @@ const Index = () => {
         <h1>roam</h1>
         <Link href="/info">
           <a>
-            <StatusText red>press</StatusText>
-            <Keycap
-              small
-              active
-              bordered
-              value="f"
-              onKeyDown={() => router.push('/info')}
+            <BottomButtons
+              className={styles['index__bottom-actions']}
+              data={buttonsData}
             />
-
-            <StatusText red>to enter roam</StatusText>
           </a>
         </Link>
       </div>

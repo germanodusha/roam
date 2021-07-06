@@ -144,11 +144,11 @@
     }
 
     &__keycap {
-      opacity: 1;
-      color: red;
-      border-color: red;
-      box-shadow: 0 0 5px red;
-      text-shadow: 0 0 5px red;
+      opacity: 1 !important;
+      color: red !important;
+      border-color: red !important;
+      box-shadow: 0 0 5px red !important;
+      text-shadow: 0 0 5px red !important;
     }
   }
 }
