@@ -9,7 +9,7 @@ const Item = {
 
 const BottomButtons = ({ className, data }) => (
   <div className={className}>
-    {data.map((item) => {
+    {data.map((item, i) => {
       if (isMobile && item.type === 'text') return null
       const Render = Item[item.type]
 
@@ -18,6 +18,7 @@ const BottomButtons = ({ className, data }) => (
           inverted
           bordered
           small
+          key={i}
           red={item.red}
           fitContent={isMobile}
           value={isMobile ? item.mobile : item.value}

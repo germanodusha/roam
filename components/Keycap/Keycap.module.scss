@@ -11,6 +11,7 @@
   text-shadow: 0 0 5px white;
   margin: 0 1em;
   user-select: none;
+  z-index: 9999;
 
   &-bordered {
     border-color: white;

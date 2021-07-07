@@ -58,24 +58,40 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
 }
 
 const TrackDisplay = ({ mediaTrack }) => {
+  const { onChangeInteraction } = useStore((store) => store.actions)
   const [state, show] = useDesappearState({ stateToPersist: mediaTrack })
   const { formatedTime } = useStore((store) => store.state)
 
+  const disableTrack = () => onChangeInteraction(null)
+
   if (!mediaTrack && !show) return null
   return (
-    <HudSection show={show} className={styles['hud__interaction']}>
-      <h1>{state.media?.artist}</h1>
-      <h3>{state.media?.title}</h3>
-      <img
-        src="/assets/images/Icon-Track.png"
-        className={styles['hud__interaction__icon']}
-      />
-      <span className={styles['hud__interaction__time']}>{formatedTime}</span>
-    </HudSection>
+    <>
+      <HudSection show={show} className={styles['hud__interaction']}>
+        <h1>{state.media?.artist}</h1>
+        <h3>{state.media?.title}</h3>
+        <img
+          src="/assets/images/Icon-Track.png"
+          className={styles['hud__interaction__icon']}
+        />
+        <span className={styles['hud__interaction__time']}>{formatedTime}</span>
+      </HudSection>
+
+      <HudSection show={isMobile} className={styles['hud__icon']}>
+        <Keycap
+          small
+          bordered
+          value="X"
+          onClick={disableTrack}
+          onKeyUp={disableTrack}
+          onKeyDown={disableTrack}
+        />
+      </HudSection>
+    </>
   )
 }
 
-const Hud = () => {
+const Hud = ({ isFullscreen, disableFullscreen }) => {
   const [media, setMedia] = useState(false)
   const [mediaTrack, setMediaTrack] = useState(false)
   const { onMove, openMedia, onChangeInteraction } = useStore(
@@ -114,28 +130,45 @@ const Hud = () => {
       </HudSection>
 
       <HudSection show={showFullMenu} className={styles['hud__stats']}>
-        <span>
-          {counter.main}
-          <span className={styles['hud__stats--small']}>/12</span>
-        </span>
-        <img src="/assets/images/stats-contents-visited.png" />
+        <div>
+          <span>
+            {counter.main}
+            <span className={styles['hud__stats--small']}>/12</span>
+          </span>
+          <img src="/assets/images/stats-contents-visited.png" />
+        </div>
 
         <div className={styles['hud__stats__spacer']} />
 
-        <span>
-          {counter.extra}
-          <span className={styles['hud__stats--small']}>/51</span>
-        </span>
-        <img src="/assets/images/stats-tracks-visited.png" />
+        <div>
+          <span>
+            {counter.extra}
+            <span className={styles['hud__stats--small']}>/51</span>
+          </span>
+          <img src="/assets/images/stats-tracks-visited.png" />
+        </div>
       </HudSection>
 
-      {/**
-      <HudSection show={showFullMenu} className={styles['hud__icon']}>
-        // TODO icon
-      </HudSection>
-      **/}
+      {isFullscreen && (
+        <HudSection show={showFullMenu} className={styles['hud__icon']}>
+          <Keycap
+            small
+            bordered
+            active
+            value="X"
+            onClick={disableFullscreen}
+            onKeyUp={disableFullscreen}
+            onKeyDown={disableFullscreen}
+          />
+        </HudSection>
+      )}
 
-      <HudSection show={showFullMenu} className={styles['hud__controls-move']}>
+      <HudSection
+        show={showFullMenu}
+        className={classNames(styles['hud__controls-move'], {
+          [styles['hud__controls-move-mobile']]: isMobile,
+        })}
+      >
         <div className={styles['hud__controls-move__w']}>
           <Keycap
             value={isMobile ? '<' : 'W'}
@@ -143,6 +176,9 @@ const Hud = () => {
             onKeyUp={() => onMove(KeyBindings.KeyW, false)}
             onKeyDown={() => onMove(KeyBindings.KeyW, true)}
             rotate90original={isMobile}
+            className={
+              isMobile ? styles['hud__controls-move-mobile__front'] : ''
+            }
           />
         </div>
         <div className={styles['hud__controls-move__asd']}>
@@ -158,6 +194,9 @@ const Hud = () => {
             onKeyUp={() => onMove(KeyBindings.KeyS, false)}
             onKeyDown={() => onMove(KeyBindings.KeyS, true)}
             rotate90original={isMobile}
+            className={
+              isMobile ? styles['hud__controls-move-mobile__back'] : ''
+            }
           />
           <Keycap
             value={isMobile ? '>' : 'D'}

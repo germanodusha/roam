@@ -22,8 +22,14 @@ function Player() {
   const { camera, gl } = useThree()
   const currentVelocity = useRef([0, 0, 0])
   const { lockPointer } = useControls('player', { lockPointer: true })
-  const cameraControls = useRef(new CameraControls(camera, gl.domElement))
-    .current
+  const touchCamera = useRef(null)
+
+  useEffect(() => {
+    if (!isMobile) return
+    if (touchCamera.current) return
+
+    touchCamera.current = new CameraControls(camera, gl.domElement)
+  }, [touchCamera, camera, gl.domElement])
 
   const [ref, api] = useSphere(() => ({
     mass: 1,
@@ -62,7 +68,7 @@ function Player() {
   }, [])
 
   useFrame((state, delta) => {
-    cameraControls.update(delta)
+    if (touchCamera.current) touchCamera.current.update(delta)
     camera.position.copy(ref.current.position)
     camera.position.y = config.player.height
 

@@ -36,7 +36,10 @@ const Index = () => {
   return (
     <div ref={ref}>
       <Scene />
-      <Hud />
+      <Hud
+        isFullscreen={fullscreen}
+        disableFullscreen={() => toggleFullscreen(false)}
+      />
       {/**showLocker && <div>locker</div>**/}
       <MediaCenter />
       <Loading toggleFullscreen={onLoad} />

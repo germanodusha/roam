@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .hud {
   &__section {
     position: fixed;
@@ -32,36 +34,56 @@
 
   &__stats {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    top: -1.5em;
-    left: 1em;
+    flex-direction: column;
+    top: -1em;
+    left: 0.5em;
+
+    & > div {
+      display: flex;
+      align-items: center;
+    }
 
     &--small {
       font-size: 0.5em !important;
     }
 
     & img {
-      width: 3.5em;
-      height: 3.5em;
+      width: 1.5em;
+      height: 1.5em;
       transform: translateY(17.5%);
     }
 
     & span {
       color: red;
       font-family: 'Breathe Fire II';
-      font-size: 6.5em;
+      font-size: 3em;
       font-style: italic;
     }
 
     &__spacer {
       width: 3em;
     }
+
+    @media #{$tablet} {
+      left: 1em;
+      top: -1.5em;
+      flex-direction: row;
+
+      & img {
+        width: 3.5em;
+        height: 3.5em;
+        transform: translateY(17.5%);
+      }
+
+      & span {
+        font-size: 6.5em;
+      }
+    }
   }
 
   &__icon {
     top: 0;
-    right: 0;
+    right: 1em;
   }
 
   &__controls-move {
@@ -74,6 +96,21 @@
 
     &__asd {
       display: flex;
+    }
+
+    &-mobile {
+      top: unset;
+      bottom: 0;
+      transform: translateY(-30%);
+      scale: 0.8;
+
+      &__front {
+        transform: translateX(-25%);
+      }
+
+      &__back {
+        transform: translate(-10%, 90%);
+      }
     }
   }
 
@@ -105,7 +142,7 @@
       line-height: 70%;
       white-space: pre-line;
       font-family: 'Dungeon';
-      font-size: 6em;
+      font-size: 4em;
       text-align: center;
       color: white;
       margin: 0;
@@ -116,7 +153,7 @@
     & h3 {
       font-family: 'Dungeon';
       color: white;
-      font-size: 5em;
+      font-size: 3em;
       font-style: italic;
       margin: 0;
       padding: 0;
@@ -128,15 +165,31 @@
       font-family: 'AntPolt Expd';
       font-style: italic;
       font-weight: 900;
-      font-size: 3em;
+      font-size: 2em;
       text-shadow: 0 0 5px white;
       padding-bottom: 1em;
     }
 
     &__icon {
-      max-height: 30vh;
+      max-height: 20vh;
+    }
 
-      // height: 50%;
+    @media #{$tablet} {
+      & h1 {
+        font-size: 6em;
+      }
+
+      & h3 {
+        font-size: 5em;
+      }
+
+      &__icon {
+        max-height: 30vh;
+      }
+
+      &__time {
+        font-size: 3em;
+      }
     }
 
     & > div {

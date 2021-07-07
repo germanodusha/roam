@@ -118,8 +118,8 @@ const MediaCenter = () => {
       {
         type: 'key',
         value: 'e',
-        onKeyDown: () => onClose,
-        onClick: () => onClose,
+        onKeyDown: onClose,
+        onClick: onClose,
         mobile: 'BACK',
       },
       { type: 'text', text: 'to go back to the maze', red: false },
@@ -133,14 +133,6 @@ const MediaCenter = () => {
     <div
       className={classNames(styles['media'], { [styles['media-show']]: show })}
     >
-      <BottomButtons
-        data={buttonsData}
-        className={classNames(
-          styles['media__status'],
-          styles['media__status__exit']
-        )}
-      />
-
       <Status onNextPage={onNextPage} />
 
       <div className={styles['media-glow']}>
@@ -172,6 +164,14 @@ const MediaCenter = () => {
           )}
         </div>
       </div>
+
+      <BottomButtons
+        data={buttonsData}
+        className={classNames(
+          styles['media__status'],
+          styles['media__status__exit']
+        )}
+      />
     </div>
   )
 }
