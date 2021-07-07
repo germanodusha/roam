@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import styles from './MediaCenter.module.scss'
 import classNames from 'classnames'
 import { useStore } from '../../store'
@@ -10,6 +10,7 @@ import VideoMedia from '@/components/VideoMedia'
 import StatusText from '@/components/StatusText'
 import Keycap from '@/components/Keycap'
 import MediaCover from '@/components/MediaCover'
+import BottomButtons from '@/components/BottomButtons'
 import texto1 from '@/data/texts/texto1.md'
 import texto2 from '@/data/texts/texto2.md'
 import texto3 from '@/data/texts/texto3.md'
@@ -111,22 +112,34 @@ const MediaCenter = () => {
     setShowCover(true)
   }
 
+  const buttonsData = useMemo(
+    () => [
+      { type: 'text', text: 'press', red: false },
+      {
+        type: 'key',
+        value: 'e',
+        onKeyDown: () => onClose,
+        onClick: () => onClose,
+        mobile: 'BACK',
+      },
+      { type: 'text', text: 'to go back to the maze', red: false },
+    ],
+    []
+  )
+
   if (!state || !Media) return null
 
   return (
     <div
       className={classNames(styles['media'], { [styles['media-show']]: show })}
     >
-      <div
+      <BottomButtons
+        data={buttonsData}
         className={classNames(
           styles['media__status'],
           styles['media__status__exit']
         )}
-      >
-        <StatusText>press</StatusText>
-        <Keycap value="e" bordered small onKeyDown={onClose} />
-        <StatusText>to go back to the maze</StatusText>
-      </div>
+      />
 
       <Status onNextPage={onNextPage} />
 

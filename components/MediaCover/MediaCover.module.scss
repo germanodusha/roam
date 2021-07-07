@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .cover {
   display: flex;
   height: 100%;
@@ -17,18 +19,39 @@
     align-items: center;
 
     & h1 {
-      font-size: 4em;
-      padding: 0;
+      padding: 0 1em;
       margin: 0;
       font-family: 'AntPolt Expd';
       font-style: italic;
       font-weight: bold;
+      text-shadow: 0 0 5px white;
+      filter: blur(1.1px);
     }
   }
 
   & span {
-    font-size: 1em;
+    font-size: 0.8em;
     padding-bottom: 1.5em;
     text-transform: uppercase;
+  }
+
+  @media #{$tablet} {
+    h1 {
+      font-size: 2.5em;
+    }
+
+    span {
+      font-size: 0.9em;
+    }
+  }
+
+  @media #{$desktop} {
+    h1 {
+      font-size: 3.75em;
+    }
+
+    span {
+      font-size: 1em;
+    }
   }
 }

@@ -1,30 +1,46 @@
-// import { useMemo } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useFullscreen } from 'react-use'
+import { isMobile } from 'react-device-detect'
 import Hud from '@/components/Hud'
 import MediaCenter from '@/components/MediaCenter'
 import Loading from '@/components/Loading'
-// import { useStore } from '../store'
 import { Scene } from '../objects3d'
 
 const Index = () => {
-  {
-    /**
-    const { pointerLock } = useStore(({ state }) => state.game)
+  const ref = useRef(null)
+  const [fullscreen, toggleFullscreen] = useState(false)
 
-    const showLocker = useMemo(() => {
-      console.log(pointerLock)
-      // const showLocker = pointerLock ? !pointerLock.current.isLocked : false
-    }, [pointerLock])
-  **/
+  useFullscreen(ref, fullscreen, { onClose: () => toggleFullscreen(false) })
+
+  useEffect(() => {
+    if (!isMobile) return
+
+    const forceFullscreen = () => {
+      if (fullscreen) return
+      toggleFullscreen(true)
+    }
+
+    window.addEventListener('click', forceFullscreen)
+
+    return () => {
+      window.removeEventListener('click', forceFullscreen)
+    }
+  }, [fullscreen, toggleFullscreen])
+
+  const onLoad = () => {
+    if (!isMobile) return
+    if (fullscreen) return
+    toggleFullscreen(true)
   }
 
   return (
-    <>
+    <div ref={ref}>
       <Scene />
       <Hud />
       {/**showLocker && <div>locker</div>**/}
       <MediaCenter />
-      <Loading />
-    </>
+      <Loading toggleFullscreen={onLoad} />
+    </div>
   )
 }
 

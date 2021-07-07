@@ -65,7 +65,7 @@
       flex: 1 1;
       margin: 0 1em;
       align-items: stretch;
-      filter: blur(1px);
+      // filter: blur(1px);
 
       @media #{$tablet} {
         width: 40vw;
@@ -74,6 +74,8 @@
       &--bold {
         text-transform: uppercase;
         font-weight: 900;
+        text-shadow: 0 0 5px red;
+        filter: blur(1.1px);
       }
 
       &--desc {
@@ -114,8 +116,7 @@
 
   &__status {
     display: flex;
-    padding-bottom: 1em;
-    filter: blur(1px);
+    padding-bottom: 3em;
   }
 
   &__description {

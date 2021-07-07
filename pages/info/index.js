@@ -1,12 +1,28 @@
+import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Scrollbars } from 'react-custom-scrollbars'
 import WallBricks from '@/components/WallBricks'
-import Keycap from '@/components/Keycap'
-import StatusText from '@/components/StatusText'
+import BottomButtons from '@/components/BottomButtons'
 import styles from './Info.module.scss'
 
 const Info = () => {
   const router = useRouter()
+
+  const buttonsData = useMemo(
+    () => [
+      { type: 'text', text: 'press', red: true },
+      {
+        type: 'key',
+        value: 'F',
+        active: true,
+        onClick: () => router.push('/howto'),
+        onKeyDown: () => router.push('/howto'),
+        mobile: 'ENTER',
+      },
+      { type: 'text', text: 'to go back', red: true },
+    ],
+    [router.push]
+  )
 
   return (
     <WallBricks className={styles['info']}>
@@ -43,27 +59,10 @@ const Info = () => {
             scattered and hidden in the game's architecture. And to get lost.
           </div>
 
-          <div className={styles['info__status']}>
-            <StatusText red>press</StatusText>
-            <Keycap
-              small
-              active
-              bordered
-              value="f"
-              onClick={() => router.push('/howto')}
-              onKeyDown={() => router.push('/howto')}
-            />
-            <StatusText red>to enter roam or</StatusText>
-            <Keycap
-              small
-              active
-              bordered
-              value="e"
-              onClick={() => router.back()}
-              onKeyDown={() => router.back()}
-            />
-            <StatusText red>to go back</StatusText>
-          </div>
+          <BottomButtons
+            className={styles['info__status']}
+            data={buttonsData}
+          />
         </div>
       </Scrollbars>
     </WallBricks>

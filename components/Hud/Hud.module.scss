@@ -37,9 +37,14 @@
     top: -1.5em;
     left: 1em;
 
+    &--small {
+      font-size: 0.5em !important;
+    }
+
     & img {
       width: 3.5em;
       height: 3.5em;
+      transform: translateY(17.5%);
     }
 
     & span {
@@ -139,11 +144,11 @@
     }
 
     &__keycap {
-      opacity: 1;
-      color: red;
-      border-color: red;
-      box-shadow: 0 0 5px red;
-      text-shadow: 0 0 5px red;
+      opacity: 1 !important;
+      color: red !important;
+      border-color: red !important;
+      box-shadow: 0 0 5px red !important;
+      text-shadow: 0 0 5px red !important;
     }
   }
 }

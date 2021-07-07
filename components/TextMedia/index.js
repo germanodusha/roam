@@ -48,8 +48,8 @@ const TextMedia = ({ appear, markdowns, media }) => {
         )}
       >
         <StatusText>press</StatusText>
-        <Keycap value="↑" bordered small />
-        <Keycap value="↓" bordered small />
+        <Keycap value="<" bordered small rotate90 />
+        <Keycap value=">" bordered small rotate90 />
         <StatusText>for scroll</StatusText>
       </div>
 

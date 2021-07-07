@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { useControls } from 'leva'
+import { isMobile } from 'react-device-detect'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
 import useDesappearState from '@/hooks/useDesappearState'
-import StatusText from '@/components/StatusText'
+import BottomButtons from '@/components/BottomButtons'
 import KeyBindings from '../../config/keybindings.json'
 import styles from './Hud.module.scss'
 
@@ -24,31 +25,34 @@ const HudSection = ({ children, className, show }) => (
 const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
   const [state, show] = useDesappearState({ stateToPersist: media })
 
+  const buttonsData = useMemo(
+    () => [
+      { type: 'text', text: 'press', red: true },
+      {
+        type: 'key',
+        value: 'F',
+        onKeyDown: () => media && openMedia(media),
+        className: styles['hud__interaction__keycap'],
+        mobile: 'OPEN',
+      },
+      { type: 'text', text: 'to open it or', red: true },
+      {
+        type: 'key',
+        value: 'E',
+        onKeyDown: () => onChangeInteraction(null),
+        className: styles['hud__interaction__keycap'],
+        mobile: 'IGNORE',
+      },
+    ],
+    [media, openMedia, onChangeInteraction]
+  )
+
   if (!media && !show) return null
+
   return (
     <HudSection show={show} className={styles['hud__interaction']}>
       <h1 className={styles['red']}>{state.title}</h1>
-      <div>
-        <StatusText red>press</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="F"
-          onKeyDown={() => media && openMedia(media)}
-          className={styles['hud__interaction__keycap']}
-        />
-        <StatusText red>to open it or</StatusText>
-        <Keycap
-          inverted
-          bordered
-          small
-          value="E"
-          onKeyDown={() => onChangeInteraction(null)}
-          className={styles['hud__interaction__keycap']}
-        />
-        <StatusText red>to ignore</StatusText>
-      </div>
+      <BottomButtons data={buttonsData} />
     </HudSection>
   )
 }
@@ -67,33 +71,6 @@ const TrackDisplay = ({ mediaTrack }) => {
         className={styles['hud__interaction__icon']}
       />
       <span className={styles['hud__interaction__time']}>{formatedTime}</span>
-      {false && (
-        <div>
-          <StatusText>use</StatusText>
-          <Keycap
-            bordered
-            small
-            value="Q"
-            onKeyDown={() => console.log('q pressed')}
-          />
-          <StatusText>for play/pause and</StatusText>
-          <Keycap
-            inverted
-            bordered
-            small
-            value="+"
-            onKeyDown={() => console.log('+ pressed')}
-          />
-          <Keycap
-            inverted
-            bordered
-            small
-            value="-"
-            onKeyDown={() => console.log('- pressed')}
-          />
-          <StatusText>for volume</StatusText>
-        </div>
-      )}
     </HudSection>
   )
 }
@@ -137,12 +114,18 @@ const Hud = () => {
       </HudSection>
 
       <HudSection show={showFullMenu} className={styles['hud__stats']}>
-        <span>{counter.main}/12</span>
+        <span>
+          {counter.main}
+          <span className={styles['hud__stats--small']}>/12</span>
+        </span>
         <img src="/assets/images/stats-contents-visited.png" />
 
         <div className={styles['hud__stats__spacer']} />
 
-        <span>{counter.extra}/51</span>
+        <span>
+          {counter.extra}
+          <span className={styles['hud__stats--small']}>/51</span>
+        </span>
         <img src="/assets/images/stats-tracks-visited.png" />
       </HudSection>
 
@@ -155,27 +138,29 @@ const Hud = () => {
       <HudSection show={showFullMenu} className={styles['hud__controls-move']}>
         <div className={styles['hud__controls-move__w']}>
           <Keycap
-            value="W"
+            value={isMobile ? '<' : 'W'}
             active={movement.forward}
             onKeyUp={() => onMove(KeyBindings.KeyW, false)}
             onKeyDown={() => onMove(KeyBindings.KeyW, true)}
+            rotate90original={isMobile}
           />
         </div>
         <div className={styles['hud__controls-move__asd']}>
           <Keycap
-            value="A"
+            value={isMobile ? '<' : 'A'}
             active={movement.left}
             onKeyUp={() => onMove(KeyBindings.KeyA, false)}
             onKeyDown={() => onMove(KeyBindings.KeyA, true)}
           />
           <Keycap
-            value="S"
+            value={isMobile ? '>' : 'S'}
             active={movement.backward}
             onKeyUp={() => onMove(KeyBindings.KeyS, false)}
             onKeyDown={() => onMove(KeyBindings.KeyS, true)}
+            rotate90original={isMobile}
           />
           <Keycap
-            value="D"
+            value={isMobile ? '>' : 'D'}
             active={movement.right}
             onKeyUp={() => onMove(KeyBindings.KeyD, false)}
             onKeyDown={() => onMove(KeyBindings.KeyD, true)}

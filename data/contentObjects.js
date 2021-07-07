@@ -2,7 +2,7 @@ export default [
   {
     id: '1',
     Título: 'Labyrinth of Passion',
-    Legenda: 'Pedro Almodóvar (1982)',
+    Legenda: 'PEDRO ALMODÓVAR (1982)',
     Video: '',
     Audio: '',
     Text: '',
@@ -11,7 +11,7 @@ export default [
   {
     id: '2',
     Título: 'The Masone Labyrinth',
-    Legenda: 'The Largest labyrinth in the world',
+    Legenda: 'THE LARGEST LABYRINTH IN THE WORLD',
     Video: '',
     Audio: '',
     Text: '',
@@ -20,7 +20,7 @@ export default [
   {
     id: '3',
     Título: ' Invenção da Cor, Penetrável Magic Square #5, De Luxe',
-    Legenda: 'Hélio Oiticica (1977)',
+    Legenda: 'HÉLIO OITICICA (1977)',
     Video: '',
     Audio: '',
     Text: '',
@@ -29,7 +29,7 @@ export default [
   {
     id: '4',
     Título: 'Através',
-    Legenda: 'Cildo Meireles (1983 - 1989)',
+    Legenda: 'CILDO MEIRELES (1983 - 1989)',
     Video: '',
     Audio: '',
     Text: '',
@@ -38,7 +38,7 @@ export default [
   {
     id: '5',
     Título: 'Labyrinth I',
-    Legenda: 'Salvador Dalí (1941)',
+    Legenda: 'SALVADOR DALÍ (1941)',
     Video: '',
     Audio: '',
     Text: '',
@@ -46,17 +46,17 @@ export default [
   },
   {
     id: '6',
-    Título: 'La Relativity',
-    Legenda: 'Escher (1953)',
+    Título: 'Favela da Rocinha',
+    Legenda: 'BIGGEST FAVELA IN LATIN AMERICA. RIO DE JANEIRO, BRASIL.',
     Video: '',
     Audio: '',
     Text: '',
-    'Imagem\n(nome)': 'imagem6.png',
+    'Imagem\n(nome)': 'imagem21.png',
   },
   {
     id: '7',
     Título: 'Minotauromachy (La Minotauromachie)',
-    Legenda: 'Pablo Picasso (1935)',
+    Legenda: 'PABLO PICASSO (1935)',
     Video: '',
     Audio: '',
     Text: '',
@@ -66,7 +66,7 @@ export default [
     id: '8',
     Título:
       'A conversa das entidades intergalácticas para decidir o futuro universal da humanidade',
-    Legenda: 'Jaider Eisbell (2021)',
+    Legenda: 'JAIDER EISBELL (2021)',
     Video: '',
     Audio: '',
     Text: '',
@@ -75,7 +75,7 @@ export default [
   {
     id: '9',
     Título: 'The Labyrinth',
-    Legenda: 'Keith Haring  (1989)',
+    Legenda: 'KEITH HARING  (1989)',
     Video: '',
     Audio: '',
     Text: '',
@@ -84,7 +84,7 @@ export default [
   {
     id: '10',
     Título: 'Mirror Labyrinth NY',
-    Legenda: 'Jeppe Hein (2015)',
+    Legenda: 'JEPPE HEIN (2015)',
     Video: '',
     Audio: '',
     Text: '',
@@ -93,7 +93,7 @@ export default [
   {
     id: '11',
     Título: 'Labirinto',
-    Legenda: 'Montez Magno (1992)',
+    Legenda: 'MONTEZ MAGNO (1992)',
     Video: '',
     Audio: '',
     Text: '',
@@ -102,7 +102,7 @@ export default [
   {
     id: '12',
     Título: 'The Maze Garden',
-    Legenda: 'Dani Choi',
+    Legenda: 'DANI CHOI',
     Video: '',
     Audio: '',
     Text: '',
@@ -111,7 +111,7 @@ export default [
   {
     id: '13',
     Título: 'Pier and Ocean 5 (Sea and Starry Sky)',
-    Legenda: 'Mondrian (1915)',
+    Legenda: 'MONDRIAN (1915)',
     Video: '',
     Audio: '',
     Text: '',
@@ -120,7 +120,7 @@ export default [
   {
     id: '14',
     Título: 'Labyrinth',
-    Legenda: 'Robert Morris (1973)',
+    Legenda: 'ROBERT MORRIS (1973)',
     Video: '',
     Audio: '',
     Text: '',
@@ -129,7 +129,7 @@ export default [
   {
     id: '15',
     Título: 'Inside Out',
-    Legenda: 'Richard Serra (2013)',
+    Legenda: 'RICHARD SERRA (2013)',
     Video: '',
     Audio: '',
     Text: '',
@@ -138,7 +138,7 @@ export default [
   {
     id: '16',
     Título: 'Splazsh',
-    Legenda: 'Actress (2010)',
+    Legenda: 'ACTRESS (2010)',
     Video: '',
     Audio: '',
     Text: '',
@@ -147,7 +147,7 @@ export default [
   {
     id: '17',
     Título: 'Unamed',
-    Legenda: 'Guy Billout',
+    Legenda: 'GUY BILLOUT',
     Video: '',
     Audio: '',
     Text: '',
@@ -156,7 +156,7 @@ export default [
   {
     id: '18',
     Título: 'Labyrinth',
-    Legenda: 'Soizick Meister',
+    Legenda: 'SOIZICK MEISTER',
     Video: '',
     Audio: '',
     Text: '',
@@ -165,7 +165,7 @@ export default [
   {
     id: '19',
     Título: 'Unamed',
-    Legenda: 'John Holcroft',
+    Legenda: 'JOHN HOLCROFT',
     Video: '',
     Audio: '',
     Text: '',
@@ -174,7 +174,7 @@ export default [
   {
     id: '20',
     Título: 'Mazes inside European Medieval Cathedrals',
-    Legenda: 'Also known as “Roads of Jerusalem”',
+    Legenda: 'ALSO KNOWN AS “ROADS OF JERUSALEM”',
     Video: '',
     Audio: '',
     Text: '',
@@ -182,17 +182,17 @@ export default [
   },
   {
     id: '21',
-    Título: 'Favela da Rocinha',
-    Legenda: 'Biggest favela in Latin America. Rio de Janeiro, Brasil.',
+    Título: 'La Relativity',
+    Legenda: 'ESCHER (1953)',
     Video: '',
     Audio: '',
     Text: '',
-    'Imagem\n(nome)': 'imagem21.png',
+    'Imagem\n(nome)': 'imagem6.png',
   },
   {
     id: '22',
     Título: 'The Labyrinth',
-    Legenda: 'Jorge Luís Borges (1969)',
+    Legenda: 'JORGE LUÍS BORGES (1969)',
     Video: '',
     Audio: '',
     Text: '',
@@ -201,7 +201,7 @@ export default [
   {
     id: '23',
     Título: 'Hopscotch',
-    Legenda: 'Julio Cortázar (1963)',
+    Legenda: 'JULIO CORTÁZAR (1963)',
     Video: '',
     Audio: '',
     Text: '',
@@ -211,7 +211,7 @@ export default [
     id: '24',
     Título: 'Tetramorium Hybrid Nest',
     Legenda:
-      'Formicarium (an ant farm designed for professional ant colony keepers)',
+      'FORMICARIUM (AN ANT FARM DESIGNED FOR PROFESSIONAL ANT COLONY KEEPERS)',
     Video: '',
     Audio: '',
     Text: '',
@@ -221,7 +221,7 @@ export default [
     id: '25',
     Título: 'Mycelium',
     Legenda:
-      'Vegetative part of a fungus or fungus-like bacterial colony, consisting of a mass of branching, thread-like hyphae',
+      'VEGETATIVE PART OF A FUNGUS OR FUNGUS-LIKE BACTERIAL COLONY, CONSISTING OF A MASS OF BRANCHING, THREAD-LIKE HYPHAE',
     Video: '',
     Audio: '',
     Text: '',
@@ -239,7 +239,7 @@ export default [
   {
     id: '27',
     Título: 'Unamed',
-    Legenda: 'Shipibo Conibo',
+    Legenda: 'SHIPIBO CONIBO',
     Video: '',
     Audio: '',
     Text: '',
@@ -248,67 +248,67 @@ export default [
   {
     id: '28',
     Título: 'Alice in Wonderland',
-    Legenda: 'Walt Disney (1951)',
+    Legenda: 'WALT DISNEY (1951)',
     Video: 'https://youtu.be/yawgS0pIBSk',
   },
   {
     id: '29',
     Título: 'The Maze',
-    Legenda: 'Dir: William Cameron Menzies (1953)',
+    Legenda: 'DIR: WILLIAM CAMERON MENZIES (1953)',
     Video: 'https://www.youtube.com/watch?v=cBPz_iXbWgs',
   },
   {
     id: '30',
     Título: 'Harry Potter and the Goblet of Fire',
-    Legenda: 'Dir: Mike Newell (2005)',
+    Legenda: 'DIR: MIKE NEWELL (2005)',
     Video: 'https://www.youtube.com/watch?v=oCR1gAurnoI',
   },
   {
     id: '31',
     Título: 'Inception',
-    Legenda: 'Dir: Christopher Nolan (2010)',
+    Legenda: 'DIR: CHRISTOPHER NOLAN (2010)',
     Video: 'https://www.youtube.com/watch?v=lcinXQNStnI',
   },
   {
     id: '32',
     Título: 'Maze Runner: The Scorch Trials',
-    Legenda: 'Dir: Wes Ball (2015)',
+    Legenda: 'DIR: WES BALL (2015)',
     Video: 'https://www.youtube.com/watch?v=-44_igsZtgU',
   },
   {
     id: '33',
     Título: 'Time Bandits',
-    Legenda: 'Terry Gillian (1981)',
+    Legenda: 'TERRY GILLIAN (1981)',
     Video: 'https://www.youtube.com/watch?v=vioocIR0gHQ',
   },
   {
     id: '34',
     Título: "Pan's Labyrinth",
-    Legenda: 'Guilhermo Del Toro (2006)',
+    Legenda: 'GUILHERMO DEL TORO (2006)',
     Video: 'https://www.youtube.com/watch?v=lSsfuEG4GMA',
   },
   {
     id: '35',
     Título: 'The Shinning',
-    Legenda: 'Stanley Kubrick (1980)',
+    Legenda: 'STANLEY KUBRICK (1980)',
     Video: 'https://www.youtube.com/watch?v=dGUvjKgXNJQ&t=3s',
   },
   {
     id: '36',
     Título: 'Labyrinth',
-    Legenda: 'Jim Henson (1986)',
+    Legenda: 'JIM HENSON (1986)',
     Video: 'https://www.youtube.com/watch?v=W2RfmWkvW9Q&t=753s',
   },
   {
     id: '37',
     Título: 'The Circus',
-    Legenda: 'Charlie Chaplin (1928)',
+    Legenda: 'CHARLIE CHAPLIN (1928)',
     Video: 'https://www.youtube.com/watch?v=G09dfRrUxUM',
   },
   {
     id: '38',
     Título: 'Medina of Fez',
-    Legenda: 'Marrocos',
+    Legenda: 'MARROCOS',
     Video: 'https://www.youtube.com/watch?v=jAvI9DWDhKs&t=37s',
   },
   {
@@ -326,18 +326,15 @@ export default [
   {
     id: '41',
     Título: 'Family lost in corn maze',
-    Legenda: 'Boston, 2011',
+    Legenda: 'BOSTON, 2011',
     Video: '',
     Audio: '',
     Text: 'texto1.md',
-    'Imagem\n(nome)': '',
-    NOTES:
-      'https://docs.google.com/document/d/1gSM_hnm55iYyfaChSufBJ_0zrYfQE3P2mYCvDm6vRGM/edit?usp=sharing',
   },
   {
     id: '42',
     Título: 'The Egyptian labyrinth',
-    Legenda: 'History',
+    Legenda: 'HISTORY',
     Video: '',
     Audio: '',
     Text: 'texto2.md',
@@ -345,7 +342,7 @@ export default [
   {
     id: '43',
     Título: 'The Tale of Daedalus',
-    Legenda: 'Greek mythology',
+    Legenda: 'GREEK MYTHOLOGY',
     Video: '',
     Audio: '',
     Text: 'texto3.md',
@@ -353,7 +350,7 @@ export default [
   {
     id: '44',
     Título: 'World labyrinth day',
-    Legenda: '1st saturday of May',
+    Legenda: '1ST SATURDAY OF MAY',
     Video: '',
     Audio: '',
     Text: 'texto4.md',
@@ -361,7 +358,7 @@ export default [
   {
     id: '45',
     Título: 'The labyrinth society',
-    Legenda: 'U.S. nonprofit organization',
+    Legenda: 'U.S. NONPROFIT ORGANIZATION',
     Video: '',
     Audio: '',
     Text: 'texto5.md',
@@ -386,7 +383,7 @@ export default [
     id: '48',
     Título: 'Winchester Mystery House: a haunted labyrinth maze of mystery',
     Legenda:
-      "160-room mansion that spanned 24,000 square feet built by Sarah Winchester, widow of gun magnate Willian Winchester, to all of the souls of people who'd been killed with Winchester rifles.",
+      "160-ROOM MANSION THAT SPANNED 24,000 SQUARE FEET BUILT BY SARAH WINCHESTER, WIDOW OF GUN MAGNATE WILLIAN WINCHESTER, TO ALL OF THE SOULS OF PEOPLE WHO'D BEEN KILLED WITH WINCHESTER RIFLES.",
     Video: '',
     Audio: '',
     Text: 'texto8.md',
@@ -394,7 +391,7 @@ export default [
   {
     id: '49',
     Título: 'Theory of the Dérive',
-    Legenda: 'Book of the situationist thinker Guy Debord (1958)',
+    Legenda: 'BOOK OF THE SITUATIONIST THINKER GUY DEBORD (1958)',
     Video: '',
     Audio: '',
     Text: 'texto9.md',
@@ -410,7 +407,7 @@ export default [
   {
     id: '51',
     Título: 'Nietzsche’s Eternal Return',
-    Legenda: 'Theory',
+    Legenda: 'THEORY',
     Video: '',
     Audio: '',
     Text: 'texto11.md',

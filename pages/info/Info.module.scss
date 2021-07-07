@@ -13,10 +13,15 @@
 
   & h1 {
     font-size: 6em;
+    text-shadow: 0 0 5px red;
+    filter: blur(1.1px);
   }
 
   &__text {
     font-size: 3em;
+    line-height: 90%;
+    text-shadow: 0 0 5px red;
+    filter: blur(1.1px);
   }
 
   &__status {
