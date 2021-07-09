@@ -2,10 +2,10 @@ import { useSphere } from '@react-three/cannon'
 import { PointerLockControls } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { isMobile } from 'react-device-detect'
 import * as THREE from 'three'
 import CameraControls from 'camera-controls'
 import { useControls } from 'leva'
+import useIsMobile from '@/hooks/useIsMobile'
 import config from '../../config'
 import KeyBindings from '../../config/keybindings.json'
 import { useStore } from '../../store'
@@ -23,13 +23,14 @@ function Player() {
   const currentVelocity = useRef([0, 0, 0])
   const { lockPointer } = useControls('player', { lockPointer: true })
   const touchCamera = useRef(null)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (!isMobile) return
     if (touchCamera.current) return
 
     touchCamera.current = new CameraControls(camera, gl.domElement)
-  }, [touchCamera, camera, gl.domElement])
+  }, [isMobile, touchCamera, camera, gl.domElement])
 
   const [ref, api] = useSphere(() => ({
     mass: 1,
@@ -110,7 +111,10 @@ function Player() {
     <>
       <mesh ref={ref} />
       {!isMobile && game.mouse && lockPointer && (
-        <PointerLockControls ref={lockRef} />
+        <>
+          <PointerLockControls ref={lockRef} />
+          {/** <OrbitControls /> **/}
+        </>
       )}
     </>
   )

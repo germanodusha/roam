@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { isMobile } from 'react-device-detect'
 import styles from './Keycap.module.scss'
 import useKeyPressEvent from '../../hooks/useKeyPressEvent'
 
@@ -32,7 +31,7 @@ const Keycap = ({
           [styles['keycap-active']]: active,
           [styles['keycap-bordered-active']]: bordered && active,
           [styles['keycap-small']]: small,
-          [styles['keycap-fit']]: isMobile || fitContent,
+          [styles['keycap-fit']]: fitContent,
         },
         className
       )}

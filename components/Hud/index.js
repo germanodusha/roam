@@ -1,11 +1,11 @@
 import { useMemo, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { useControls } from 'leva'
-import { isMobile } from 'react-device-detect'
 import { useStore } from '../../store'
 import Keycap from '@/components/Keycap'
 import { MediaTypes } from '@/helpers/constants'
 import useDesappearState from '@/hooks/useDesappearState'
+import useIsMobile from '@/hooks/useIsMobile'
 import BottomButtons from '@/components/BottomButtons'
 import KeyBindings from '../../config/keybindings.json'
 import styles from './Hud.module.scss'
@@ -61,6 +61,7 @@ const TrackDisplay = ({ mediaTrack }) => {
   const { onChangeInteraction } = useStore((store) => store.actions)
   const [state, show] = useDesappearState({ stateToPersist: mediaTrack })
   const { formatedTime } = useStore((store) => store.state)
+  const isMobile = useIsMobile()
 
   const disableTrack = () => onChangeInteraction(null)
 
@@ -92,6 +93,7 @@ const TrackDisplay = ({ mediaTrack }) => {
 }
 
 const Hud = ({ isFullscreen, disableFullscreen }) => {
+  const isMobile = useIsMobile()
   const [media, setMedia] = useState(false)
   const [mediaTrack, setMediaTrack] = useState(false)
   const { onMove, openMedia, onChangeInteraction } = useStore(
