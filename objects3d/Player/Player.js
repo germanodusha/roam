@@ -1,10 +1,8 @@
+import { useState, useEffect, useRef } from 'react'
 import { useSphere } from '@react-three/cannon'
-import { PointerLockControls } from '@react-three/drei'
-import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import CameraControls from 'camera-controls'
-import { useControls } from 'leva'
 import useIsMobile from '@/hooks/useIsMobile'
 import config from '../../config'
 import KeyBindings from '../../config/keybindings.json'
@@ -15,16 +13,17 @@ CameraControls.install({ THREE })
 const { Vector3 } = THREE
 
 function Player() {
-  const speed = config.player.speed
-  const lockRef = useRef()
+  const [isLock, setLock] = useState(false)
   const { onMove } = useStore((store) => store.actions)
-  const { movement, game, activeMedia } = useStore((store) => store.state)
+  const { movement, activeMedia } = useStore((store) => store.state)
   const { camera, gl } = useThree()
   const currentVelocity = useRef([0, 0, 0])
-  const { lockPointer } = useControls('player', { lockPointer: true })
   const touchCamera = useRef(null)
   const isMobile = useIsMobile()
 
+  /**
+   * Init touch camera on mobile
+   **/
   useEffect(() => {
     if (!isMobile) return
     if (touchCamera.current) return
@@ -38,6 +37,9 @@ function Player() {
     args: config.player.radius,
   }))
 
+  /**
+   * Update player velocity
+   **/
   useEffect(
     () => {
       api.velocity.subscribe(
@@ -48,6 +50,9 @@ function Player() {
     []
   )
 
+  /**
+   * Keyboard controls
+   **/
   useEffect(() => {
     const onKeyDown = (event) => {
       const action = KeyBindings[event.code]
@@ -68,15 +73,81 @@ function Player() {
     }
   }, [])
 
-  useFrame((state, delta) => {
-    if (touchCamera.current) touchCamera.current.update(delta)
-    camera.position.copy(ref.current.position)
-    camera.position.y = config.player.height
+  /**
+   * Mouse controls
+   **/
+  useEffect(() => {
+    camera.rotation.order = 'YXZ'
 
+    const onMouseMove = (e) => {
+      if (!isLock) return
+
+      const scale = -0.001
+      camera.rotation.y += e.movementX * scale
+
+      const newX = camera.rotation.x + e.movementY * scale
+      const isTooHighOrTooLow = Math.abs(newX) > Math.PI / 2 - 0.05
+      if (!isTooHighOrTooLow) camera.rotation.x = newX
+
+      camera.rotation.z = 0
+    }
+
+    window.addEventListener('mousemove', onMouseMove)
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove)
+    }
+  }, [isLock])
+
+  /**
+   * Pointer Lock
+   **/
+  useEffect(() => {
+    const onClick = () => {
+      gl.domElement.requestPointerLock()
+    }
+
+    const onPointerLockChange = () => {
+      const isLock =
+        gl.domElement.ownerDocument.pointerLockElement === gl.domElement
+      setLock(isLock)
+    }
+
+    window.addEventListener('click', onClick)
+    gl.domElement.ownerDocument.addEventListener(
+      'pointerlockchange',
+      onPointerLockChange
+    )
+    // gl.domElement.ownerDocument.addEventListener(
+    //   'mozpointerlockchange',
+    //   onPointerLockChange
+    // )
+
+    return () => {
+      window.removeEventListener('click', onClick)
+      gl.domElement.ownerDocument.removeEventListener(
+        'pointerlockchange',
+        onPointerLockChange
+      )
+      // gl.domElement.ownerDocument.removeEventListener(
+      //   'mozpointerlockchange',
+      //   onPointerLockChange
+      // )
+    }
+  }, [gl.domElement])
+
+  /**
+   * Player movement and update camera
+   **/
+  useFrame((state, delta) => {
     if (activeMedia) {
       api.velocity.set(0, 0, 0)
       return
     }
+
+    if (touchCamera.current) touchCamera.current.update(delta)
+    camera.position.copy(ref.current.position)
+    camera.position.y = config.player.height
 
     const frontVector = new Vector3(
       0,
@@ -92,32 +163,18 @@ function Player() {
     const newVelocity = new Vector3()
       .subVectors(frontVector, sideVector)
       .normalize()
-      .multiplyScalar(speed)
+      .multiplyScalar(config.player.speed)
       .applyEuler(camera.rotation)
 
-    // api.velocity.set(newVelocity.x, movement.jump ? 2 : currentVelocity.current[1], newVelocity.z)
+    // api.velocity.set(
+    //   newVelocity.x,
+    //   movement.jump ? 2 : currentVelocity.current[1],
+    //   newVelocity.z
+    // )
     api.velocity.set(newVelocity.x, currentVelocity.current[1], newVelocity.z)
   })
 
-  // useEffect(() => {
-  //   setPointerLock(lockRef)
-
-  //   return () => {
-  //     cleanPointerLock({})
-  //   }
-  // }, [lockRef, setPointerLock])
-
-  return (
-    <>
-      <mesh ref={ref} />
-      {!isMobile && game.mouse && lockPointer && (
-        <>
-          <PointerLockControls ref={lockRef} />
-          {/** <OrbitControls /> **/}
-        </>
-      )}
-    </>
-  )
+  return <mesh ref={ref} />
 }
 
 export default Player
