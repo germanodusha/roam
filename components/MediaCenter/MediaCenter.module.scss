@@ -23,8 +23,10 @@
     justify-content: center;
 
     &__exit {
-      top: 1em;
-      left: 2em;
+      bottom: 1.5em;
+      left: 0;
+      right: 0;
+      transform: translateY(-100%);
     }
 
     &__actions {

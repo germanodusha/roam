@@ -78,11 +78,12 @@ const TrackDisplay = ({ mediaTrack }) => {
         <span className={styles['hud__interaction__time']}>{formatedTime}</span>
       </HudSection>
 
-      <HudSection show={isMobile} className={styles['hud__icon']}>
+      <HudSection show={isMobile} className={styles['hud__back-btn']}>
         <Keycap
           small
           bordered
-          value="X"
+          fitContent
+          value="return"
           onClick={disableTrack}
           onKeyUp={disableTrack}
           onKeyDown={disableTrack}
