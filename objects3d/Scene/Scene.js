@@ -153,11 +153,10 @@ const Environment = () => {
 
   useEffect(() => {
     const onResize = () => {
-      console.log('on resize')
       gl.setPixelRatio(window.devicePixelRatio)
       gl.setSize(window.innerWidth, window.innerHeight)
     }
-    // onResize()
+    onResize()
 
     window.addEventListener('resize', onResize)
 

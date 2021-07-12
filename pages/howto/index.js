@@ -76,6 +76,8 @@ const Arrow = ({ children, rotate90 = false }) => {
 }
 
 const Arrows = () => {
+  const isMobile = useIsMobile()
+
   return (
     <div className="root">
       <div className="center up">
