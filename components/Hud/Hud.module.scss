@@ -86,6 +86,14 @@
     right: 1em;
   }
 
+  &__back-btn {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+  }
+
   &__controls-move {
     left: 0;
     top: 50vh;

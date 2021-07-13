@@ -120,7 +120,7 @@ const MediaCenter = () => {
         value: 'e',
         onKeyDown: onClose,
         onClick: onClose,
-        mobile: 'BACK',
+        mobile: 'Return',
       },
       { type: 'text', text: 'to go back to the maze', red: false },
     ],
