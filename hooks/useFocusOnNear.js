@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import useIsMobile from '@/hooks/useIsMobile'
 
 const useFrocusOnNear = ({
   ref,
@@ -8,6 +9,7 @@ const useFrocusOnNear = ({
   onFocus,
   onDefocus,
 } = {}) => {
+  const isMobile = useIsMobile()
   const { camera } = useThree()
   const [isFocus, setFocus] = useState(false)
 
@@ -20,13 +22,32 @@ const useFrocusOnNear = ({
     const isNear = camera.position.distanceTo(meshPosition) < distanceTolerance
     const isCloseToCenter = positionScreenSpace.length() < centerTolerance
 
-    if (!isFocus && isCloseToCenter && isNear) {
+    const shouldFocus = () => {
+      if (!isNear) return false
+      if (isFocus) return false
+      if (isMobile) return true
+      return isCloseToCenter
+    }
+
+    if (shouldFocus()) {
       setFocus(true)
       if (typeof onFocus === 'function') onFocus()
+
+      return
     }
-    if (isFocus && (!isCloseToCenter || !isNear)) {
+
+    const shouldDefocus = () => {
+      if (!isFocus) return false
+      if (!isNear) return true
+      if (isMobile) return false
+      return !isCloseToCenter
+    }
+
+    if (shouldDefocus()) {
       setFocus(false)
       if (typeof onDefocus === 'function') onDefocus()
+
+      return
     }
   })
 

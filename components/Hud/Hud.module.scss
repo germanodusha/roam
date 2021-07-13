@@ -113,11 +113,15 @@
       scale: 0.8;
 
       &__front {
-        transform: translateX(-25%);
+        transform: translate(-10%, 10%);
       }
 
       &__back {
-        transform: translate(-10%, 90%);
+        transform: translate(-60%, 90%);
+      }
+
+      &__right {
+        transform: translateX(-110%);
       }
     }
   }

@@ -82,7 +82,7 @@ function Player() {
     const onMouseMove = (e) => {
       if (!isLock) return
 
-      const scale = -0.001
+      const scale = -0.005
       camera.rotation.y += e.movementX * scale
 
       const newX = camera.rotation.x + e.movementY * scale
