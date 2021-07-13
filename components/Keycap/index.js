@@ -7,11 +7,11 @@ const Keycap = ({
   value,
   active,
   bordered,
-  onClick,
   className,
+  onClick = () => {},
+  onKeyDown = () => {},
+  onKeyUp = () => {},
   fitContent = false,
-  onKeyDown = undefined,
-  onKeyUp = undefined,
   rotate90 = false,
   rotate90original = false,
 }) => {
@@ -20,7 +20,10 @@ const Keycap = ({
   return (
     <div
       onClick={onClick}
-      onKeyDown={onClick}
+      onMouseUp={onKeyUp}
+      onMouseDown={onKeyDown}
+      onTouchEnd={onKeyUp}
+      onTouchStart={onKeyDown}
       className={classNames(
         styles['keycap'],
         {

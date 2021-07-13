@@ -3,8 +3,8 @@ import { useFrame, useThree } from '@react-three/fiber'
 
 const useFrocusOnNear = ({
   ref,
-  centerTolerance = 0.4,
-  distanceTolerance = 1.4,
+  centerTolerance = 1,
+  distanceTolerance = 2,
   onFocus,
   onDefocus,
 } = {}) => {
@@ -17,7 +17,6 @@ const useFrocusOnNear = ({
     const meshPosition = ref.current.position
 
     const positionScreenSpace = meshPosition.clone().project(camera)
-    positionScreenSpace.setZ(0)
     const isNear = camera.position.distanceTo(meshPosition) < distanceTolerance
     const isCloseToCenter = positionScreenSpace.length() < centerTolerance
 

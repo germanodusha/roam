@@ -1,13 +1,15 @@
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Scrollbars } from 'react-custom-scrollbars'
-import { isMobile } from 'react-device-detect'
 import classNames from 'classnames'
 import WallBricks from '@/components/WallBricks'
 import BottomButtons from '@/components/BottomButtons'
+import useIsMobile from '@/hooks/useIsMobile'
 import styles from './Howto.module.scss'
 
 const Helper = ({ children }) => {
+  const isMobile = useIsMobile()
+
   return (
     <span
       className={classNames('key-helper', `key-${children.toLowerCase()}`, {
@@ -44,6 +46,8 @@ const Helper = ({ children }) => {
 }
 
 const Arrow = ({ children, rotate90 = false }) => {
+  const isMobile = useIsMobile()
+
   return (
     <span
       className={classNames('key-arrow', {
@@ -72,6 +76,8 @@ const Arrow = ({ children, rotate90 = false }) => {
 }
 
 const Arrows = () => {
+  const isMobile = useIsMobile()
+
   return (
     <div className="root">
       <div className="center up">
@@ -130,6 +136,7 @@ const Arrows = () => {
 
 const Howto = () => {
   const router = useRouter()
+  const isMobile = useIsMobile()
 
   const buttonsData = useMemo(
     () => [

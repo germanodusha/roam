@@ -1,6 +1,6 @@
 import { Suspense, useRef, useEffect, useMemo } from 'react'
 import * as THREE from 'three'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import {
   Stats,
   MapControls,
@@ -112,6 +112,7 @@ const View = () => {
 }
 
 const Environment = () => {
+  const { gl } = useThree()
   const { glow } = useStore((state) => state.state)
   const lightRef = useRef()
 
@@ -150,12 +151,26 @@ const Environment = () => {
     { collapsed: true }
   )
 
+  useEffect(() => {
+    const onResize = () => {
+      gl.setPixelRatio(window.devicePixelRatio)
+      gl.setSize(window.innerWidth, window.innerHeight)
+    }
+    onResize()
+
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+  }, [])
+
   return (
     <group>
       <ambientLight ref={lightRef} intensity={0.7} color="blue" />
       <pointLight position={[0, 500, 0]} color="white" />
-      <mesh visible={hdri}>
-        <sphereGeometry args={[150]} />
+      <mesh visible={hdri} position={[-80, 0, 0]}>
+        <sphereGeometry args={[90]} />
         <meshBasicMaterial envMap={cubeMap} side={THREE.DoubleSide} />
       </mesh>
 
@@ -187,8 +202,14 @@ const Scene = () => {
 
   return (
     <Canvas
-      gl={{ clearColor: new THREE.Color(0, 0, 0) }}
+      mode="concurrent"
       className={styles.scene}
+      camera={{ near: 0.1, far: 200 }}
+      gl={{
+        clearColor: new THREE.Color(0, 0, 0),
+        alpha: false,
+        antialias: false,
+      }}
     >
       <Suspense fallback={null}>
         {controlsEnabled && <Stats />}
