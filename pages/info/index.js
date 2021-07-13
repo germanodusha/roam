@@ -19,6 +19,15 @@ const Info = () => {
         onKeyDown: () => router.push('/howto'),
         mobile: 'ENTER',
       },
+      { type: 'text', text: 'to enter roam or', red: true },
+      {
+        type: 'key',
+        value: 'E',
+        active: true,
+        onClick: () => router.back(),
+        onKeyDown: () => router.back(),
+        mobile: 'BACK',
+      },
       { type: 'text', text: 'to go back', red: true },
     ],
     [router.push]

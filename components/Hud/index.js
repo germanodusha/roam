@@ -43,6 +43,7 @@ const ContentDisplay = ({ media, openMedia, onChangeInteraction }) => {
         className: styles['hud__interaction__keycap'],
         mobile: 'IGNORE',
       },
+      { type: 'text', text: 'to ignore', red: true },
     ],
     [media, openMedia, onChangeInteraction]
   )
@@ -206,6 +207,9 @@ const Hud = ({ isFullscreen, disableFullscreen }) => {
             active={movement.right}
             onKeyUp={() => onMove(KeyBindings.KeyD, false)}
             onKeyDown={() => onMove(KeyBindings.KeyD, true)}
+            className={
+              isMobile ? styles['hud__controls-move-mobile__right'] : ''
+            }
           />
         </div>
       </HudSection>

@@ -149,7 +149,7 @@ const Howto = () => {
         onKeyDown: () => router.push('/play'),
         mobile: 'ENTER',
       },
-      { type: 'text', text: 'to enter site or', red: true },
+      { type: 'text', text: 'to enter roam or', red: true },
       {
         type: 'key',
         value: 'E',
